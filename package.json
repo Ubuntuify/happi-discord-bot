@@ -2,6 +2,10 @@
   "name": "happi-discord-bot",
   "version": "1.0.0",
   "main": "main.js",
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
   "license": "MIT",
   "description": "General purpose discord bot (through API)",
   "repository": "https://github.com/RyanGamingXbox/happi-discord-bot.git",
@@ -17,5 +21,19 @@
     "sodium": "^3.0.2",
     "util": "^0.12.3",
     "ytdl-core": "^4.4.5"
+  },
+  "devDependencies": {
+    "babel-eslint": "10.1.0",
+    "eslint": "7.8.1",
+    "eslint-config-airbnb": "18.2.0",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-config-wesbos": "1.0.1",
+    "eslint-plugin-html": "6.1.0",
+    "eslint-plugin-import": "2.22.0",
+    "eslint-plugin-jsx-a11y": "6.3.1",
+    "eslint-plugin-prettier": "3.1.4",
+    "eslint-plugin-react": "7.20.6",
+    "eslint-plugin-react-hooks": "4.1.2",
+    "prettier": "2.1.1"
   }
 }
