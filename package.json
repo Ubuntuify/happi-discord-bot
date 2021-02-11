@@ -1,0 +1,21 @@
+{
+  "name": "happi-discord-bot",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "description": "General purpose discord bot (through API)",
+  "repository": "https://github.com/RyanGamingXbox/happi-discord-bot.git",
+  "author": "Ryan Salazar",
+  "dependencies": {
+    "@discordjs/opus": "^0.4.0",
+    "beautify": "^0.0.8",
+    "colors": "^1.4.0",
+    "discord.js": "^12.5.1",
+    "ffmpeg-static": "^4.2.7",
+    "glob": "^7.1.6",
+    "path": "^0.12.7",
+    "sodium": "^3.0.2",
+    "util": "^0.12.3",
+    "ytdl-core": "^4.4.5"
+  }
+}
