@@ -17,6 +17,9 @@ module.exports = class Interface extends Client {
       disableMentions: 'everyone',
     });
 
+    this.wrappers = {
+      hypixel: new Hypixel(keys.hypixel),
+    };
     this.init(options);
     this.once('ready', () => {
       console.log(
@@ -32,9 +35,6 @@ module.exports = class Interface extends Client {
     this.discordLogin(options.token);
 
     /* 👓 Start of starting other functions. */
-    this.api = {
-      hypixel: new Hypixel(keys.hypixel),
-    };
   }
 
   validate(options) {
