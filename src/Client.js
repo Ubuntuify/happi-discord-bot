@@ -45,17 +45,11 @@ module.exports = class Interface extends Client {
       throw new Error(`${colors.red('✖ ')} You did not provide a token.`);
     this.token = options.token;
 
-    console.log('Completed verification of provided options.');
+    console.log('✅ Completed verification of provided options.');
   }
 
   async discordLogin(token = this.token) {
     super.login(token);
-    console.log('Inserted token into discord wrapper.');
+    console.log('📡 Inserted token into discord wrapper.');
   }
 };
-
-function getWrappers() {
-  const wrapperPath = './bin/wrappers';
-
-  // TODO: Check how many API wrappers exist.
-}
