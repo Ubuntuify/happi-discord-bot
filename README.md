@@ -103,6 +103,37 @@ This is an example of how to download things you need to use the software and ho
   yarn install
   ```
 
+Please note you also have to provide the api keys and tokens that the wrappers require.
+
+  ```json
+  {
+    "discord": "your-discord-token",
+    "hypixel": "your-hypixel-token",
+  }
+  ```
+
+To get these tokens (API keys), you will need to do the following.
+ * [Discord](https://discord.com/developers/applications)
+
+   <img src="https://cdn.discordapp.com/attachments/810692110034403338/810692166547406899/unknown.png"> </img>
+   
+   After clicking the link, log in and create a new Discord application by clicking the New Application button [as seen above](https://cdn.discordapp.com/attachments/810692110034403338/810692166547406899/unknown.png). You can name it anything you desire (as long as it does not go against Discord [Terms of Service](https://discord.com/terms) and their [API Terms of Service](https://discord.com/developers/docs/legal))
+
+   <img src="https://cdn.discordapp.com/attachments/810692110034403338/810693791312642078/unknown.png"> </img>
+
+   You'll need to go to the bot tab in the sidebar [as seen above](https://cdn.discordapp.com/attachments/810692110034403338/810693791312642078/unknown.png). This will let you create a bot as seen below.
+
+   <img src="https://cdn.discordapp.com/attachments/810692110034403338/810695228368617472/unknown.png"> </img>
+
+   You can create a bot and then copy the bot token and save it in the JSON format located above the tutorial. Please note you should not let anyone else see your token as this can let people access your bot's account.
+ * Hypixel
+   
+   To create a Hypixel API key. You will need a minecraft account. If you do not have one, you can (but should not if you are not planning to play Minecraft) with the price of $24.99 ***(subject to change)***.
+
+   If you have a minecraft account then you can log into minecraft and join the server `mc.hypixel.net`.
+
+   After that you should do `/api` and copy your API key over to the JSON format located above.
+
 ### Installation
 
 1. Clone the repo
