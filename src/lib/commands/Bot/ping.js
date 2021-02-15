@@ -14,21 +14,29 @@ module.exports = class PingCommand extends Command {
     const WS_PING = this.client.ws.ping;
     const CALCULATED_PING = (await message.createdTimestamp) - Date.now();
 
+    const HYPIXEL_PING = await this.client.wrappers.hypixel.getPing();
+
     message.channel.send(
       new MessageEmbed()
         // eslint-disable-next-line
         .setTitle('\✨ Ping')
-        .setDescription(
-          [
-            `**Websocket Ping** ${WS_PING}ms`,
-            `**Effective Ping** ${CALCULATED_PING}ms`,
-          ].join('\n')
+        .addFields(
+          {
+            name: 'Websocket Ping',
+            value: `${WS_PING}ms`,
+            inline: true,
+          },
+          {
+            name: 'Effective Ping',
+            value: `${CALCULATED_PING}ms`,
+            inline: true,
+          },
+          {
+            name: 'Hypixel API',
+            value: `${HYPIXEL_PING}ms`,
+            inline: true,
+          }
         )
-        .addFields({
-          name: 'Hypixel API',
-          value: `${await this.client.wrappers.hypixel.getPing()}`,
-          inline: true,
-        })
     );
   }
 };

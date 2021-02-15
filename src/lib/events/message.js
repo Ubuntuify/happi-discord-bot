@@ -5,10 +5,14 @@ const Events = require('../structures/Event.js');
 module.exports = class MessageEvent extends Events {
   async run(msg) {
     const { client } = this;
+    const message = msg;
 
     // TODO: ✨ Make the prefix customizable per guild. ✨ \\
     const collections = client.commands;
     const prefix = '!';
+
+    if (!message.content.startsWith(prefix)) return;
+    message.channel.startTyping();
 
     const args = msg.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
@@ -19,6 +23,7 @@ module.exports = class MessageEvent extends Events {
     if (command.ownerOnly && msg.author.id !== '323047832317591552') return;
 
     if (command.args && args.length)
+      // TODO: Make this message more simple and readable.
       return msg.channel.send(
         `\🤖 **User syntax error:** Mismatch identified.`
       );
@@ -31,6 +36,7 @@ module.exports = class MessageEvent extends Events {
       collections.timings.set(commandName, new Collection());
     }
 
+    // FIXME: Cooldown system isn't working properly. Please debug later.
     const TIMESTAMPS_COLLECTION = collections.timings.get(commandName);
     const COOLDOWN_SECONDS = command.timing * 1000;
 
@@ -41,7 +47,7 @@ module.exports = class MessageEvent extends Events {
       if (!(Date.now() < EXPIRATION_TIME)) {
         const TIME_LEFT = (EXPIRATION_TIME - Date.now()) / 1000;
         const MESSAGE_ERROR_TIMING = new MessageEmbed()
-          .setTitle('PANIK!')
+          .setTitle("It's time to panic.")
           .setDescription(
             [
               "BEEP BOOP, BEEP BOOP. Please slow down, I can't keep",
@@ -53,7 +59,7 @@ module.exports = class MessageEvent extends Events {
           );
 
         msg.reply(MESSAGE_ERROR_TIMING);
-        return;
+        return false;
       }
     }
 
@@ -65,8 +71,9 @@ module.exports = class MessageEvent extends Events {
 
     try {
       command.run(msg, args);
+      message.channel.stopTyping();
     } catch (err) {
-      // TODO: handle errors via error handler.
+      // TODO: handle ❌ errors ❌ via error handler.
 
       console.error(`That's not right.. Something went wrong here.\n${err}`);
       msg.channel.send(
