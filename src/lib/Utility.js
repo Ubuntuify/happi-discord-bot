@@ -4,6 +4,7 @@ const glob = promisify(require('glob'));
 const colors = require('colors/safe');
 
 const Event = require('./structures/Event.js');
+const Command = require('./structures/Command.js');
 
 module.exports = class Utility {
   constructor(client) {
@@ -48,8 +49,46 @@ module.exports = class Utility {
 
         this.client.events.set(event.name, event);
         event.emitter[event.type](name, (...args) => event.run(...args));
-        console.log(`✅ Loaded ${colors.yellow(name)} as Event Class.`);
+
+        // eslint-disable-next-line
+        console.log(`✅ Loaded ${colors.yellow(name)} as ${colors.cyan('Event Class.')}`);
       }
     });
+  }
+
+  async loadCommands() {
+    console.log(`💿 Loading commands...`);
+
+    return glob(`${this.directory}src/lib/commands/**/*.js`).then(
+      (commands) => {
+        for (const commandFile of commands) {
+          delete require.cache[commandFile];
+
+          const { name } = path.parse(commandFile);
+
+          // eslint-disable-next-line
+          const File = require(commandFile);
+          if (!this.isClass(File))
+            throw new TypeError(
+              `Command ${name} does not export as class. (invalid type)`
+            );
+
+          const command = new File(this.client, name);
+          if (!(command instanceof Command))
+            throw new TypeError(
+              `Command ${name} does not belong in Commands. (invalid extends)`
+            );
+
+          this.client.commands.commands.set(command.name, command);
+
+          if (command.aliases.length)
+            for (const alias of command.aliases) {
+              this.client.command.aliases.set(alias, command.name);
+            }
+          // eslint-disable-next-line
+          console.log(`✅ Loaded ${colors.yellow(name)} as ${colors.blue('Command Class')}.`);
+        }
+      }
+    );
   }
 };
