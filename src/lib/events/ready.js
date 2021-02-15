@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 const colors = require('colors/safe');
 const Event = require('../structures/Event.js');
 
@@ -8,10 +9,8 @@ module.exports = class ReadyEvent extends Event {
     });
   }
 
-  // eslint-disable-next-line class-methods-use-this
   run() {
     /* 🎀 Logs statistics into console during startup. */
-    // eslint-disable-next-line
     const gitRevision = require('child_process')
       .execSync('git rev-parse HEAD')
       .toString()
@@ -32,6 +31,7 @@ module.exports = class ReadyEvent extends Event {
         `🤖 🟢 The client has successfully loaded${colors.gray(
           this.client.commands.commands.size
         )} commands.`,
+        ``,
       ].join(`\n`)
     );
 
