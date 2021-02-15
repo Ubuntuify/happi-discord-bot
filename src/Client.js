@@ -1,5 +1,5 @@
 /* 🤖📚 Libraries */
-const { Client } = require('discord.js');
+const { Client, Collection } = require('discord.js');
 const colors = require('colors/safe');
 const path = require('path');
 
@@ -17,16 +17,11 @@ module.exports = class Interface extends Client {
       disableMentions: 'everyone',
     });
 
+    this.events = new Collection();
     this.wrappers = {
       hypixel: new Hypixel(keys.hypixel),
     };
     this.init(options);
-    this.once('ready', () => {
-      console.log(
-        // eslint-disable-next-line prettier/prettier
-        `🤖 🟢 Discord API is now online as${colors.yellow(this.user.username)}.`
-      );
-    });
   }
 
   init(options) {
@@ -34,7 +29,14 @@ module.exports = class Interface extends Client {
     this.validate(options);
     this.discordLogin(options.token);
 
+    console.log();
+
     /* 👓 Start of starting other functions. */
+    // eslint-disable-next-line global-require
+    const Utility = require('./lib/Utility.js');
+    const utility = new Utility(this);
+
+    utility.loadEvents();
   }
 
   validate(options) {
@@ -45,7 +47,7 @@ module.exports = class Interface extends Client {
       throw new Error(`${colors.red('✖ ')} You did not provide a token.`);
     this.token = options.token;
 
-    console.log('✅ Completed verification of provided options.');
+    console.log('🏁 Completed verification of provided options.');
   }
 
   async discordLogin(token = this.token) {
