@@ -37,6 +37,7 @@ module.exports = class Interface extends Client {
     const utility = new Utility(this);
 
     utility.loadEvents();
+    utility.loadCommands();
   }
 
   validate(options) {

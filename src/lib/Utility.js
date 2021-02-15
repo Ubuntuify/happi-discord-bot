@@ -52,4 +52,8 @@ module.exports = class Utility {
       }
     });
   }
+
+  async loadCommands() {
+    // TODO: Add command structures.
+  }
 };
