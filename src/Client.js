@@ -4,7 +4,7 @@ const colors = require('colors/safe');
 const path = require('path');
 
 // eslint-disable-next-line import/no-dynamic-require
-const keys = require(`${path.dirname(require.main.filename)}/apikeys.json`);
+const keys = require(`${path.dirname(require.main.filename)}/API_KEYS.json`);
 const Hypixel = require('./bin/wrappers/Hypixel.js');
 
 module.exports = class Interface extends Client {
