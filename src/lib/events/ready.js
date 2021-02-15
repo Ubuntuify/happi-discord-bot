@@ -1,7 +1,7 @@
 const colors = require('colors/safe');
 const Event = require('../structures/Event.js');
 
-module.exports = class ready extends Event {
+module.exports = class ReadyEvent extends Event {
   constructor(...args) {
     super(...args, {
       once: true,

@@ -2,7 +2,7 @@
 const { Collection, MessageEmbed } = require('discord.js');
 const Events = require('../../structures/Event.js');
 
-module.exports = class message extends Events {
+module.exports = class MessageEvent extends Events {
   async run(msg) {
     const { client } = this;
 
