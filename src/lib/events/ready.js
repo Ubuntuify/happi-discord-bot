@@ -21,15 +21,17 @@ module.exports = class ready extends Event {
     console.log(
       [
         ``,
-        `🔘 Git Repository Revision:${colors.green(gitRevision)}`,
+        `🔘 Git Repository Revision: ${colors.green(gitRevision)}`,
         ``,
         `🤖 🟢 Discord API is now online as${colors.yellow(
           this.client.user.username
         )}.`,
-        `🤖 🟢 The client has successfully loaded ${colors.gray(
+        `🤖 🟢 The client has successfully loaded${colors.gray(
           this.client.events.size
         )} events.`,
-        `🤖 🔴 Not yet implemented.`,
+        `🤖 🟢 The client has successfully loaded${colors.gray(
+          this.client.commands.commands.size
+        )} commands.`,
       ].join(`\n`)
     );
 
