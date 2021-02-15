@@ -18,6 +18,11 @@ module.exports = class Interface extends Client {
     });
 
     this.events = new Collection();
+    this.commands = {
+      timings: new Collection(),
+      commands: new Collection(),
+      aliases: new Collection(),
+    };
     this.wrappers = {
       hypixel: new Hypixel(keys.hypixel),
     };
