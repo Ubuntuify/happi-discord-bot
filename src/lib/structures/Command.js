@@ -13,13 +13,18 @@ module.exports = class Command {
    * @param {String} name The name and command trigger phrase.
    * @param {Object} options The options for the command.
    *
+   * @param {String} options.name The trigger phrase. (This will have a higher priority compared to the above name.)
+   * @param {String[]} options.aliases The shorter versions of this command.
+   * 
    * @param {Boolean} options.args Whether arguments exist for the command.
    * @param {String} options.usage How to use this command if arguments exist.
    * @param {String} options.description The command description.
    * @param {Number} options.timing The timing of the command.
    * @param {Boolean} options.ownerOnly If the command is exclusive to the owner.
    */
-  constructor(client, name, options = {}) {
+  constructor(client, name, options = {
+    timing: 5,
+  }) {
     this.client = client;
     this.name = options.name || name;
     this.aliases = options.aliases || [];

@@ -3,9 +3,8 @@ const { Collection, MessageEmbed } = require('discord.js');
 const Events = require('../structures/Event.js');
 
 module.exports = class MessageEvent extends Events {
-  async run(msg) {
+  async run(message) {
     const { client } = this;
-    const message = msg;
 
     // TODO: ✨ Make the prefix customizable per guild. ✨ \\
     const collections = client.commands;
@@ -14,17 +13,17 @@ module.exports = class MessageEvent extends Events {
     if (!message.content.startsWith(prefix)) return;
     message.channel.startTyping();
 
-    const args = msg.content.slice(prefix.length).trim().split(/ +/);
+    const args = message.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
 
     if (!collections.commands.has(commandName)) return;
     const command = collections.commands.get(commandName);
 
-    if (command.ownerOnly && msg.author.id !== '323047832317591552') return;
+    if (command.ownerOnly && message.author.id !== '323047832317591552') return;
 
     if (command.args && args.length)
       // TODO: Make this message more simple and readable.
-      return msg.channel.send(
+      return message.channel.send(
         `\🤖 **User syntax error:** Mismatch identified.`
       );
 
@@ -40,9 +39,9 @@ module.exports = class MessageEvent extends Events {
     const TIMESTAMPS_COLLECTION = collections.timings.get(commandName);
     const COOLDOWN_SECONDS = command.timing * 1000;
 
-    if (TIMESTAMPS_COLLECTION.has(msg.author.id)) {
+    if (TIMESTAMPS_COLLECTION.has(message.author.id)) {
       const EXPIRATION_TIME =
-        TIMESTAMPS_COLLECTION.get(msg.author.id) + COOLDOWN_SECONDS;
+        TIMESTAMPS_COLLECTION.get(message.author.id) + COOLDOWN_SECONDS;
 
       if (!(Date.now() < EXPIRATION_TIME)) {
         const TIME_LEFT = (EXPIRATION_TIME - Date.now()) / 1000;
@@ -58,25 +57,25 @@ module.exports = class MessageEvent extends Events {
             ].join('\n')
           );
 
-        msg.reply(MESSAGE_ERROR_TIMING);
+        message.reply(MESSAGE_ERROR_TIMING);
         return false;
       }
     }
 
-    TIMESTAMPS_COLLECTION.set(msg.author.id, Date.now());
+    TIMESTAMPS_COLLECTION.set(message.author.id, Date.now());
     setTimeout(
-      () => TIMESTAMPS_COLLECTION.delete(msg.author.id),
+      () => TIMESTAMPS_COLLECTION.delete(message.author.id),
       COOLDOWN_SECONDS
     );
 
     try {
-      command.run(msg, args);
+      command.run(message, args);
       message.channel.stopTyping();
     } catch (err) {
       // TODO: handle ❌ errors ❌ via error handler.
 
       console.error(`That's not right.. Something went wrong here.\n${err}`);
-      msg.channel.send(
+      message.channel.send(
         `\❌ Something went wrong. We don't know what happened, but you have been given the error code \`#000\``
       );
     }
