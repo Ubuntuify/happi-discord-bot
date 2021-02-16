@@ -24,6 +24,7 @@ module.exports = class Command {
    */
   constructor(client, name, options = {
     timing: 5,
+    args: true,
   }) {
     this.client = client;
     this.name = options.name || name;
@@ -33,9 +34,9 @@ module.exports = class Command {
     this.description = options.description || 'No description was specified.';
 
     // This designates the options of the command.
-    this.args = options.args || true;
+    this.args = options.args;
     this.usage = options.usage || 'Impossible. Perhaps the archives are incomplete.';
-    this.timing = options.timing || 5;
+    this.timing = options.timing;
     this.ownerOnly = options.ownerOnly || false;
   }
 

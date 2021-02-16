@@ -51,7 +51,7 @@ module.exports = class Utility {
         event.emitter[event.type](name, (...args) => event.run(...args));
 
         // eslint-disable-next-line
-        console.log(`✅ Loaded ${colors.yellow(name)} as ${colors.cyan('Event Class.')}`);
+        console.log(`✅ ${colors.cyan(`Event`)} ${colors.yellow(name)} was successfully loaded.`);
       }
     });
   }
@@ -86,7 +86,7 @@ module.exports = class Utility {
               this.client.command.aliases.set(alias, command.name);
             }
           // eslint-disable-next-line
-          console.log(`✅ Loaded ${colors.yellow(name)} as ${colors.blue('Command Class')}.`);
+          console.log(`✅ ${colors.green(`Command`)} ${colors.yellow(name)} was successfully loaded.`);
         }
       }
     );

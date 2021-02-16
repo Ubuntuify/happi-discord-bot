@@ -4,11 +4,15 @@ const Events = require('../structures/Event.js');
 
 module.exports = class MessageEvent extends Events {
   async run(message) {
-    const { client } = this;
-
     // TODO: ✨ Make the prefix customizable per guild. ✨ \\
-    const collections = client.commands;
+    const collections = this.client.commands;
+    const mentionRegex = `<@${this.client.user.id}>`;
     const prefix = '!';
+
+    if (message.content.startsWith(mentionRegex))
+      message.channel.send(
+        `Oh, hello there. You'll probably want my prefix. My prefix is ${prefix}`
+      );
 
     if (!message.content.startsWith(prefix)) return;
     message.channel.startTyping();
@@ -21,11 +25,27 @@ module.exports = class MessageEvent extends Events {
 
     if (command.ownerOnly && message.author.id !== '323047832317591552') return;
 
-    if (command.args && args.length)
-      // TODO: Make this message more simple and readable.
-      return message.channel.send(
-        `\🤖 **User syntax error:** Mismatch identified.`
+    if (command.args === args.join(' ').length <= 0) {
+      message.channel.stopTyping();
+      message.channel.send(
+        new MessageEmbed()
+          // eslint-disable-next-line prettier/prettier
+          .setTitle('\:x: Query Error')
+          .setDescription(
+            [
+              `You did not provide the sufficient`,
+              `amount of arguments. Please send`,
+              `the proper amount again.`,
+            ].join('\n')
+          )
+          .setFooter(
+            `Check my git repository!`,
+            this.client.user.displayAvatarURL()
+          )
+          .setTimestamp(message.createdTimestamp)
       );
+      return;
+    }
 
     /* === ✨ Tick, tock. The machine goes not. ✨ ===
     This section is cooldown handling. (Please note contributer:
