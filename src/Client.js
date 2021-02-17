@@ -38,9 +38,9 @@ module.exports = class Interface extends Client {
   init(options) {
     /* ✨ The start up for the discord wrapper. */
     this.validate(options);
-    this.discordLogin(options.token);
 
-    console.log();
+    super.login((options.token = this.token));
+    console.log('📡 Inserted token into discord wrapper.\n');
 
     /* 👓 Start of starting other functions. */
 
@@ -65,14 +65,9 @@ module.exports = class Interface extends Client {
     console.log('🏁 Completed verification of provided options.');
   }
 
-  async discordLogin(token = this.token) {
-    super.login(token);
-    console.log('📡 Inserted token into discord wrapper.');
-  }
-
   static exit() {
     // ✨ This method will exit the process.
-    console.log(`✨ Exiting client.. Goodbye!`);
+    console.log(`\n✨ Exiting client.. Goodbye!`);
     process.exit(0);
   }
 };
