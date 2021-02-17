@@ -11,14 +11,14 @@ module.exports = class EvaluateCommand extends Command {
       name: 'eval',
       description: 'A developer debugging tool that can help future features.',
       args: true,
-      usage: 'code',
+      usage: '(code to evaluate)',
       timing: 0,
       ownerOnly: true,
     });
   }
 
   async run(message, args) {
-    // These will similate more usual evaluate
+    // These will simulate more usual evaluate
     // expressions that will be more similar to
     // other discord.js programs.
     const { client } = this;

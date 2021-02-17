@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "main.js",
   "scripts": {
-    "init": "node .",
+    "run": "node .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

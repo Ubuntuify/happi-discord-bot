@@ -94,14 +94,14 @@ To get a local copy up and running follow these simple steps.
 ### Prerequisites
 
 This is an example of how to download things you need to use the software and how to install them.
+
+You require the following packages.
+
 * npm
-  ```sh
-  npm install
-  ```
-* yarn
-  ```sh
-  yarn install
-  ```
+  
+  A node.js package manager that usually comes with node itself. As long as you install node you should be able to use the command line utility.
+
+  You can install an alternative package manager something like `yarn`.
 
 Please note you also have to provide the api keys and tokens that the wrappers require.
 
@@ -141,11 +141,11 @@ To get these tokens (API keys), you will need to do the following.
    git clone https://github.com/RyanGamingXbox/happi-discord-bot.git
    ```
 2. Install NPM packages
- * npm
+ * With npm
    ```sh
    npm install
    ```
- * yarn
+ * With yarn
    ```sh
    yarn install
    ```
