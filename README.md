@@ -105,6 +105,8 @@ You require the following packages.
 
 Please note you also have to provide the api keys and tokens that the wrappers require.
 
+This file **needs** to be located in `/src/app/config/api.json`
+
   ```json
   {
     "discord": "your-discord-token",

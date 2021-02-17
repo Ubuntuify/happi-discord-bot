@@ -4,7 +4,7 @@
 const colors = require('colors/safe');
 
 const Interface = require('./src/Client.js');
-const token = require('./API_KEYS.json');
+const token = require('./src/app/config/api.json');
 
 /* ✨ Initializes discord and other api wrappers. */
 const Client = new Interface({ token: token.discord });

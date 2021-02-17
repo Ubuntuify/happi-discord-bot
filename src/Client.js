@@ -4,7 +4,10 @@ const colors = require('colors/safe');
 const path = require('path');
 
 // eslint-disable-next-line import/no-dynamic-require
-const keys = require(`${path.dirname(require.main.filename)}/API_KEYS.json`);
+const api = require(`${path.dirname(
+  require.main.filename
+)}/src/app/config/api.json`);
+
 const Hypixel = require('./bin/wrappers/Hypixel.js');
 
 module.exports = class Interface extends Client {
@@ -17,6 +20,7 @@ module.exports = class Interface extends Client {
       disableMentions: 'everyone',
     });
 
+    // These load the 📡 events and 💻 commands collections.
     this.events = new Collection();
     this.commands = {
       timings: new Collection(),
@@ -24,8 +28,10 @@ module.exports = class Interface extends Client {
       aliases: new Collection(),
     };
     this.wrappers = {
-      hypixel: new Hypixel(keys.hypixel),
+      hypixel: new Hypixel(api.hypixel),
     };
+
+    // This starts the client itself.
     this.init(options);
   }
 
@@ -37,6 +43,9 @@ module.exports = class Interface extends Client {
     console.log();
 
     /* 👓 Start of starting other functions. */
+
+    delete require.cache;
+
     // eslint-disable-next-line global-require
     const Utility = require('./lib/Utility.js');
     const utility = new Utility(this);
@@ -59,5 +68,11 @@ module.exports = class Interface extends Client {
   async discordLogin(token = this.token) {
     super.login(token);
     console.log('📡 Inserted token into discord wrapper.');
+  }
+
+  static exit() {
+    // ✨ This method will exit the process.
+    console.log(`✨ Exiting client.. Goodbye!`);
+    process.exit(0);
   }
 };
