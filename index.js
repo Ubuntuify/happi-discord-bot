@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
 
 /* 🤖📚 Libraries */
-const colors = require('colors/safe');
-
 const Interface = require('./src/Client.js');
 const token = require('./src/app/config/api.json');
 

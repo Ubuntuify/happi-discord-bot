@@ -44,9 +44,6 @@ module.exports = class Interface extends Client {
 
     /* 👓 Start of starting other functions. */
 
-    delete require.cache;
-
-    // eslint-disable-next-line global-require
     const Utility = require('./lib/Utility.js');
     const utility = new Utility(this);
 
