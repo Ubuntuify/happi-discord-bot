@@ -3,7 +3,7 @@
 /* eslint-disable no-eval */
 const beautify = require('beautify');
 const { MessageEmbed } = require('discord.js');
-const Command = require('../../structures/Command');
+const Command = require('../../Command');
 
 module.exports = class EvaluateCommand extends Command {
   constructor(client, name) {

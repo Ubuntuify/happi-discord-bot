@@ -28,38 +28,40 @@ module.exports = class Utility {
   async loadEvents() {
     console.log(`💿 Loading events...`);
 
-    return glob(`${this.directory}src/lib/events/**/*.js`).then((events) => {
-      for (const eventFile of events) {
-        delete require.cache[eventFile];
+    return glob(`${this.directory}src/lib/structures/events/**/*.js`).then(
+      (events) => {
+        for (const eventFile of events) {
+          delete require.cache[eventFile];
 
-        const { name } = path.parse(eventFile);
+          const { name } = path.parse(eventFile);
 
-        // eslint-disable-next-line
+          // eslint-disable-next-line
         const File = require(eventFile);
-        if (!this.isClass(File))
-          throw new TypeError(
-            `Event ${name} does not export as Class. (invalid type)`
-          );
+          if (!this.isClass(File))
+            throw new TypeError(
+              `Event ${name} does not export as Class. (invalid type)`
+            );
 
-        const event = new File(this.client, name);
-        if (!(event instanceof Event))
-          throw new TypeError(
-            `Event ${name} does not belong. (invalid extends)`
-          );
+          const event = new File(this.client, name);
+          if (!(event instanceof Event))
+            throw new TypeError(
+              `Event ${name} does not belong. (invalid extends)`
+            );
 
-        this.client.events.set(event.name, event);
-        event.emitter[event.type](name, (...args) => event.run(...args));
+          this.client.events.set(event.name, event);
+          event.emitter[event.type](name, (...args) => event.run(...args));
 
-        // eslint-disable-next-line
+          // eslint-disable-next-line
         console.log(`✅ ${colors.cyan(`Event`)} ${colors.yellow(name)} was successfully loaded.`);
+        }
       }
-    });
+    );
   }
 
   async loadCommands() {
     console.log(`💿 Loading commands...`);
 
-    return glob(`${this.directory}src/lib/commands/**/*.js`).then(
+    return glob(`${this.directory}src/lib/structures/commands/**/*.js`).then(
       (commands) => {
         for (const commandFile of commands) {
           delete require.cache[commandFile];
