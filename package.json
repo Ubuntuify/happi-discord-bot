@@ -1,7 +1,7 @@
 {
   "name": "happi-discord-bot",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "index.js",
   "scripts": {
     "start": "node .",
     "dev": "nodemon --exec node .",

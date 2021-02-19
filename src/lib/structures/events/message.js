@@ -7,7 +7,7 @@ module.exports = class MessageEvent extends Events {
     // TODO: ✨ Make the prefix customizable per guild. ✨ \\
     const collections = this.client.commands;
     const mentionRegex = `<@${this.client.user.id}>`;
-    const prefix = '!';
+    const { prefix } = require('../../../app/config/main-config.json');
 
     if (message.content.startsWith(mentionRegex))
       message.channel.send(
@@ -25,7 +25,7 @@ module.exports = class MessageEvent extends Events {
 
     if (command.ownerOnly && message.author.id !== '323047832317591552') return;
 
-    if (command.args === args.join(' ').length <= 0) {
+    if (command.args && args.join(' ').length <= 0) {
       message.channel.stopTyping();
       message.channel.send(
         new MessageEmbed()
