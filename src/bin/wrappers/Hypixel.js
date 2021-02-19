@@ -7,6 +7,7 @@ const APIErrorMessage = new MessageEmbed().setDescription(
   [
     'An API error has occured while retrieving from the Hypixel API. If this persists, you should report this error.\n',
     'However, it is more likely that you did not provide a player that has logged on the server. You can verify this by going on plancke.io to check the API.',
+    'If you did not ask for a player, this is a problem on our side. You can check the git repository to see the error.',
   ].join('\n')
 );
 
