@@ -2,6 +2,7 @@
 /* eslint-disable no-use-before-define */
 const { Client } = require('hypixel-api-reborn');
 const { MessageEmbed, Message } = require('discord.js');
+const { sup } = require('ffmpeg-static');
 
 const APIErrorMessage = new MessageEmbed().setDescription(
   [
@@ -14,14 +15,15 @@ const APIErrorMessage = new MessageEmbed().setDescription(
 module.exports = class HypixelAPI extends Client {
   constructor(key) {
     super(key, {
-      cache: false,
+      cache: true,
+      cacheTime: 5,
     });
   }
 
   /**
    * Creates a personal embed for the player.
-   * @param {Message} message - The message that initialized this request.
    * @param {String} query - The query (player) that was asked.
+   * @returns {MessageEmbed} - Embed generated from this method.
    */
   async createEmbedPlayer(message, query) {
     try {
@@ -93,16 +95,16 @@ module.exports = class HypixelAPI extends Client {
           }
         );
     } catch (stacktrace) {
-      message.channel.send(APIErrorMessage);
+      return APIErrorMessage;
     }
   }
 
   /**
    * Creates a personal embed for the queried guild.
-   * @param {Message} message - The message that initialized this request.
    * @param {String} query - The query (guild) that was asked.
+   * @returns {MessageEmbed} - Embed generated from this method.
    */
-  async createEmbedGuild(message, query) {
+  async createEmbedGuild(query) {
     try {
       const guildData = await super.getGuild(query);
 
@@ -130,15 +132,15 @@ module.exports = class HypixelAPI extends Client {
           }
         );
     } catch (stacktrace) {
-      message.channel.send(APIErrorMessage);
+      return APIErrorMessage;
     }
   }
 
   /**
    * Creates a personal embed for Watchdog Statistics.
-   * @param {Message} message - The message that initialized this request.
+   * @returns {MessageEmbed} - Embed generated from this
    */
-  async createEmbedWatchdog(message) {
+  async createEmbedWatchdog() {
     try {
       const stats = await this.client.wrappers.hypixel.getWatchdogStats();
 
@@ -171,7 +173,78 @@ module.exports = class HypixelAPI extends Client {
         { name: '⠀', value: '⠀', inline: true }
       );
     } catch (stacktrace) {
-      message.channel.send(APIErrorMessage);
+      return APIErrorMessage;
+    }
+  }
+
+  /**
+   * Generates an embed for Bedwars Stats.
+   * @param {String} query - The query (player) that was asked.
+   * @returns {MessageEmbed} - Embed generated from this method.
+   */
+  async createEmbedPlayerBedwars(query) {
+    try {
+      const player = await super.getPlayer(query);
+      const { bedwars } = player.stats;
+
+      // 📡 Subsitutes not available statistics.
+      const avgDeaths =
+        Math.round((bedwars.deaths / bedwars.playedGames) * 100) / 100;
+      const AKDRatio = Math.round((bedwars.avg.kills / avgDeaths) * 100) / 100;
+      const lastOnline = player.isOnline
+        ? '`ONLINE`'
+        : formatDate(player.lastLogin);
+
+      return new MessageEmbed()
+        .setAuthor(
+          `BedWars Stats • [${bedwars.level}✫] • ${player.nickname}`,
+          `https://fsa.zobj.net/crop.php?r=by0jGANgnc4W22sOr9z4e9V-f5s5J9Ud5UMMEyggbnr0Mr3JYYoK16DCVlQulNDLSO6xrestaTY37IUXFdx5A-h1LOgW6zaWU03pvnFnVw-6C37MyBorvI6Fc-qdaFTVsjNzrGm-ZcZDSmu4`,
+          `https://hypixel.net`
+        )
+        .addFields(
+          // ✨ Kill and deaths - KDR
+          { name: 'Total\nKills', value: bedwars.kills, inline: true },
+          { name: '⠀\nDeaths', value: bedwars.deaths, inline: true },
+          { name: '⠀\nKDR', value: bedwars.KDRatio, inline: true },
+
+          // ✨ Average kill and average deaths - AKDR
+          {
+            name: 'Average\nKills⠀⠀⠀⠀⠀⠀',
+            value: bedwars.avg.kills,
+            inline: true,
+          },
+          {
+            name: '⠀\nDeaths⠀⠀⠀',
+            value: avgDeaths,
+            inline: true,
+          },
+          {
+            name: '⠀\nAKDR⠀⠀⠀',
+            value: AKDRatio,
+            inline: true,
+          },
+
+          // ✨ Final kills and final deaths - FKDR
+          { name: 'Final\nKills', value: bedwars.finalKills, inline: true },
+          { name: '⠀\nDeaths', value: bedwars.finalDeaths, inline: true },
+          { name: '⠀\nFKDR', value: bedwars.finalKDRatio, inline: true },
+
+          // ✨ Beds broken and beds lost - BBBLR
+          { name: 'Beds\nBroken', value: bedwars.beds.broken, inline: true },
+          { name: '⠀\nLost', value: bedwars.beds.lost, inline: true },
+          { name: '⠀\nBBBLR', value: bedwars.beds.BLRatio, inline: true },
+
+          // ✨ Wins and Losses - WLR
+          { name: 'Wins', value: bedwars.wins, inline: true },
+          { name: 'Losses', value: bedwars.losses, inline: true },
+          { name: 'WLR', value: bedwars.WLRatio, inline: true },
+
+          // ✨ Other stats.
+          { name: 'Time since last online.', value: lastOnline, inline: false },
+          { name: 'Current winstreak', value: bedwars.winstreak, inline: true }
+        );
+    } catch (stacktrace) {
+      return APIErrorMessage;
     }
   }
 };

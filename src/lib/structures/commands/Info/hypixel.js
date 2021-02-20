@@ -32,13 +32,23 @@ module.exports = class HypixelAPICommand extends Command {
     if (args[0].toLowerCase() === 'player') {
       if (args[2]) {
         // TODO: make this command have minigame functionality.
+
+        if (
+          args[2].toLowerCase() === 'bedwars' ||
+          args[2].toLowerCase() === 'bedwar'
+        ) {
+          message.channel.send(
+            await this.client.wrappers.hypixel.createEmbedPlayerBedwars(args[2])
+          );
+        }
+
         return;
       }
 
       if (!args[1]) return message.channel.send(QueryError);
 
       return message.channel.send(
-        await this.client.wrappers.hypixel.createEmbedPlayer(message, args[1])
+        await this.client.wrappers.hypixel.createEmbedPlayer(args[1])
       );
     }
 
@@ -46,13 +56,13 @@ module.exports = class HypixelAPICommand extends Command {
       if (!args[1]) return message.channel.send(QueryError);
 
       return message.channel.send(
-        await this.client.wrappers.hypixel.createEmbedPlayer(message, args[1])
+        await this.client.wrappers.hypixel.createEmbedPlayer(args[1])
       );
     }
 
     if (args[0].toLowerCase() === 'watchdog') {
       return message.channel.send(
-        await this.client.wrappers.hypixel.createEmbedWatchdog(message)
+        await this.client.wrappers.hypixel.createEmbedWatchdog()
       );
     }
 
