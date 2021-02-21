@@ -1,14 +1,13 @@
 /* 🤖📚 Libraries */
 import { Client, Collection } from 'discord.js';
 import colors from 'colors/safe';
-import path from 'path';
 
 import { HypixelAPI } from './bin/wrappers/Hypixel';
+import api from './app/config/api.json';
 
-// eslint-disable-next-line import/no-dynamic-require
-const api = require(`${path.dirname(
-  require.main.filename
-)}/src/app/config/api.json`);
+interface clientOptions {
+  token: string;
+}
 
 export class Interface extends Client {
   events: Collection<any, any>;
@@ -19,7 +18,7 @@ export class Interface extends Client {
    * 📌 The primary class to be used for all the features of the bot.
    * @param {Object} options - Options to be passed to the constructor (and discord.js).
    */
-  constructor(options: Object = {}) {
+  constructor(options: clientOptions) {
     super({
       disableMentions: 'everyone',
     });
