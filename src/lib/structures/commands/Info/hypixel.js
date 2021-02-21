@@ -38,7 +38,7 @@ module.exports = class HypixelAPICommand extends Command {
           args[2].toLowerCase() === 'bedwar'
         ) {
           message.channel.send(
-            await this.client.wrappers.hypixel.createEmbedPlayerBedwars(args[2])
+            await this.client.wrappers.hypixel.createEmbedPlayerBedwars(args[1])
           );
         }
 
