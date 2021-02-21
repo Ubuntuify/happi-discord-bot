@@ -3,6 +3,7 @@
         "wesbos"
     ],
     "rules": {
-        "global-require": "off"
+        "global-require": "off",
+        "lines-between-class-members": "off"
     }
 }
