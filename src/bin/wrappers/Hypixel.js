@@ -25,7 +25,7 @@ module.exports = class HypixelAPI extends Client {
    * @param {String} query - The query (player) that was asked.
    * @returns {MessageEmbed} - Embed generated from this method.
    */
-  async createEmbedPlayer(message, query) {
+  async createEmbedPlayer(query) {
     try {
       const playerData = {
         player: await super.getPlayer(query),
@@ -209,12 +209,12 @@ module.exports = class HypixelAPI extends Client {
 
           // ✨ Average kill and average deaths - AKDR
           {
-            name: 'Average\nKills⠀⠀⠀⠀⠀⠀',
+            name: 'Average\nKills⠀⠀⠀⠀⠀⠀⠀⠀',
             value: bedwars.avg.kills,
             inline: true,
           },
           {
-            name: '⠀\nDeaths⠀⠀⠀',
+            name: '⠀\nDeaths⠀⠀⠀⠀⠀',
             value: avgDeaths,
             inline: true,
           },
@@ -239,9 +239,33 @@ module.exports = class HypixelAPI extends Client {
           { name: 'Losses', value: bedwars.losses, inline: true },
           { name: 'WLR', value: bedwars.WLRatio, inline: true },
 
+          {
+            name: 'Collected\nIron',
+            value: bedwars.collectedItemsTotal.iron,
+            inline: true,
+          },
+          {
+            name: '⠀\nGold',
+            value: bedwars.collectedItemsTotal.gold,
+            inline: true,
+          },
+          {
+            name: '⠀\nDiamond',
+            value: bedwars.collectedItemsTotal.diamond,
+            inline: true,
+          },
+          {
+            name: 'Emerald',
+            value: bedwars.collectedItemsTotal.emerald,
+            inline: true,
+          },
+
           // ✨ Other stats.
           { name: 'Time since last online.', value: lastOnline, inline: false },
           { name: 'Current winstreak', value: bedwars.winstreak, inline: true }
+        )
+        .setThumbnail(
+          'https://hypixel.net/styles/hypixel-v2/images/game-icons/BedWars-64.png'
         );
     } catch (stacktrace) {
       return APIErrorMessage;
