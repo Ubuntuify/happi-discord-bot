@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-use-before-define */
 import { Client } from 'hypixel-api-reborn';
-import { MessageEmbed, Message } from 'discord.js';
+import { MessageEmbed } from 'discord.js';
 
 const APIErrorMessage = new MessageEmbed().setDescription(
   [
@@ -24,7 +24,7 @@ export class HypixelAPI extends Client {
    * @param {String} query - The query (player) that was asked.
    * @returns {MessageEmbed} - Embed generated from this method.
    */
-  async createEmbedPlayer(query: string): Promise<MessageEmbed> {
+  public async createEmbedPlayer(query: string): Promise<MessageEmbed> {
     try {
       const playerData = {
         player: await super.getPlayer(query),
@@ -103,7 +103,7 @@ export class HypixelAPI extends Client {
    * @param {String} query - The query (guild) that was asked.
    * @returns {MessageEmbed} - Embed generated from this method.
    */
-  async createEmbedGuild(query: any): Promise<MessageEmbed> {
+  public async createEmbedGuild(query: any): Promise<MessageEmbed> {
     try {
       const guildData = await super.getGuild(query, query);
 
@@ -139,7 +139,7 @@ export class HypixelAPI extends Client {
    * Creates a personal embed for Watchdog Statistics.
    * @returns {MessageEmbed} - Embed generated from this
    */
-  async createEmbedWatchdog(): Promise<MessageEmbed> {
+  public async createEmbedWatchdog(): Promise<MessageEmbed> {
     try {
       const stats = await this.getWatchdogStats();
 
@@ -181,7 +181,7 @@ export class HypixelAPI extends Client {
    * @param {String} query - The query (player) that was asked.
    * @returns {MessageEmbed} - Embed generated from this method.
    */
-  async createEmbedPlayerBedwars(query: string): Promise<MessageEmbed> {
+  public async createEmbedPlayerBedwars(query: string): Promise<MessageEmbed> {
     try {
       const player = await super.getPlayer(query);
       const { bedwars } = player.stats;

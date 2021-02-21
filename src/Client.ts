@@ -11,7 +11,7 @@ interface clientOptions {
 
 export class Interface extends Client {
   events: Collection<any, any>;
-  commands: Object;
+  commands: any;
   wrappers: Object;
 
   /**
@@ -47,7 +47,7 @@ export class Interface extends Client {
 
     /* 👓 Start of starting other functions. */
 
-    const Utility = require('./lib/Utility.js').default;
+    const Utility = require('./lib/Utility').default;
     const utility = new Utility(this);
 
     utility.loadEvents();
