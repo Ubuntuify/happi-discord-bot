@@ -1,6 +1,6 @@
 import { dirname, sep, parse } from 'path';
 import { promisify } from 'util';
-import { cyan, yellow, green } from 'colors/safe';
+import { cyan, yellow, green } from 'chalk';
 
 import Event from './structures/Event.js';
 import Command from './structures/Command.js';

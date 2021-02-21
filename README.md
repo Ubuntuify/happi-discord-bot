@@ -145,12 +145,13 @@ To get these tokens (API keys), you will need to do the following.
 2. Install NPM packages
  * With npm
    ```sh
-   npm install
+   npm ci
    ```
  * With yarn
    ```sh
-   yarn install
+   yarn install --production=true
    ```
+   Please note, if you want to contribute, you will require the developer dependencies. You should remove the production flag from the above command.
 
 
 <!-- ROADMAP -->

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
 
-const colors = require('colors/safe');
+const colors = require('chalk');
 const Client = require('../../Client');
 
 module.exports = class Events {

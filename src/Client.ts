@@ -1,6 +1,6 @@
 /* 🤖📚 Libraries */
 import { Client, Collection } from 'discord.js';
-import colors from 'colors/safe';
+import * as colors from 'chalk';
 
 import { HypixelAPI } from './bin/wrappers/Hypixel';
 import api from './app/config/api.json';
