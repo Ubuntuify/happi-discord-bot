@@ -1,12 +1,13 @@
-const path = require('path');
-const { promisify } = require('util');
+import { dirname, sep, parse } from 'path';
+import { promisify } from 'util';
+import { cyan, yellow, green } from 'colors/safe';
+
+import Event from './structures/Event.js';
+import Command from './structures/Command.js';
+
 const glob = promisify(require('glob'));
-const colors = require('colors/safe');
 
-const Event = require('./structures/Event.js');
-const Command = require('./structures/Command.js');
-
-module.exports = class Utility {
+export default class Utility {
   constructor(client) {
     this.client = client;
   }
@@ -22,7 +23,7 @@ module.exports = class Utility {
 
   // eslint-disable-next-line class-methods-use-this
   get directory() {
-    return `${path.dirname(require.main.filename)}${path.sep}`;
+    return `${dirname(require.main.filename)}${sep}`;
   }
 
   async loadEvents() {
@@ -33,7 +34,7 @@ module.exports = class Utility {
         for (const eventFile of events) {
           delete require.cache[eventFile];
 
-          const { name } = path.parse(eventFile);
+          const { name } = parse(eventFile);
 
           // eslint-disable-next-line
         const File = require(eventFile);
@@ -52,7 +53,7 @@ module.exports = class Utility {
           event.emitter[event.type](name, (...args) => event.run(...args));
 
           // eslint-disable-next-line
-        console.log(`✅ ${colors.cyan(`Event`)} ${colors.yellow(name)} was successfully loaded.`);
+        console.log(`✅ ${cyan(`Event`)} ${yellow(name)} was successfully loaded.`);
         }
       }
     );
@@ -66,7 +67,7 @@ module.exports = class Utility {
         for (const commandFile of commands) {
           delete require.cache[commandFile];
 
-          const { name } = path.parse(commandFile);
+          const { name } = parse(commandFile);
 
           // eslint-disable-next-line
           const File = require(commandFile);
@@ -88,9 +89,9 @@ module.exports = class Utility {
               this.client.command.aliases.set(alias, command.name);
             }
           // eslint-disable-next-line
-          console.log(`✅ ${colors.green(`Command`)} ${colors.yellow(name)} was successfully loaded.`);
+          console.log(`✅ ${green(`Command`)} ${yellow(name)} was successfully loaded.`);
         }
       }
     );
   }
-};
+}

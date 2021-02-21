@@ -1,5 +1,6 @@
 /yarn-error.log
 /yarn.lock
 /package-lock.json
+/dist
 /node_modules
 /src/app/config/api.json

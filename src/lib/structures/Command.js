@@ -3,7 +3,7 @@
 /* eslint-disable class-methods-use-this */
 
 const colors = require('colors/safe');
-const Client = require('../../Client.js');
+const Client = require('../../Client');
 
 module.exports = class Command {
   /**
