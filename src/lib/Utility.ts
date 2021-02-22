@@ -1,6 +1,7 @@
 import { dirname, sep, parse } from 'path';
 import { promisify } from 'util';
 import { cyan, yellow, green } from 'chalk';
+import ora from 'ora';
 
 import Event from './structures/Event.js';
 import Command from './structures/Command.js';
@@ -16,7 +17,7 @@ export default class Utility {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  isClass(input) {
+  public isClass(input: any) {
     return (
       typeof input === 'function' &&
       typeof input.prototype === 'object' &&
@@ -29,18 +30,17 @@ export default class Utility {
     return `${dirname(require.main.filename)}${sep}`;
   }
 
-  async loadEvents() {
-    console.log(`💿 Loading events...`);
-
+  public async loadEvents() {
     return glob(`${this.directory}src/lib/structures/events/**/*.js`).then(
-      (events) => {
+      (events: any) => {
         for (const eventFile of events) {
           delete require.cache[eventFile];
-
           const { name } = parse(eventFile);
 
+          const loadSpinner = ora(`Loading event ${name}...`);
+
           // eslint-disable-next-line
-        const File = require(eventFile);
+            const File = require(eventFile);
           if (!this.isClass(File))
             throw new TypeError(
               `Event ${name} does not export as Class. (invalid type)`
@@ -53,27 +53,29 @@ export default class Utility {
             );
 
           this.client.events.set(event.name, event);
-          event.emitter[event.type](name, (...args) => event.run(...args));
+          event.emitter[event.type](name, (...args: any) => event.run(...args));
 
           // eslint-disable-next-line
-        console.log(`✅ ${cyan(`Event`)} ${yellow(name)} was successfully loaded.`);
+          loadSpinner.succeed(`Completed loading ${cyan('event')} ${yellow(name)}.`);
         }
       }
     );
   }
 
-  async loadCommands() {
-    console.log(`💿 Loading commands...`);
+  public async loadCommands() {
+    return [this.loadCommandsExtension('js'), this.loadCommandsExtension('ts')];
+  }
 
-    return glob(`${this.directory}src/lib/structures/commands/**/*.js`).then(
-      (commands) => {
+  private async loadCommandsExtension(extension: string) {
+    glob(`${this.directory}src/lib/structures/commands/**/*.${extension}`).then(
+      (commands: any) => {
         for (const commandFile of commands) {
           delete require.cache[commandFile];
-
           const { name } = parse(commandFile);
+          const loadSpinner = ora(`Loading command ${name}...`);
 
           // eslint-disable-next-line
-          const File = require(commandFile);
+        const File = require(commandFile);
           if (!this.isClass(File))
             throw new TypeError(
               `Command ${name} does not export as class. (invalid type)`
@@ -92,7 +94,7 @@ export default class Utility {
               this.client.commands.aliases.set(alias, command.name);
             }
           // eslint-disable-next-line
-          console.log(`✅ ${green(`Command`)} ${yellow(name)} was successfully loaded.`);
+          loadSpinner.succeed(`Completed loading ${green('command')} ${yellow(name)}.`);
         }
       }
     );
