@@ -82,7 +82,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/67ff796efb8e462cb93e1a79834edaad)](https://app.codacy.com/gh/RyanGamingXbox/happi-discord-bot?utm_source=github.com&utm_medium=referral&utm_content=RyanGamingXbox/happi-discord-bot&utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/67ff796efb8e462cb93e1a79834edaad)](https://app.codacy.com/gh/RyanGamingXbox/happi-discord-bot?utm_source=github.com&utm_medium=referral&utm_content=RyanGamingXbox/happi-discord-bot&utm_campaign=Badge_Grade)[![CodeFactor](https://www.codefactor.io/repository/github/ryangamingxbox/happi-discord-bot/badge)](https://www.codefactor.io/repository/github/ryangamingxbox/happi-discord-bot)
 
 
 A small discord bot project, I work on my free time. It's meant to be more of a general purpose bot for moderation, voice and more. This is just a small side project, so don't expect that much from it.
