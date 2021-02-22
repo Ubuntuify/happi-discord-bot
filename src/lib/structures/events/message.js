@@ -2,11 +2,11 @@
 const { Collection, MessageEmbed } = require('discord.js');
 const Events = require('../Event.js').default;
 
-module.exports = class MessageEvent extends Events {
+module.exports = class MessageCommandEvent extends Events {
   async run(message) {
     // TODO: ✨ Make the prefix customizable per guild. ✨ \\
     const collections = this.client.commands;
-    const mentionRegex = `<@${this.client.user.id}>`;
+    const mentionRegex = `<@!{this.client.user.id}>`;
     const { prefix } = require('../../../app/config/main-config.json');
 
     if (message.content.startsWith(mentionRegex))
