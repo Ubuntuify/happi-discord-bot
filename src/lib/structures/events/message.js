@@ -1,4 +1,8 @@
 /* eslint-disable no-useless-escape */
+
+const ora = require('ora');
+const { italic } = require('chalk');
+
 const { Collection, MessageEmbed } = require('discord.js');
 const Events = require('../Event').default;
 
@@ -15,10 +19,15 @@ module.exports = class MessageCommandEvent extends Events {
       );
 
     if (!message.content.startsWith(prefix)) return;
-    message.channel.startTyping();
-
     const args = message.content.slice(prefix.length).trim().split(/ +/);
     const commandName = args.shift().toLowerCase();
+
+    message.channel.startTyping();
+    const requestLoader = ora(
+      `Processing request of ${message.author.username} | ${italic(
+        `${commandName}`
+      )}`
+    ).start();
 
     if (!collections.commands.has(commandName)) return;
     const command = collections.commands.get(commandName);
@@ -89,7 +98,12 @@ module.exports = class MessageCommandEvent extends Events {
     );
 
     try {
-      command.run(message, args);
+      await command.run(message, args);
+      requestLoader.succeed(
+        `Completed request by ${message.author.username} | ${italic(
+          commandName
+        )}`
+      );
       message.channel.stopTyping();
     } catch (err) {
       // TODO: handle ❌ errors ❌ via error handler.
