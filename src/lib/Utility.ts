@@ -1,10 +1,10 @@
 import { dirname, sep, parse } from 'path';
 import { promisify } from 'util';
-import { cyan, yellow, green } from 'chalk';
+import { cyan, yellow, green, bgRed } from 'chalk';
 import ora from 'ora';
 
 import Event from './structures/Event.js';
-import Command from './structures/Command.js';
+import Command from './structures/Command';
 import { Interface } from '../Client';
 
 const glob = promisify(require('glob'));
@@ -39,24 +39,31 @@ export default class Utility {
 
           const loadSpinner = ora(`Loading event ${name}...`);
 
-          // eslint-disable-next-line
+          try {
+            // eslint-disable-next-line
             const File = require(eventFile);
-          if (!this.isClass(File))
-            throw new TypeError(
-              `Event ${name} does not export as Class. (invalid type)`
+            if (!this.isClass(File))
+              throw new TypeError(
+                `Event ${name} does not export as Class. (invalid type)`
+              );
+
+            const event = new File(this.client, name);
+            if (!(event instanceof Event))
+              throw new TypeError(
+                `Event ${name} does not belong. (invalid extends)`
+              );
+
+            this.client.events.set(event.name, event);
+            event.emitter[event.type](name, (...args: any) => event.run(...args));
+
+            // eslint-disable-next-line
+            loadSpinner.succeed(`Completed loading ${cyan('event')} ${yellow(name)}.`);
+          } catch (stacktrace) {
+            loadSpinner.fail(
+              // eslint-disable-next-line prettier/prettier
+              `Could not load ${cyan('event')} ${yellow(name)}\n${bgRed(`❌ ${stacktrace}`)}`
             );
-
-          const event = new File(this.client, name);
-          if (!(event instanceof Event))
-            throw new TypeError(
-              `Event ${name} does not belong. (invalid extends)`
-            );
-
-          this.client.events.set(event.name, event);
-          event.emitter[event.type](name, (...args: any) => event.run(...args));
-
-          // eslint-disable-next-line
-          loadSpinner.succeed(`Completed loading ${cyan('event')} ${yellow(name)}.`);
+          }
         }
       }
     );
