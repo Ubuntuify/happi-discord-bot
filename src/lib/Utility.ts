@@ -3,7 +3,7 @@ import { promisify } from 'util';
 import { cyan, yellow, green, bgRed } from 'chalk';
 import ora from 'ora';
 
-import Event from './structures/Event.js';
+import Event from './structures/Event';
 import Command from './structures/Command';
 import { Interface } from '../Client';
 
