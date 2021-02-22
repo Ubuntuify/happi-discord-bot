@@ -112,6 +112,9 @@ module.exports = class MessageCommandEvent extends Events {
       message.channel.send(
         `\❌ Something went wrong. We don't know what happened, but you have been given the error code \`#000\``
       );
+      requestLoader.fail(
+        `Failed request by ${message.author.username} | ${italic(commandName)}`
+      );
     }
   }
 };
