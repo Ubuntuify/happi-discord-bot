@@ -5,7 +5,7 @@
   "scripts": {
     "start": "ts-node .",
     "dev": "nodemon --config nodemon.json",
-    "build": "tsc .",
+    "build": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
