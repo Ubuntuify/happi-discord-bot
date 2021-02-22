@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 const colors = require('chalk');
-const Event = require('../Event.js');
+const Event = require('../Event.js').default;
 
 module.exports = class ReadyEvent extends Event {
   constructor(...args) {

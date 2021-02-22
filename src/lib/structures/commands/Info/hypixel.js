@@ -1,6 +1,6 @@
 /* eslint-disable no-use-before-define */
 const { MessageEmbed } = require('discord.js');
-const Command = require('../../Command');
+const Command = require('../../Command').default;
 
 const QueryError = new MessageEmbed().setDescription(
   [
@@ -32,16 +32,19 @@ module.exports = class HypixelAPICommand extends Command {
     if (args[0].toLowerCase() === 'player') {
       if (args[2]) {
         // TODO: make this command have minigame functionality.
+        const mode = args[2].toLowerCase();
 
-        if (
-          args[2].toLowerCase() === 'bedwars' ||
-          args[2].toLowerCase() === 'bedwar'
-        ) {
+        if (mode.match(/^(bedwars|bedwar)$/)) {
           message.channel.send(
             await this.client.wrappers.hypixel.createEmbedPlayerBedwars(args[1])
           );
         }
 
+        if (mode.match(/^(skywars|skywar)$/)) {
+          message.channel.send(
+            await this.client.wrappers.hypixel.createEmbedPlayerSkywars(args[1])
+          );
+        }
         return;
       }
 

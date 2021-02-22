@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-escape */
 const { MessageEmbed } = require('discord.js');
-const Command = require('../../Command');
+const Command = require('../../Command').default;
 
 module.exports = class PingCommand extends Command {
   constructor(client, name) {

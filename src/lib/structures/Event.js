@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
 
-const colors = require('chalk');
-const Client = require('../../Client');
+import { yellow } from 'chalk';
+import Client from '../../Client';
 
-module.exports = class Events {
+export default class Events {
   /**
    * 📌 The main class for the event listeners.
    *
@@ -27,7 +27,7 @@ module.exports = class Events {
   async run(...args) {
     throw new Error(
       // eslint-disable-next-line prettier/prettier
-      `${colors.yellow('✖ ')} This run method has not been implemented. See stacktrace for details.`
+      `${yellow('✖ ')} This run method has not been implemented. See stacktrace for details.`
     );
   }
 };

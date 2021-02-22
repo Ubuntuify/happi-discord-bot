@@ -1,6 +1,6 @@
 /* eslint-disable no-useless-escape */
 const { Collection, MessageEmbed } = require('discord.js');
-const Events = require('../Event.js');
+const Events = require('../Event.js').default;
 
 module.exports = class MessageEvent extends Events {
   async run(message) {

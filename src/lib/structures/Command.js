@@ -2,10 +2,10 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable class-methods-use-this */
 
-const colors = require('chalk');
-const Client = require('../../Client');
+import { yellow } from 'chalk';
+import Client from '../../Client';
 
-module.exports = class Command {
+export default class Command {
   /**
    * 📌 The main class for the commands.
    *
@@ -42,7 +42,7 @@ module.exports = class Command {
 
   async run(message, args) {
     throw new Error(
-      `${colors.yellow('✖ ')} This run method was not implemented. See stacktrace for details.`
+      `${yellow('✖ ')} This run method was not implemented. See stacktrace for details.`
     );
   }
 
