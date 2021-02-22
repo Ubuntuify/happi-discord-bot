@@ -1,0 +1,9 @@
+{
+  "restartable": "restart",
+  "ignore": [".git", ".gitignore", "node_modules/", "dist/", "coverage/", "package.json", ".eslintignore", ".eslint"],
+  "watch": ["src/"],
+  "execMap": {
+    "ts": "node -r ts-node/register"
+  },
+  "ext": "js,jsx,json,ts,tsx"
+}
