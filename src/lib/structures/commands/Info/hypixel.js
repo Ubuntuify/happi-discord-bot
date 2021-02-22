@@ -29,7 +29,7 @@ module.exports = class HypixelAPICommand extends Command {
     */
     if (!args[0]) return message.channel.send(QueryError);
 
-    if (args[0].toLowerCase() === 'player') {
+    if (args[0].toLowerCase() === 'player' && args[1]) {
       if (args[2]) {
         // TODO: make this command have minigame functionality.
         const mode = args[2].toLowerCase();
@@ -47,17 +47,12 @@ module.exports = class HypixelAPICommand extends Command {
         }
         return;
       }
-
-      if (!args[1]) return message.channel.send(QueryError);
-
       return message.channel.send(
         await this.client.wrappers.hypixel.createEmbedPlayer(args[1])
       );
     }
 
-    if (args[0].toLowerCase() === 'guild') {
-      if (!args[1]) return message.channel.send(QueryError);
-
+    if (args[0].toLowerCase() === 'guild' && args[1]) {
       return message.channel.send(
         await this.client.wrappers.hypixel.createEmbedPlayer(args[1])
       );
@@ -69,8 +64,6 @@ module.exports = class HypixelAPICommand extends Command {
       );
     }
 
-    message.channel.send(
-      'Could not process request. Maybe, check what is your first argument.'
-    );
+    message.channel.send(QueryError);
   }
 };
