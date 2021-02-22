@@ -290,9 +290,59 @@ export class HypixelAPI extends Client {
           { name: 'Kills', value: skywars.kills, inline: true },
           { name: 'Deaths', value: skywars.deaths, inline: true },
           { name: 'KDR', value: skywars.KDRatio, inline: true },
+
           { name: 'Wins', value: skywars.wins, inline: true },
           { name: 'Losses', value: skywars.losses, inline: true },
           { name: 'WLR', value: skywars.WLRatio, inline: true },
+
+          {
+            name: 'Solo Kills',
+            value: skywars.solo.overall.kills,
+            inline: true,
+          },
+          {
+            name: 'Solo Deaths',
+            value: skywars.solo.overall.deaths,
+            inline: true,
+          },
+          {
+            name: 'Solo KDR',
+            value: skywars.solo.overall.KDRatio,
+            inline: true,
+          },
+
+          {
+            name: 'Team Kills',
+            value: skywars.team.overall.kills,
+            inline: true,
+          },
+          {
+            name: 'Team Deaths',
+            value: skywars.team.overall.deaths,
+            inline: true,
+          },
+          {
+            name: 'Team KDR',
+            value: skywars.team.overall.KDRatio,
+            inline: true,
+          },
+
+          {
+            name: 'Mega Kills',
+            value: skywars.team.overall.kills,
+            inline: true,
+          },
+          {
+            name: 'Mega Deaths',
+            value: skywars.team.overall.deaths,
+            inline: true,
+          },
+          {
+            name: 'Mega KDR',
+            value: skywars.mega.overall.KDRatio,
+            inline: true,
+          },
+
           { name: 'Coins', value: skywars.coins, inline: false },
           { name: 'Current Winstreak', value: skywars.winStreak, inline: false }
         )

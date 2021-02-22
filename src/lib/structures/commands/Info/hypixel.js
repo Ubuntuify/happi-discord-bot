@@ -20,12 +20,12 @@ module.exports = class HypixelAPICommand extends Command {
 
   async run(message, args) {
     /* 
-    To make this command more user friendly.
-    I have seperated the commands to categories.
+        To make this command more user friendly.
+        I have seperated the commands to categories.
 
-    player: player <username> | <username> <minigame>
-    guild: guild <guild>
-    watchdog: watchdog
+        player: player <username> | <username> <minigame>
+        guild: guild <guild>
+        watchdog: watchdog
     */
     if (!args[0]) return message.channel.send(QueryError);
 
