@@ -26,11 +26,11 @@ export default class Utility {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  get directory() {
+  get directory(): string {
     return `${dirname(require.main.filename)}${sep}`;
   }
 
-  public async loadEvents() {
+  public async loadEvents(): Promise<void> {
     return glob(`${this.directory}src/lib/structures/events/**/*.js`).then(
       (events: any) => {
         for (const eventFile of events) {
@@ -54,7 +54,9 @@ export default class Utility {
               );
 
             this.client.events.set(event.name, event);
-            event.emitter[event.type](name, (...args: any) => event.run(...args));
+            event.emitter[event.type](name, (...args: any) =>
+              event.run(...args)
+            );
 
             // eslint-disable-next-line
             loadSpinner.succeed(`Completed loading ${cyan('event')} ${yellow(name)}.`);
@@ -69,12 +71,8 @@ export default class Utility {
     );
   }
 
-  public async loadCommands() {
-    return [this.loadCommandsExtension('js'), this.loadCommandsExtension('ts')];
-  }
-
-  private async loadCommandsExtension(extension: string) {
-    glob(`${this.directory}src/lib/structures/commands/**/*.${extension}`).then(
+  public async loadCommands(): Promise<void> {
+    glob(`${this.directory}src/lib/structures/commands/**/*.ts`).then(
       (commands: any) => {
         for (const commandFile of commands) {
           delete require.cache[commandFile];
