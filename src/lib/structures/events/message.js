@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-escape */
 
 const ora = require('ora');
-const { italic } = require('chalk');
+const { italic, bold } = require('chalk');
 
 const { Collection, MessageEmbed } = require('discord.js');
 const Events = require('../Event').default;
@@ -10,7 +10,7 @@ module.exports = class MessageCommandEvent extends Events {
   async run(message) {
     // TODO: ✨ Make the prefix customizable per guild. ✨ \\
     const collections = this.client.commands;
-    const mentionRegex = `<@!{this.client.user.id}>`;
+    const mentionRegex = `<@!${this.client.user.id}>`;
     const { prefix } = require('../../../app/config/main-config.json');
 
     if (message.content.startsWith(mentionRegex))
@@ -24,7 +24,7 @@ module.exports = class MessageCommandEvent extends Events {
 
     message.channel.startTyping();
     const requestLoader = ora(
-      `Processing request of ${message.author.username} | ${italic(
+      `Processing request of ${message.author.username} ${bold(
         `${commandName}`
       )}`
     ).start();
@@ -100,9 +100,7 @@ module.exports = class MessageCommandEvent extends Events {
     try {
       await command.run(message, args);
       requestLoader.succeed(
-        `Completed request by ${message.author.username} | ${italic(
-          commandName
-        )}`
+        `Completed request by ${message.author.username} ${bold(commandName)}`
       );
       message.channel.stopTyping();
     } catch (err) {
@@ -113,7 +111,7 @@ module.exports = class MessageCommandEvent extends Events {
         `\❌ Something went wrong. We don't know what happened, but you have been given the error code \`#000\``
       );
       requestLoader.fail(
-        `Failed request by ${message.author.username} | ${italic(commandName)}`
+        `Failed request by ${message.author.username} ${bold(commandName)}`
       );
     }
   }
