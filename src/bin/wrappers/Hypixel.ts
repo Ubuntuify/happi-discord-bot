@@ -17,8 +17,6 @@ export class HypixelAPI extends Client {
       cache: true,
       cacheTime: 5,
     });
-
-    this.getAPIStatus();
   }
 
   /**

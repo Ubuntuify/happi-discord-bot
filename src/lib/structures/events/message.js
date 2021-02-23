@@ -1,7 +1,7 @@
 /* eslint-disable no-useless-escape */
 
 const ora = require('ora');
-const { italic, bold } = require('chalk');
+const { bold } = require('chalk');
 
 const { Collection, MessageEmbed } = require('discord.js');
 const Events = require('../Event').default;
