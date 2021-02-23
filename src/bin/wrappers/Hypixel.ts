@@ -17,12 +17,13 @@ export class HypixelAPI extends Client {
       cache: true,
       cacheTime: 5,
     });
+
+    this.getAPIStatus();
   }
 
   /**
    * Creates a personal embed for the player.
-   * @param {String} query - The query (player) that was asked.
-   * @returns {MessageEmbed} - Embed generated from this method.
+   * @param query - The query (player) that was asked.
    */
   public async createEmbedPlayer(query: string): Promise<MessageEmbed> {
     try {
@@ -100,8 +101,7 @@ export class HypixelAPI extends Client {
 
   /**
    * Creates a personal embed for the queried guild.
-   * @param {String} query - The query (guild) that was asked.
-   * @returns {MessageEmbed} - Embed generated from this method.
+   * @param query - The query (guild) that was asked.
    */
   public async createEmbedGuild(query: any): Promise<MessageEmbed> {
     try {
@@ -137,7 +137,6 @@ export class HypixelAPI extends Client {
 
   /**
    * Creates a personal embed for Watchdog Statistics.
-   * @returns {MessageEmbed} - Embed generated from this
    */
   public async createEmbedWatchdog(): Promise<MessageEmbed> {
     try {
@@ -178,8 +177,7 @@ export class HypixelAPI extends Client {
 
   /**
    * Generates an embed for Bedwars Stats.
-   * @param {String} query - The query (player) that was asked.
-   * @returns {MessageEmbed} - Embed generated from this method.
+   * @param query - The query (player) that was asked.
    */
   public async createEmbedPlayerBedwars(query: string): Promise<MessageEmbed> {
     try {
