@@ -37,7 +37,7 @@ export default class Command {
    *
    * @param {String} options.name The trigger phrase. (This will have a higher priority compared to the above name.)
    * @param {String[]} options.aliases The shorter versions of this command.
-   * 
+   *
    * @param {Boolean} options.args Whether arguments exist for the command.
    * @param {String} options.usage How to use this command if arguments exist.
    * @param {String} options.description The command description.
