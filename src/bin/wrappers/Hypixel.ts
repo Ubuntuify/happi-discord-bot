@@ -78,12 +78,12 @@ export class HypixelAPI extends Client {
           },
           {
             name: 'First Login',
-            value: `\`${this.formatDate(playerData.player.firstLogin)}\``,
+            value: `\`${await this.formatDate(playerData.player.firstLogin)}\``,
             inline: true,
           },
           {
             name: 'Last Login',
-            value: `\`${this.formatDate(playerData.player.lastLogin)}\``,
+            value: `\`${await this.formatDate(playerData.player.lastLogin)}\``,
             inline: true,
           },
           {
@@ -124,7 +124,7 @@ export class HypixelAPI extends Client {
           },
           {
             name: 'Created At',
-            value: `${this.formatDate(guildData.createdAt)}`,
+            value: `${await this.formatDate(guildData.createdAt)}`,
             inline: true,
           }
         );
@@ -188,7 +188,7 @@ export class HypixelAPI extends Client {
       const AKDRatio = Math.round((bedwars.avg.kills / avgDeaths) * 100) / 100;
       const lastOnline = player.isOnline
         ? '`ONLINE`'
-        : this.formatDate(player.lastLogin);
+        : await this.formatDate(player.lastLogin);
 
       return new MessageEmbed()
         .setAuthor(
@@ -350,12 +350,39 @@ export class HypixelAPI extends Client {
     }
   }
 
+  public async createEmbedPlayerBlitz(query: string): Promise<MessageEmbed> {
+    try {
+      const player = await super.getPlayer(query);
+      const { blitzsg } = player.stats;
+
+      return new MessageEmbed()
+        .setAuthor(
+          `Blitz SG Stats • ${player.nickname}`,
+          `https://fsa.zobj.net/crop.php?r=by0jGANgnc4W22sOr9z4e9V-f5s5J9Ud5UMMEyggbnr0Mr3JYYoK16DCVlQulNDLSO6xrestaTY37IUXFdx5A-h1LOgW6zaWU03pvnFnVw-6C37MyBorvI6Fc-qdaFTVsjNzrGm-ZcZDSmu4`,
+          `https://hypixel.net`
+        )
+        .addFields(
+          { name: 'Kills', value: blitzsg.kills, inline: true },
+          { name: 'Deaths', value: blitzsg.deaths, inline: true },
+          { name: 'KDR', value: blitzsg.KDRatio, inline: true },
+          { name: 'Solo Wins', value: blitzsg.winsSolo, inline: true },
+          { name: 'Team Wins', value: blitzsg.winsTeam, inline: true },
+          { name: 'Coins', value: blitzsg.coins, inline: false }
+        )
+        .setThumbnail(
+          'https://hypixel.net/styles/hypixel-v2/images/game-icons/Skywars-64.png'
+        );
+    } catch (stacktrace) {
+      return APIErrorMessage;
+    }
+  }
+
   /**
    * This function formats the date. It is used in embed creation functions.
    * @param {Date} Date - The date to be formatted into a string.
    */
   // eslint-disable-next-line class-methods-use-this
-  private formatDate(Date: Date): string {
+  private async formatDate(Date: Date): Promise<string> {
     // eslint-disable-next-line
     return [Date.getMonth() + 1, Date.getDate(), Date.getFullYear()].join('/') +
       ' ' +
