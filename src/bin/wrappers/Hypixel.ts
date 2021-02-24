@@ -350,6 +350,10 @@ export class HypixelAPI extends Client {
     }
   }
 
+  /**
+   * Generates an embed for Blitz Survival Games Stats.
+   * @param query - The query (player) that was asked.
+   */
   public async createEmbedPlayerBlitz(query: string): Promise<MessageEmbed> {
     try {
       const player = await super.getPlayer(query);
@@ -371,6 +375,41 @@ export class HypixelAPI extends Client {
         )
         .setThumbnail(
           'https://hypixel.net/styles/hypixel-v2/images/game-icons/Skywars-64.png'
+        );
+    } catch (stacktrace) {
+      return APIErrorMessage;
+    }
+  }
+
+  /**
+   * Generates an embed for UHC Stats.
+   * @param query - The query (player) that was asked.
+   */
+  public async createEmbedPlayerUHC(query: string): Promise<MessageEmbed> {
+    try {
+      const player = await super.getPlayer(query);
+      const { uhc } = player.stats;
+
+      // ✨ Creates missing stats.
+      const KDRatio = Math.floor((uhc.kills / uhc.deaths) * 100) / 100;
+
+      return new MessageEmbed()
+        .setAuthor(
+          `Blitz SG Stats • ${player.nickname}`,
+          `https://fsa.zobj.net/crop.php?r=by0jGANgnc4W22sOr9z4e9V-f5s5J9Ud5UMMEyggbnr0Mr3JYYoK16DCVlQulNDLSO6xrestaTY37IUXFdx5A-h1LOgW6zaWU03pvnFnVw-6C37MyBorvI6Fc-qdaFTVsjNzrGm-ZcZDSmu4`,
+          `https://hypixel.net`
+        )
+        .addFields(
+          { name: 'Kills', value: uhc.kills, inline: true },
+          { name: 'Deaths', value: uhc.deaths, inline: true },
+          { name: 'KDR', value: KDRatio, inline: true },
+          { name: 'Heads Eaten', value: uhc.headsEaten, inline: true },
+          { name: 'Score', value: uhc.score, inline: true },
+          { name: 'Wins', value: uhc.wins, inline: false },
+          { name: 'Coins', value: uhc.coins, inline: false }
+        )
+        .setThumbnail(
+          'https://hypixel.net/styles/hypixel-v2/images/game-icons/UHC-64.png'
         );
     } catch (stacktrace) {
       return APIErrorMessage;
