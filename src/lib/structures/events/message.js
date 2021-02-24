@@ -6,6 +6,8 @@ const { bold } = require('chalk');
 const { Collection, MessageEmbed } = require('discord.js');
 const Events = require('../Event').default;
 
+// TODO: Complete redo of this class function. Convertion to TypeScript.
+
 module.exports = class MessageCommandEvent extends Events {
   async run(message) {
     // TODO: ✨ Make the prefix customizable per guild. ✨ \\
@@ -29,8 +31,8 @@ module.exports = class MessageCommandEvent extends Events {
       )}`
     ).start();
 
-    if (!collections.commands.has(commandName)) return;
-    const command = collections.commands.get(commandName);
+    if (!collections.Commands.has(commandName)) return;
+    const command = collections.Commands.get(commandName);
 
     if (command.ownerOnly && message.author.id !== '323047832317591552') return;
 

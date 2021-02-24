@@ -9,7 +9,7 @@ module.exports = class ReadyEvent extends Event {
     });
   }
 
-  run() {
+  async run() {
     /* 🎀 Logs statistics into console during startup. */
     const gitRevision = require('child_process')
       .execSync('git rev-parse HEAD')
