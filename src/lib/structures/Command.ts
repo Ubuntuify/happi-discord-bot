@@ -59,7 +59,7 @@ export default class Command {
     this.ownerOnly = options.ownerOnly || false;
   }
 
-  async run(message: Discord.Message, args: string[]) {
+  async run(message: Discord.Message, args: string[]): Promise<void> {
     throw new Error(
       `${yellow('✖ ')} This run method was not implemented. See stacktrace for details.`
     );

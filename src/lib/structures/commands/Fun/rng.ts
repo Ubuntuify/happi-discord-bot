@@ -17,6 +17,13 @@ module.exports = class RngCommand extends BaseCommand {
 
   // eslint-disable-next-line
   async run( message: Message, args: string[] ): Promise<void> {
+    const regExp: RegExp = /[a-zA-z]/g;
+
+    if ( regExp.test(args[0]) || regExp.test(args[1]) ) {
+      message.channel.send('This request contains illegal characters. Please request with proper characters.');
+      return;
+    }
+
     const minRNG: number = Number(args[0]);
     const maxRNG: number = Number(args[1]);
 
