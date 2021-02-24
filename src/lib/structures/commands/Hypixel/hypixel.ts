@@ -20,7 +20,7 @@ module.exports = class HypixelAPICommand extends Command {
     });
   }
 
-  async run(message: Message, args: string[]) {
+  async run(message: Message, args: string[]): Promise<any> {
     /*
         To make this command more user friendly.
         I have seperated the commands to categories.
@@ -52,6 +52,12 @@ module.exports = class HypixelAPICommand extends Command {
         if (mode.match(/^(blitz|blitzsg|sg|survivalgames|survivalgame)$/)) {
           message.channel.send(
             await this.client.wrappers.hypixel.createEmbedPlayerBlitz(args[1])
+          );
+        }
+
+        if (mode.match(/^(uhc)$/)) {
+          message.channel.send(
+            await this.client.wrappers.hypixel.createEmbedPlayerUHC(args[1])
           );
         }
         return;

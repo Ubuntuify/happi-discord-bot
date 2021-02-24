@@ -13,7 +13,7 @@ const QueryError = new MessageEmbed().setDescription(
 module.exports = class BlitzCommand extends Command {
   constructor(client: Interface, name: string) {
     super(client, name, {
-      description: 'Gets Hypixel Blitz stats through their API.',
+      description: 'Gets Hypixel UHC stats through their API.',
       aliases: [],
       category: 'Hypixel',
       args: false,
@@ -24,7 +24,7 @@ module.exports = class BlitzCommand extends Command {
   async run(message: Message, args: string[]) {
     if (args[0]) {
       message.channel.send(
-        await this.client.wrappers.hypixel.createEmbedPlayerBlitz(args[0])
+        await this.client.wrappers.hypixel.createEmbedPlayerUHC(args[0])
       );
       return;
     }
