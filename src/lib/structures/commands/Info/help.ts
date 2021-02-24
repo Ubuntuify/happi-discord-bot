@@ -1,7 +1,7 @@
 import { Message, MessageEmbed, Collection } from 'discord.js';
 import { Interface } from '../../../../Client';
 
-const BaseCommand = require('../../Command').default;
+import BaseCommand from '../../Command';
 
 interface Command {
   name: string;
@@ -24,7 +24,7 @@ module.exports = class HelpCommand extends BaseCommand {
   }
 
   public async run(message: Message, args: string[]): Promise<void> {
-    const collection: Collection<any, any> = this.client.commands.commands;
+    const collection: Collection<any, any> = this.client.commands.Commands;
 
     if (args[0]) {
       if (collection.has(args[0])) {
@@ -43,6 +43,8 @@ module.exports = class HelpCommand extends BaseCommand {
       }
       return;
     }
+
+    console.log('wip.');
   }
 
   // eslint-disable-next-line class-methods-use-this
