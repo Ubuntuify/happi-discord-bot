@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "main": "index.ts",
   "scripts": {
-    "start": "ts-node .",
     "dev": "nodemon --config nodemon.json",
     "build": "tsc",
+    "start": "ts-node .",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },

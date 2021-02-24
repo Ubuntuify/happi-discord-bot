@@ -1,6 +1,12 @@
+/.yarn
 /yarn-error.log
-/yarn.lock
-/package-lock.json
 /dist
 /node_modules
 /src/app/config/api.json
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
