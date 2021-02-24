@@ -1,10 +1,11 @@
 /* eslint-disable no-useless-escape */
 import { MessageEmbed, Message } from 'discord.js';
+import { Interface } from '../../../../Client';
 
 const Command = require('../../Command').default;
 
 module.exports = class PingCommand extends Command {
-  constructor(client: any, name: string) {
+  constructor(client: Interface, name: string) {
     super(client, name, {
       category: 'Bot',
       args: false,

@@ -1,5 +1,6 @@
 /* eslint-disable no-use-before-define */
 import { MessageEmbed, Message } from 'discord.js';
+import { Interface } from '../../../../Client';
 
 const Command = require('../../Command').default;
 
@@ -10,10 +11,10 @@ const QueryError = new MessageEmbed().setDescription(
 );
 
 module.exports = class HypixelAPICommand extends Command {
-  constructor(client: any, name: string) {
+  constructor(client: Interface, name: string) {
     super(client, name, {
       description: 'Gets Hypixel stats through their API.',
-      category: 'Info',
+      category: 'Hypixel',
       args: false,
       timing: 15,
     });

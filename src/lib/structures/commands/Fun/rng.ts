@@ -1,15 +1,16 @@
 /* eslint-disable prettier/prettier */
 import { Message } from 'discord.js';
+import { Interface } from '../../../../Client';
 
 const BaseCommand = require('../../Command').default;
 
 module.exports = class RngCommand extends BaseCommand {
-  constructor( client: any, name: string ) {
+  constructor( client: Interface, name: string ) {
     super( client, name, {
       category: 'Fun',
       description: 'Generates a random number between your provided arguments.',
       args: true,
-      usage: '.min num. .max num.',
+      usage: '<min num> <max num>',
       timing: 10,
       ownerOnly: false,
     } );

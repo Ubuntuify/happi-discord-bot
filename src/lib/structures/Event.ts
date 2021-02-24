@@ -4,7 +4,7 @@
 import { yellow } from 'chalk';
 import * as Client from '../../Client';
 
-export default class Events {
+export default abstract class Events {
   name: string;
   client: Client.Interface;
   type: string;

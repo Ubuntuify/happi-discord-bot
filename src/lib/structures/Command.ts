@@ -17,7 +17,7 @@ interface CommandOptions {
   ownerOnly: boolean;
 }
 
-export default class Command {
+export default abstract class Command {
   client: Client.Interface;
   name: string;
   aliases: string[];
