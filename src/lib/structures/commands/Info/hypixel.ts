@@ -20,7 +20,7 @@ module.exports = class HypixelAPICommand extends Command {
   }
 
   async run(message: Message, args: string[]) {
-    /* 
+    /*
         To make this command more user friendly.
         I have seperated the commands to categories.
 
