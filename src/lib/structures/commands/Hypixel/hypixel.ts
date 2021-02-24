@@ -36,15 +36,22 @@ module.exports = class HypixelAPICommand extends Command {
         // TODO: make this command have minigame functionality.
         const mode = args[2].toLowerCase();
 
-        if (mode.match(/^(bedwars|bedwar)$/)) {
+        if (mode.match(/^(bedwars|bedwar|bw)$/)) {
           message.channel.send(
             await this.client.wrappers.hypixel.createEmbedPlayerBedwars(args[1])
           );
         }
 
-        if (mode.match(/^(skywars|skywar)$/)) {
+        if (mode.match(/^(skywars|skywar|sw)$/)) {
           message.channel.send(
             await this.client.wrappers.hypixel.createEmbedPlayerSkywars(args[1])
+          );
+        }
+
+        // eslint-disable-next-line
+        if (mode.match(/^(blitz|blitzsg|sg|survivalgames|survivalgame)$/)) {
+          message.channel.send(
+            await this.client.wrappers.hypixel.createEmbedPlayerBlitz(args[1])
           );
         }
         return;
