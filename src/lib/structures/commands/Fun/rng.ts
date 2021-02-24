@@ -22,7 +22,7 @@ module.exports = class RngCommand extends BaseCommand {
 
     const actualMax: number = maxRNG - minRNG;
 
-    const random = Math.floor( Math.random() * actualMax ) + 1 - minRNG;
+    const random = Math.floor( Math.random() * actualMax ) + 2 - minRNG;
 
     message.channel.send(`The random number generated was \`${random}\`.`);
   };
