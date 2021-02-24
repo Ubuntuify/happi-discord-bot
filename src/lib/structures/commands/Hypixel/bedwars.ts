@@ -10,7 +10,7 @@ const QueryError = new MessageEmbed().setDescription(
   ].join('\n')
 );
 
-module.exports = class HypixelAPICommand extends Command {
+module.exports = class BedwarsCommand extends Command {
   constructor(client: Interface, name: string) {
     super(client, name, {
       description: 'Gets Hypixel Bedwars stats through their API.',
