@@ -23,7 +23,6 @@ module.exports = class RngCommand extends BaseCommand {
     const actualMax: number = maxRNG - minRNG;
 
     const random = Math.floor( Math.random() * actualMax ) + 2 - minRNG;
-
-    message.channel.send(`The random number generated was \`${random}\`.`);
+    message.channel.send(`The random number generated was \`${random}\`. The range you specified was \`${minRNG}-${maxRNG}\`.`);
   };
 }
