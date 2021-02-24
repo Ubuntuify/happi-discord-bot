@@ -44,7 +44,7 @@ export default abstract class Command {
    * @param {Number} options.timing The timing of the command.
    * @param {Boolean} options.ownerOnly If the command is exclusive to the owner.
    */
-  constructor(client: Client.Interface, name: string, options: CommandOptions) {
+  constructor(client: Client.Interface, name: string, options: any) {
     this.client = client;
     this.name = options.name || name;
     this.aliases = options.aliases || [];

@@ -92,11 +92,11 @@ export default class Utility {
               `Command ${name} does not belong in Commands. (invalid extends)`
             );
 
-          this.client.commands.commands.set(command.name, command);
+          this.client.commands.Commands.set(command.name, command);
 
           if (command.aliases.length)
             for (const alias of command.aliases) {
-              this.client.commands.aliases.set(alias, command.name);
+              this.client.commands.Aliases.set(alias, command.name);
             }
           // eslint-disable-next-line
           loadSpinner.succeed(`Completed loading ${green('command')} ${yellow(name)}.`);

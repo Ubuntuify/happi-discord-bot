@@ -2,7 +2,7 @@
 import { Message } from 'discord.js';
 import { Interface } from '../../../../Client';
 
-const BaseCommand = require('../../Command').default;
+import BaseCommand from '../../Command';
 
 module.exports = class RngCommand extends BaseCommand {
   constructor( client: Interface, name: string ) {

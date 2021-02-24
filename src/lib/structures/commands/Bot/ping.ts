@@ -2,7 +2,7 @@
 import { MessageEmbed, Message } from 'discord.js';
 import { Interface } from '../../../../Client';
 
-const Command = require('../../Command').default;
+import Command from '../../Command';
 
 module.exports = class PingCommand extends Command {
   constructor(client: Interface, name: string) {
@@ -18,7 +18,7 @@ module.exports = class PingCommand extends Command {
     const WS_PING = this.client.ws.ping;
     const CALCULATED_PING = Date.now() - message.createdTimestamp;
 
-    const HYPIXEL_PING = await this.client.wrappers.hypixel.getPing();
+    const HYPIXEL_PING = await this.client.wrappers.Hypixel.getPing();
 
     message.channel.send(
       new MessageEmbed()

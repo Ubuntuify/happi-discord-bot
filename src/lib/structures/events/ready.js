@@ -29,7 +29,7 @@ module.exports = class ReadyEvent extends Event {
           this.client.events.size
         )} events.`,
         `🤖 🟢 The client has successfully loaded${colors.gray(
-          this.client.commands.commands.size
+          this.client.commands.Commands.size
         )} commands.`,
         ``,
       ].join(`\n`)

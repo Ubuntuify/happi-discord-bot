@@ -2,7 +2,7 @@
 import { MessageEmbed, Message } from 'discord.js';
 import { Interface } from '../../../../Client';
 
-const Command = require('../../Command').default;
+import Command from '../../Command';
 
 const QueryError = new MessageEmbed().setDescription(
   [
@@ -38,44 +38,44 @@ module.exports = class HypixelAPICommand extends Command {
 
         if (mode.match(/^(bedwars|bedwar|bw)$/)) {
           message.channel.send(
-            await this.client.wrappers.hypixel.createEmbedPlayerBedwars(args[1])
+            await this.client.wrappers.Hypixel.createEmbedPlayerBedwars(args[1])
           );
         }
 
         if (mode.match(/^(skywars|skywar|sw)$/)) {
           message.channel.send(
-            await this.client.wrappers.hypixel.createEmbedPlayerSkywars(args[1])
+            await this.client.wrappers.Hypixel.createEmbedPlayerSkywars(args[1])
           );
         }
 
         // eslint-disable-next-line
         if (mode.match(/^(blitz|blitzsg|sg|survivalgames|survivalgame)$/)) {
           message.channel.send(
-            await this.client.wrappers.hypixel.createEmbedPlayerBlitz(args[1])
+            await this.client.wrappers.Hypixel.createEmbedPlayerBlitz(args[1])
           );
         }
 
         if (mode.match(/^(uhc)$/)) {
           message.channel.send(
-            await this.client.wrappers.hypixel.createEmbedPlayerUHC(args[1])
+            await this.client.wrappers.Hypixel.createEmbedPlayerUHC(args[1])
           );
         }
         return;
       }
       return message.channel.send(
-        await this.client.wrappers.hypixel.createEmbedPlayer(args[1])
+        await this.client.wrappers.Hypixel.createEmbedPlayer(args[1])
       );
     }
 
     if (args[0].toLowerCase() === 'guild' && args[1]) {
       return message.channel.send(
-        await this.client.wrappers.hypixel.createEmbedPlayer(args[1])
+        await this.client.wrappers.Hypixel.createEmbedPlayer(args[1])
       );
     }
 
     if (args[0].toLowerCase() === 'watchdog') {
       return message.channel.send(
-        await this.client.wrappers.hypixel.createEmbedWatchdog()
+        await this.client.wrappers.Hypixel.createEmbedWatchdog()
       );
     }
 

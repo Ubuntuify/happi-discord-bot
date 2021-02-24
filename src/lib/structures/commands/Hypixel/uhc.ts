@@ -2,7 +2,7 @@
 import { MessageEmbed, Message } from 'discord.js';
 import { Interface } from '../../../../Client';
 
-const Command = require('../../Command').default;
+import Command from '../../Command';
 
 const QueryError = new MessageEmbed().setDescription(
   [
@@ -24,7 +24,7 @@ module.exports = class BlitzCommand extends Command {
   async run(message: Message, args: string[]) {
     if (args[0]) {
       message.channel.send(
-        await this.client.wrappers.hypixel.createEmbedPlayerUHC(args[0])
+        await this.client.wrappers.Hypixel.createEmbedPlayerUHC(args[0])
       );
       return;
     }

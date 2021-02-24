@@ -1,24 +1,21 @@
 /* 🤖📚 Libraries */
+/* eslint-disable no-use-before-define */
 import { Client, Collection } from 'discord.js';
 import * as colors from 'chalk';
 
 import { HypixelAPI } from './bin/wrappers/Hypixel';
 import api from './app/config/api.json';
 
-interface clientOptions {
-  token: string;
-}
-
 export class Interface extends Client {
   events: Collection<any, any>;
-  commands: any;
-  wrappers: Object;
+  commands: CommandCollections;
+  wrappers: WrapperObject;
 
   /**
    * 📌 The primary class to be used for all the features of the bot.
    * @param {Object} options - Options to be passed to the constructor (and discord.js).
    */
-  constructor(options: clientOptions) {
+  constructor(options: ClientOptions) {
     super({
       disableMentions: 'everyone',
     });
@@ -26,19 +23,19 @@ export class Interface extends Client {
     // These load the 📡 events and 💻 commands collections.
     this.events = new Collection();
     this.commands = {
-      timings: new Collection(),
-      commands: new Collection(),
-      aliases: new Collection(),
+      Timings: new Collection(),
+      Commands: new Collection(),
+      Aliases: new Collection(),
     };
     this.wrappers = {
-      hypixel: new HypixelAPI(api.hypixel),
+      Hypixel: new HypixelAPI(api.hypixel),
     };
 
     // This starts the client itself.
     this.init(options);
   }
 
-  init(options: any) {
+  init(options: ClientOptions) {
     /* ✨ The start up for the discord wrapper. */
     this.validate(options);
 
@@ -70,4 +67,19 @@ export class Interface extends Client {
     console.log(`\n✨ Exiting client.. Goodbye!`);
     process.exit(0);
   }
+}
+
+/* Interfaces related to the Client. */
+interface ClientOptions {
+  token: string;
+}
+
+interface WrapperObject {
+  Hypixel: HypixelAPI;
+}
+
+interface CommandCollections {
+  Timings: Collection<any, any>;
+  Commands: Collection<any, any>;
+  Aliases: Collection<any, any>;
 }
