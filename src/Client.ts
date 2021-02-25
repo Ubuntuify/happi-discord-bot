@@ -4,6 +4,7 @@ import { Client, Collection } from 'discord.js';
 import colors from 'chalk';
 
 import { HypixelAPI } from './bin/wrappers/Hypixel';
+import config from './app/config/main-config.json';
 import api from './app/config/api.json';
 
 export class Interface extends Client {
@@ -13,7 +14,7 @@ export class Interface extends Client {
 
   /**
    * 📌 The primary class to be used for all the features of the bot.
-   * @param {Object} options - Options to be passed to the constructor (and discord.js).
+   * @param options - Options to be passed to the constructor (and discord.js).
    */
   constructor(options: ClientOptions) {
     super({
@@ -26,6 +27,7 @@ export class Interface extends Client {
       Timings: new Collection(),
       Commands: new Collection(),
       Aliases: new Collection(),
+      prefix: config.prefix,
     };
     this.wrappers = {
       Hypixel: new HypixelAPI(api.hypixel),
@@ -82,4 +84,5 @@ interface CommandCollections {
   Timings: Collection<any, any>;
   Commands: Collection<any, any>;
   Aliases: Collection<any, any>;
+  prefix: string;
 }
