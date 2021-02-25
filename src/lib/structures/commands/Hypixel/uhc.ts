@@ -1,6 +1,6 @@
 /* eslint-disable class-methods-use-this */
 
-import { Message, MessageEmbed } from 'discord.js';
+import { Message } from 'discord.js';
 import BaseCommand from '../../Command';
 import * as Client from '../../../../Client';
 
