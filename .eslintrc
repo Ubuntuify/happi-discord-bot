@@ -9,7 +9,8 @@
     ],
     "rules": {
         "global-require": "off",
-        "lines-between-class-members": "off"
+        "lines-between-class-members": "off",
+        "no-eval": "warn"
     },
     "settings": {
         "import/resolver": {
