@@ -1,52 +1,42 @@
-/* eslint-disable no-useless-escape */
-import { MessageEmbed, Message } from 'discord.js';
-import { Interface } from '../../../../Client';
+/* eslint-disable class-methods-use-this */
 
-import Command from '../../Command';
+import { Message, MessageEmbed } from 'discord.js';
+import BaseCommand from '../../Command';
+import * as Client from '../../../../Client';
 
-module.exports = class PingCommand extends Command {
-  constructor(client: Interface, name: string) {
+module.exports = class PingCommand extends BaseCommand {
+  /* 💔 Passes options to main class. */
+  constructor(client: Client.Interface, name: string) {
     super(client, name, {
       category: 'Bot',
-      args: false,
-      description: "Checks the bot's connection to the server.",
       timing: 10,
+      aliases: [],
+      description: 'Gets ping information from wrappers.',
+      args: false,
     });
   }
 
-  async run(message: Message) {
-    const WS_PING = this.client.ws.ping;
-    const CALCULATED_PING = Date.now() - message.createdTimestamp;
-
-    const HYPIXEL_PING = await this.client.wrappers.Hypixel.getPing();
-
+  /* 📡 This runs when the command is run. */
+  public async run(message: Message): Promise<void> {
+    /* 💫 gets all the ping. */
     message.channel.send(
-      new MessageEmbed()
-        // eslint-disable-next-line
-        .setTitle('Ping')
-        .setDescription(
-          [
-            `This is the status of the connection to Discord`,
-            `and other wrappers.`,
-          ].join('\n')
-        )
-        .addFields(
-          {
-            name: 'Websocket Ping',
-            value: `${WS_PING}ms`,
-            inline: true,
-          },
-          {
-            name: 'Effective Ping',
-            value: `${CALCULATED_PING}ms`,
-            inline: true,
-          },
-          {
-            name: 'Hypixel API',
-            value: `${HYPIXEL_PING}ms`,
-            inline: true,
-          }
-        )
+      new MessageEmbed().setTitle('\\💫 Ping').addFields(
+        {
+          name: 'Websocket Ping',
+          value: await this.client.ws.ping,
+          inline: true,
+        },
+        {
+          name: 'Calculated Ping',
+          value: await (Date.now() - message.createdTimestamp),
+          inline: true,
+        },
+        {
+          name: 'Hypixel Ping',
+          value: await this.client.wrappers.Hypixel.getPing(),
+          inline: true,
+        }
+      )
     );
   }
 };
