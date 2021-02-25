@@ -47,6 +47,13 @@ module.exports = class MessageEvent extends Event {
       )} is being accomplished`
     );
 
+    if (!command.args && args.length) {
+      message.channel.send(
+        "\\💤 **This isn't right!** You did not provide any arguments."
+      );
+      return;
+    }
+
     try {
       command.run(message, args);
 
