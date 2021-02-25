@@ -1,7 +1,7 @@
 /* 🤖📚 Libraries */
 /* eslint-disable no-use-before-define */
 import { Client, Collection } from 'discord.js';
-import * as colors from 'chalk';
+import colors from 'chalk';
 
 import { HypixelAPI } from './bin/wrappers/Hypixel';
 import api from './app/config/api.json';
@@ -35,7 +35,7 @@ export class Interface extends Client {
     this.init(options);
   }
 
-  init(options: ClientOptions) {
+  public init(options: ClientOptions): void {
     /* ✨ The start up for the discord wrapper. */
     this.validate(options);
 
@@ -51,7 +51,7 @@ export class Interface extends Client {
     utility.loadCommands();
   }
 
-  validate(options: any) {
+  private validate(options: any): void {
     if (typeof options !== 'object')
       throw new TypeError(`${colors.red('✖ ')} Options must be an object.`);
 
@@ -62,7 +62,7 @@ export class Interface extends Client {
     console.log('🏁 Completed verification of provided options.');
   }
 
-  static exit() {
+  static exit(): void {
     // ✨ This method will exit the process.
     console.log(`\n✨ Exiting client.. Goodbye!`);
     process.exit(0);
