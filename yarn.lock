@@ -1702,7 +1702,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-import-resolver-node@npm:^0.3.3":
+"eslint-import-resolver-node@npm:^0.3.3, eslint-import-resolver-node@npm:^0.3.4":
   version: 0.3.4
   resolution: "eslint-import-resolver-node@npm:0.3.4"
   dependencies:
@@ -2351,6 +2351,7 @@ fsevents@~2.3.1:
     eslint-config-airbnb: 18.2.0
     eslint-config-prettier: 6.11.0
     eslint-config-wesbos: 1.0.1
+    eslint-import-resolver-node: ^0.3.4
     eslint-plugin-html: 6.1.0
     eslint-plugin-import: 2.22.0
     eslint-plugin-jsx-a11y: 6.3.1
