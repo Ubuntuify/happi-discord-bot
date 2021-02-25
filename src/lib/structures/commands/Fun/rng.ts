@@ -1,41 +1,62 @@
-/* eslint-disable prettier/prettier */
-import { Message } from 'discord.js';
-import { Interface } from '../../../../Client';
+/* eslint-disable class-methods-use-this */
 
+import { Message } from 'discord.js';
 import BaseCommand from '../../Command';
+import * as Client from '../../../../Client';
 
 module.exports = class RngCommand extends BaseCommand {
-  constructor( client: Interface, name: string ) {
-    super( client, name, {
+  /* 💔 Passes options to main class. */
+  constructor(client: Client.Interface, name: string) {
+    super(client, name, {
       category: 'Fun',
-      description: 'Generates a random number between your provided arguments.',
-      args: true,
-      usage: '<min num> <max num>',
       timing: 10,
-      ownerOnly: false,
-    } );
+      aliases: [],
+      args: false,
+    });
   }
 
-  // eslint-disable-next-line
-  async run( message: Message, args: string[] ): Promise<void> {
-    const regExp: RegExp = /[a-zA-z]/g;
+  /* 📡 This runs when the command is run. */
+  public async run(message: Message, args: string[]): Promise<void> {
+    /* 💫 sample code here. */
+    const regExp: RegExp = /^\d+$/;
 
-    if ( regExp.test(args[0]) || regExp.test(args[1]) ) {
-      message.channel.send('This request contains illegal characters. Please request with proper characters.');
+    /* ✨ tests for non-number arguments. */
+    if (!regExp.test(args[0]) || !regExp.test(args[1])) {
+      message.channel.send(
+        'This request contains illegal characters. Please request with proper characters.'
+      );
       return;
     }
 
-    const minRNG: number = Number(args[0]);
-    const maxRNG: number = Number(args[1]);
+    /* 💤 start of the algorithm. */
+    const startRange = Number(args[0]);
+    const endRange = Number(args[1]);
+    const actualRange = endRange - startRange;
 
-    const actualMax: number = maxRNG - minRNG;
-
-    if (maxRNG < minRNG) {
-      message.channel.send(`We can't handle a number from \`${minRNG}-${maxRNG}\`. What? The only thing in that range is \`undefined\`.`);
+    if (startRange > endRange) {
+      message.channel.send('This request contains an illegal range.');
       return;
-    };
+    }
 
-    const random: number = maxRNG === minRNG ? minRNG: Math.floor( Math.random() * actualMax ) + 1 + minRNG;
-    message.channel.send(`The random number generated was \`${random}\`. The range you specified was \`${minRNG}-${maxRNG}\`.`);
-  };
-}
+    const randomResult = this.generateRandomNumber([
+      startRange,
+      endRange,
+      actualRange,
+    ]);
+
+    message.channel.send(
+      `Randomly generated number was \`${await randomResult}\`. Range was \`${startRange}-${endRange}\`.`
+    );
+  }
+
+  private async generateRandomNumber([
+    startRange,
+    endRange,
+    actualRange,
+  ]: number[]): Promise<number> {
+    if (startRange === endRange) {
+      return startRange;
+    }
+    return Math.floor(Math.random() * actualRange) + 1 + startRange;
+  }
+};
