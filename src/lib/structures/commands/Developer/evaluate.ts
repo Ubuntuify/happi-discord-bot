@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this */
+/* eslint-disable class-methods-use-this */ /* eslint-disable no-eval */
 
 import { Message, MessageEmbed } from 'discord.js';
 import beautify from 'beautify';
