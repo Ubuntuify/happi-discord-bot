@@ -17,7 +17,7 @@ export default class Utility {
   }
 
   // eslint-disable-next-line class-methods-use-this
-  public isClass(input: any) {
+  public isClass(input: any): boolean {
     return (
       typeof input === 'function' &&
       typeof input.prototype === 'object' &&
@@ -31,7 +31,7 @@ export default class Utility {
   }
 
   public async loadEvents(): Promise<void> {
-    return glob(`${this.directory}src/lib/structures/events/**/*.js`).then(
+    return glob(`${this.directory}src/lib/structures/events/**/*.ts`).then(
       (events: any) => {
         for (const eventFile of events) {
           delete require.cache[eventFile];
