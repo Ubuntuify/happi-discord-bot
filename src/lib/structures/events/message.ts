@@ -22,7 +22,7 @@ module.exports = class MessageEvent extends Event {
       : this.client.commands.prefix;
 
     /* eslint-disable-next-line prettier/prettier */
-    const [cmd, ...args] = 
+    const [cmd, ...args] =
       message.content.slice(prefix.length).trim().split(/ +/g);
 
     const command =
