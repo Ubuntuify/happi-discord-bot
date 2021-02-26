@@ -17,7 +17,7 @@ module.exports = class extends BaseCommand {
   }
 
   /* 📡 This runs when the command is run. */
-  public async run(message: Message, args: string[]): Promise<void> {
+  public async run(message: Message): Promise<void> {
     /* 💫 uptime code here. */
     const uptime = ms(this.client.uptime, { long: true });
     message.channel.send(`I've been running for ${uptime}!`);
