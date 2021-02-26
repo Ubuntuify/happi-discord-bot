@@ -8,6 +8,7 @@
         "wesbos"
     ],
     "rules": {
+        "prettier/prettier": "warn",
         "global-require": "off",
         "lines-between-class-members": "off",
         "no-eval": "warn"
