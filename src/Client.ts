@@ -24,7 +24,7 @@ export class Interface extends Client {
     // These load the 📡 events and 💻 commands collections.
     this.events = new Collection();
     this.commands = {
-      Timings: new Collection(),
+      Cooldowns: new Collection(),
       Commands: new Collection(),
       Aliases: new Collection(),
       prefix: config.prefix,
@@ -72,17 +72,25 @@ export class Interface extends Client {
   }
 }
 
-/* Interfaces related to the Client. */
+/**
+ * Options to be passed on to the Client instance.
+ */
 interface ClientOptions {
   token: string;
 }
 
+/**
+ * The object that represents the wrappers inside the client.
+ */
 interface WrapperObject {
   Hypixel: HypixelAPI;
 }
 
+/**
+ * The collections required for the command handler.
+ */
 interface CommandCollections {
-  Timings: Collection<any, any>;
+  Cooldowns: Collection<any, any>;
   Commands: Collection<any, any>;
   Aliases: Collection<any, any>;
   prefix: string;
