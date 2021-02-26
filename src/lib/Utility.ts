@@ -25,6 +25,15 @@ export default class Utility {
     );
   }
 
+  /* eslint-disable-next-line class-methods-use-this */
+  formatBytes(bytes: number) {
+    if (bytes === 0) return '0 Bytes';
+    const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(1024));
+    /* eslint-disable-next-line no-restricted-properties */
+    return `${parseFloat((bytes / Math.pow(1024, i)).toFixed(2))} ${sizes[i]}`;
+  }
+
   // eslint-disable-next-line class-methods-use-this
   get directory(): string {
     return `${dirname(require.main.filename)}${sep}`;
