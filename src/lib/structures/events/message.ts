@@ -41,22 +41,26 @@ module.exports = class MessageEvent extends Event {
     command,
     { message, args }: { message: Message; args: string[] }
   ): Promise<void> {
+    /* 📚 Uses the ora library to make a loading screen. */
     const loadingSpinner = ora().start(
       `Request ${red(command.name)} from ${yellow(
         message.author.username
       )} is being accomplished`
     );
 
-    if (!command.args && args.length) {
-      message.channel.send(
-        "\\💤 **This isn't right!** You did not provide any arguments."
-      );
+    /* ✅ Executes whether args is required and args aren't provided. */
+    if (command.args && !args.length) {
+      const MessageError =
+        '\\💫 You did not specify arguments for a command that requires arguments.';
+
+      message.channel.send(MessageError);
       return;
     }
 
     try {
       command.run(message, args);
 
+      /* ✔ Informs the console that the command suceeded. */
       loadingSpinner.succeed(
         `Request ${red(command.name)} from ${yellow(
           message.author.username
@@ -67,6 +71,14 @@ module.exports = class MessageEvent extends Event {
     } catch (error) {
       message.channel.send(
         '\\❌ Wow! An error occured. Please notify the owner.'
+      );
+
+      /* ❌ Informs the console that the command failed. */
+      loadingSpinner.fail(
+        `Request ${red(command.name)} that took ${ms(
+          message.createdTimestamp - Date.now(),
+          { long: true }
+        )} resulted in an exception.`
       );
     }
   }
