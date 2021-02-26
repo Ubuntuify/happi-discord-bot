@@ -3,6 +3,7 @@ import { Message } from 'discord.js';
 import ora from 'ora';
 import ms from '../../../bin/functions/ms/ms';
 import Event from '../Event';
+import { permissions } from '../../../app/config/main-config.json';
 
 module.exports = class MessageEvent extends Event {
   public async run(message: Message): Promise<void> {
@@ -41,6 +42,15 @@ module.exports = class MessageEvent extends Event {
     command,
     { message, args }: { message: Message; args: string[] }
   ): Promise<void> {
+    /* ✅ Executes whether args is required and args aren't provided. */
+    if (command.args && !args.length) {
+      const MessageError =
+        '\\💫 You did not specify arguments for a command that requires arguments.';
+
+      message.channel.send(MessageError);
+      return;
+    }
+
     /* 📚 Uses the ora library to make a loading screen. */
     const loadingSpinner = ora().start(
       `Request ${red(command.name)} from ${yellow(
@@ -48,12 +58,15 @@ module.exports = class MessageEvent extends Event {
       )} is being accomplished`
     );
 
-    /* ✅ Executes whether args is required and args aren't provided. */
-    if (command.args && !args.length) {
-      const MessageError =
-        '\\💫 You did not specify arguments for a command that requires arguments.';
-
-      message.channel.send(MessageError);
+    if (
+      permissions.all.id.indexOf(message.author.id) <= -1 &&
+      command.ownerOnly
+    ) {
+      loadingSpinner.fail(
+        `Attempted access into ${red(command.name)} by ${yellow(
+          message.author.username
+        )}`
+      );
       return;
     }
 

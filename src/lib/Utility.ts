@@ -1,6 +1,6 @@
 import { dirname, sep, parse } from 'path';
 import { promisify } from 'util';
-import { cyan, yellow, green, bgRed } from 'chalk';
+import { cyan, yellow, green, bgRed, red } from 'chalk';
 import ora from 'ora';
 
 import Event from './structures/Event';
@@ -80,26 +80,33 @@ export default class Utility {
           const loadSpinner = ora(`Loading command ${name}...`);
 
           // eslint-disable-next-line
-        const File = require(commandFile);
-          if (!this.isClass(File))
-            throw new TypeError(
-              `Command ${name} does not export as class. (invalid type)`
-            );
+          const File = require(commandFile);
 
-          const command = new File(this.client, name);
-          if (!(command instanceof Command))
-            throw new TypeError(
-              `Command ${name} does not belong in Commands. (invalid extends)`
-            );
+          try {
+            if (!this.isClass(File))
+              throw new TypeError(
+                `Command ${name} does not export as class. (Invalid Module Type)`
+              );
 
-          this.client.commands.Commands.set(command.name, command);
+            const command = new File(this.client, name);
+            if (!(command instanceof Command))
+              throw new TypeError(
+                `Command ${name} does not belong in Commands. (Invalid Extends)`
+              );
 
-          if (command.aliases.length)
-            for (const alias of command.aliases) {
-              this.client.commands.Aliases.set(alias, command.name);
-            }
-          // eslint-disable-next-line
-          loadSpinner.succeed(`Completed loading ${green('command')} ${yellow(name)}.`);
+            this.client.commands.Commands.set(command.name, command);
+
+            if (command.aliases.length)
+              for (const alias of command.aliases) {
+                this.client.commands.Aliases.set(alias, command.name);
+              }
+
+            // eslint-disable-next-line prettier/prettier
+            loadSpinner.succeed(`Completed loading ${green('command')} ${yellow(name)}.`);
+          } catch (e) {
+            // eslint-disable-next-line prettier/prettier
+            loadSpinner.fail(`Failed loading ${red('command')} ${yellow(name)}.`);
+          }
         }
       }
     );
