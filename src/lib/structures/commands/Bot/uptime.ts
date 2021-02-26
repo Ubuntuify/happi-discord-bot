@@ -1,7 +1,7 @@
 /* eslint-disable class-methods-use-this */
 
 import { Message } from 'discord.js';
-import ms from '../../../../bin/functions/ms/ms';
+import ms from 'ms';
 
 import BaseCommand from '../../Command';
 import * as Client from '../../../../Client';

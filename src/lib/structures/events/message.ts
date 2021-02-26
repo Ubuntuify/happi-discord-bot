@@ -1,7 +1,7 @@
 import { red, yellow } from 'chalk';
 import { Message } from 'discord.js';
 import ora from 'ora';
-import ms from '../../../bin/functions/ms/ms';
+import ms from 'ms';
 import Event from '../Event';
 import { permissions } from '../../../app/config/main-config.json';
 
