@@ -2,8 +2,8 @@ import { red, yellow } from 'chalk';
 import { Message } from 'discord.js';
 import ora from 'ora';
 import ms from 'ms';
-import Event from '../Event';
-import { permissions } from '../../../app/config/main-config.json';
+import Event from '../../Event';
+import { permissions } from '../../../../app/config/main-config.json';
 
 module.exports = class MessageEvent extends Event {
   public async run(message: Message): Promise<void> {
