@@ -10,7 +10,7 @@ module.exports = class extends BaseCommand {
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
       timing: 10,
-      aliases: [],
+      aliases: ['gitstatus', 'gitstats', 'githubstatus', 'githubstats'],
       args: false,
     });
   }

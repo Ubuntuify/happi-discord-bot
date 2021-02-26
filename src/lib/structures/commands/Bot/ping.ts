@@ -10,7 +10,7 @@ module.exports = class PingCommand extends BaseCommand {
     super(client, name, {
       category: 'Bot',
       timing: 10,
-      aliases: [],
+      aliases: ['pong'],
       description: 'Gets ping information from wrappers.',
       args: false,
     });
@@ -26,7 +26,7 @@ module.exports = class PingCommand extends BaseCommand {
       'My ping better be good!',
       'I heard the longer it takes, the worst it gets.',
       "I know I'm not meant to feel. But this is scary!",
-      'I~~--~~ cutti~~--~~ **OUT!**',
+      'I~~---~~ cuttin~~---~~ **OUT!**',
     ];
     const pickedChoice = choices[Math.floor(Math.random() * choices.length)];
 
