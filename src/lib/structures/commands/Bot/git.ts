@@ -10,6 +10,8 @@ module.exports = class extends BaseCommand {
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
       timing: 10,
+      description:
+        'Checks the current state of the git repository, this bot is in.',
       aliases: ['gitstatus', 'gitstats', 'githubstatus', 'githubstats'],
       args: false,
     });

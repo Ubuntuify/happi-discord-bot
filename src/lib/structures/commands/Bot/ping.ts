@@ -11,7 +11,7 @@ module.exports = class PingCommand extends BaseCommand {
       category: 'Bot',
       timing: 10,
       aliases: ['pong'],
-      description: 'Gets ping information from wrappers.',
+      description: 'Gets ping information from numerous sources.',
       args: false,
     });
   }
@@ -37,17 +37,17 @@ module.exports = class PingCommand extends BaseCommand {
       .addFields(
         {
           name: 'Websocket Ping',
-          value: await this.client.ws.ping,
+          value: this.client.ws.ping,
           inline: true,
         },
         {
           name: 'Calculated Ping',
-          value: await (Date.now() - message.createdTimestamp),
+          value: Date.now() - message.createdTimestamp,
           inline: true,
         },
         {
           name: 'Internal Latency',
-          value: await internalLatency,
+          value: internalLatency,
           inline: true,
         },
         {
