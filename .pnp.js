@@ -38,6 +38,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",
           "packageDependencies": [
             ["@discordjs/opus", "npm:0.4.0"],
+            ["@types/beautify", "npm:0.0.0"],
             ["@types/glob", "npm:7.1.3"],
             ["@types/node", "npm:14.14.31"],
             ["@typescript-eslint/eslint-plugin", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:4.15.2"],
@@ -385,6 +386,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["@szmarczak/http-timer", "npm:1.1.2"],
             ["defer-to-connect", "npm:1.1.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/beautify", [
+        ["npm:0.0.0", {
+          "packageLocation": "./.yarn/cache/@types-beautify-npm-0.0.0-5566be4af9-8ab39c8f04.zip/node_modules/@types/beautify/",
+          "packageDependencies": [
+            ["@types/beautify", "npm:0.0.0"]
           ],
           "linkType": "HARD",
         }]
@@ -2962,6 +2972,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["happi-discord-bot", "workspace:."],
             ["@discordjs/opus", "npm:0.4.0"],
+            ["@types/beautify", "npm:0.0.0"],
             ["@types/glob", "npm:7.1.3"],
             ["@types/node", "npm:14.14.31"],
             ["@typescript-eslint/eslint-plugin", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:4.15.2"],
