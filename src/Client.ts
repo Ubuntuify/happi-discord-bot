@@ -64,7 +64,8 @@ export class Interface extends Client {
     console.log('🏁 Completed verification of provided options.');
   }
 
-  static exit(): void {
+  /* eslint-disable-next-line class-methods-use-this */
+  public exit(): void {
     // ✨ This method will exit the process.
     console.log(`\n✨ Exiting client.. Goodbye!`);
     process.exit(0);
