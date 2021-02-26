@@ -36,7 +36,5 @@ module.exports = class ReadyEvent extends Event {
         ``,
       ].join(`\n`)
     );
-
-    // TODO: Add more features on start up.
   }
 };
