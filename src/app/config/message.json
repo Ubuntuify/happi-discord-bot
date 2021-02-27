@@ -1,0 +1,7 @@
+{
+  "error": {
+    "cooldown": {
+      "choices": ["Can't keep up!", "I'm on vacation!", "Slow, but steady wins the race."]
+    }
+  }
+}

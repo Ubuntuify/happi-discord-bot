@@ -88,7 +88,7 @@ module.exports = class MessageEvent extends Event {
       loadingSpinner.succeed(
         `Request ${red(command.name)} from ${yellow(
           message.author.username
-        )} took ${ms(message.createdTimestamp - Date.now(), {
+        )} took ${ms(Date.now() - message.createdTimestamp, {
           long: true,
         })}`
       );
@@ -100,7 +100,7 @@ module.exports = class MessageEvent extends Event {
       /* ❌ Informs the console that the command failed. */
       loadingSpinner.fail(
         `Request ${red(command.name)} that took ${ms(
-          message.createdTimestamp - Date.now(),
+          Date.now() - message.createdTimestamp,
           { long: true }
         )} resulted in an exception.`
       );
@@ -127,11 +127,9 @@ module.exports = class MessageEvent extends Event {
           '💫 Waiting for error response...'
         );
 
-        const choices = [
-          "Can't keep up!",
-          "I'm on vacation!",
-          'Slow but steady wins the race.',
-        ];
+        const {
+          choices,
+        } = require('../../../../app/config/message.json').error.cooldown;
         const chosen = choices[Math.floor(Math.random() * choices.length)];
 
         const time_left = (expiration_time - current_time) / 1000;
@@ -149,6 +147,9 @@ module.exports = class MessageEvent extends Event {
     }
 
     time_stamps.set(message.author.id, current_time);
+    setTimeout(() => {
+      time_stamps.delete(message.author.id);
+    }, cooldown_amount);
     return true;
   }
 };
