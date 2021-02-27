@@ -9,7 +9,7 @@ module.exports = class RngCommand extends BaseCommand {
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
       category: 'Fun',
-      timing: 10,
+      timing: 5,
       aliases: ['dice', 'randomnumbergenerator', 'rollthedice'],
       args: false,
     });
