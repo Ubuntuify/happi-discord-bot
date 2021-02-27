@@ -4,7 +4,7 @@ import { Client, Collection } from 'discord.js';
 import colors from 'chalk';
 
 import { HypixelAPI } from './bin/wrappers/Hypixel';
-import config from './app/config/main-config.json';
+import config from './app/config/main_config.json';
 import api from './app/config/api.json';
 
 export class Interface extends Client {

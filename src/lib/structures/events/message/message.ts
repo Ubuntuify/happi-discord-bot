@@ -5,7 +5,7 @@ import ms from 'ms';
 
 import BaseCommand from '../../Command';
 import Event from '../../Event';
-import { permissions } from '../../../../app/config/main-config.json';
+import { permissions } from '../../../../app/config/main_config.json';
 
 module.exports = class MessageEvent extends Event {
   public async run(message: Message): Promise<void> {
