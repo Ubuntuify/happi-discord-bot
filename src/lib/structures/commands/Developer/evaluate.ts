@@ -6,7 +6,6 @@ import BaseCommand from '../../Command';
 import * as Client from '../../../../Client';
 
 module.exports = class EvaluateCommand extends BaseCommand {
-  /* 💔 Passes options to main class. */
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
       category: 'Developer',
