@@ -5,7 +5,8 @@
         "@typescript-eslint"
     ],
     "extends": [
-        "wesbos"
+        "wesbos",
+        "plugin:prettier/recommended"
     ],
     "rules": {
         "prettier/prettier": "warn",

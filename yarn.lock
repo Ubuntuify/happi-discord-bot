@@ -1693,14 +1693,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-config-prettier@npm:8.1.0":
-  version: 8.1.0
-  resolution: "eslint-config-prettier@npm:8.1.0"
+"eslint-config-prettier@npm:6.11.0":
+  version: 6.11.0
+  resolution: "eslint-config-prettier@npm:6.11.0"
+  dependencies:
+    get-stdin: ^6.0.0
   peerDependencies:
-    eslint: ">=7.0.0"
+    eslint: ">=3.14.1"
   bin:
-    eslint-config-prettier: bin/cli.js
-  checksum: 409d3a071f8228d4c958a6a9be9d5ec2b357ce21b7b6cbb137096cade2c31f008a0a3c3533dee8979c0cd944f220a959710b30fd86f8b96f0ef1f4f557d740b3
+    eslint-config-prettier-check: bin/cli.js
+  checksum: 59efd906c78d47753a673c205ef515fdab19cd6ea0fd992c9cb2366804861746238244526ab565ccc7448569f5472ce7646a77d0c9998787192e4ebae95df71d
   languageName: node
   linkType: hard
 
@@ -2235,6 +2237,13 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
+"get-stdin@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "get-stdin@npm:6.0.0"
+  checksum: b51d664838aef7f8353dc57371ce59cea54d8d584fec015a9d89d24561e95b97806d5b5ba120bc81574c9ed63cb3e210176ffa0ff9263c7e7ba4d56d0fe54913
+  languageName: node
+  linkType: hard
+
 "get-stream@npm:^4.1.0":
   version: 4.1.0
   resolution: "get-stream@npm:4.1.0"
@@ -2368,7 +2377,7 @@ fsevents@~2.3.1:
     discord.js: ^12.5.1
     eslint: ^7.20.0
     eslint-config-airbnb: 18.2.1
-    eslint-config-prettier: 8.1.0
+    eslint-config-prettier: 6.11.0
     eslint-config-wesbos: 1.0.1
     eslint-import-resolver-node: ^0.3.4
     eslint-plugin-html: 6.1.1
@@ -2387,7 +2396,6 @@ fsevents@~2.3.1:
     path: ^0.12.7
     prettier: 2.2.1
     react: ^17.0.1
-    sodium: ^3.0.2
     ts-node: ^9.1.1
     typescript: 4.1.5
     utf-8-validate: ^5.0.4
@@ -3450,7 +3458,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"node-addon-api@npm:*, node-addon-api@npm:^3.1.0":
+"node-addon-api@npm:^3.1.0":
   version: 3.1.0
   resolution: "node-addon-api@npm:3.1.0"
   dependencies:
@@ -4478,15 +4486,6 @@ fsevents@~2.3.1:
     astral-regex: ^2.0.0
     is-fullwidth-code-point: ^3.0.0
   checksum: f411aa051802605c3dc8523edee42d39ef59d7c36e6bef6bf1e61d9d2a83894187f6af56911a43ec8e58b921996722d75b354a4c3050b924426ffd1b05da33f9
-  languageName: node
-  linkType: hard
-
-"sodium@npm:^3.0.2":
-  version: 3.0.2
-  resolution: "sodium@npm:3.0.2"
-  dependencies:
-    node-addon-api: "*"
-  checksum: 4d10589f80a7bca89bcb9411bbe9512e924215d95eb452adaec35a38a0d1244007b83c5e3e6c2202ffb4a4cecc881fffd0f1edaa2947482b8a46ac30d9318ff3
   languageName: node
   linkType: hard
 
