@@ -1,8 +1,10 @@
-import { red, yellow } from 'chalk';
+import { bgRed, red, yellow } from 'chalk';
 import { Collection, Message, MessageEmbed } from 'discord.js';
 import ora from 'ora';
 import ms from 'ms';
 
+import { readFileSync } from 'fs';
+import Utility from '../../../Utility';
 import BaseCommand from '../../Command';
 import Event from '../../Event';
 import { permissions } from '../../../../app/config/main_config.json';
@@ -10,19 +12,20 @@ import { permissions } from '../../../../app/config/main_config.json';
 module.exports = class MessageEvent extends Event {
   public async run(message: Message): Promise<void> {
     const mentionRegex: RegExp = RegExp(`^<@!${this.client.user.id}>$`);
-    const mentionRegexPrefix: RegExp = RegExp(`^<@!${this.client.user.id}> `);
 
     if (!message.guild || message.author.bot) return;
 
+    const { directory } = Utility.prototype;
+    const guildSettings = JSON.parse(
+      readFileSync(`${directory}/src/srv/guild.json`, { encoding: 'utf-8' })
+    );
+    const { prefix } = guildSettings[message.guild.id] || this.client.commands;
+
     if (message.content.match(mentionRegex)) {
       message.channel.send(
-        `My prefix for ${message.guild.name} is \`${this.client.commands.prefix}\`.`
+        `My prefix for ${message.guild.name} is \`${prefix}\`.`
       );
     }
-
-    const prefix = message.content.match(mentionRegexPrefix)
-      ? message.content.match(mentionRegexPrefix)[0]
-      : this.client.commands.prefix;
 
     /* eslint-disable-next-line prettier/prettier */
     const [cmd, ...args] =
@@ -34,7 +37,7 @@ module.exports = class MessageEvent extends Event {
         this.client.commands.Aliases.get(cmd.toLowerCase())
       );
 
-    if (command) {
+    if (command && message.content.startsWith(prefix)) {
       this.runCommand(command, { message, args });
     }
   }
@@ -99,7 +102,7 @@ module.exports = class MessageEvent extends Event {
       loadingSpinner.fail(
         `Failed request ${red(command.name)} from ${yellow(
           message.author.username
-        )}.`
+        )}. ${bgRed(error)}`
       );
     }
   } /* eslint-disable camelcase */

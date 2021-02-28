@@ -54,4 +54,13 @@ export default abstract class BaseCommand {
   public async run(message: Discord.Message, args: string[]): Promise<void> {
     throw new Error('This run method was not implemented successfully.');
   }
+
+  /* eslint-disable-next-line */
+  async returnError(message: Discord.Message, errorCode: BitStringError): Promise<void> {
+    message.channel.send(
+      `We had an error while processing your request. \`${errorCode}\``
+    );
+  }
 }
+
+type BitStringError = 'NO_PERMISSION' | 'INTERNAL_ERROR';
