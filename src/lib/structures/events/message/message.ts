@@ -9,7 +9,7 @@ import BaseCommand from '../../Command';
 import Event from '../../Event';
 import { permissions } from '../../../../app/config/main_config.json';
 
-module.exports = class MessageEvent extends Event {
+module.exports = class extends Event {
   public async run(message: Message): Promise<void> {
     const mentionRegex: RegExp = RegExp(`^<@!${this.client.user.id}>$`);
 

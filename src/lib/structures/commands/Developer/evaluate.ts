@@ -5,7 +5,7 @@ import beautify from 'beautify';
 import BaseCommand from '../../Command';
 import * as Client from '../../../../Client';
 
-module.exports = class EvaluateCommand extends BaseCommand {
+module.exports = class extends BaseCommand {
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
       category: 'Developer',

@@ -4,7 +4,7 @@ import { Message, MessageEmbed } from 'discord.js';
 import BaseCommand from '../../Command';
 import * as Client from '../../../../Client';
 
-module.exports = class PingCommand extends BaseCommand {
+module.exports = class extends BaseCommand {
   /* 💔 Passes options to main class. */
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
