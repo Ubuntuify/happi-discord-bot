@@ -8,9 +8,9 @@ import config from './app/config/main_config.json';
 import api from './app/config/api.json';
 
 export class Interface extends Client {
-  events: Collection<any, any>;
-  commands: CommandCollections;
-  wrappers: WrapperObject;
+  public events: Collection<any, any>;
+  public commands: CommandCollections;
+  public wrappers: WrapperObject;
 
   /**
    * 📌 The primary class to be used for all the features of the bot.

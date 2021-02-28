@@ -10,7 +10,7 @@ import { Interface } from '../Client';
 const glob = promisify(require('glob'));
 
 export default class Utility {
-  client: Interface;
+  private client: Interface;
 
   constructor(client: Interface) {
     this.client = client;

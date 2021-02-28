@@ -17,15 +17,15 @@ export interface CommandOptions {
 
 export default abstract class BaseCommand {
   /* 📚 The properties of this class */
-  client: Client.Interface;
-  name: string;
-  aliases: string[];
-  category: string;
-  args: boolean;
-  usage: string;
-  description: string;
-  cooldown: number;
-  ownerOnly: boolean;
+  public client: Client.Interface;
+  public name: string;
+  public aliases: string[];
+  public category: string;
+  public args: boolean;
+  public usage: string;
+  public description: string;
+  public cooldown: number;
+  public ownerOnly: boolean;
 
   /* 🔨 The constructor for this class. */
   constructor(client: Client.Interface, name: string, options: CommandOptions) {
@@ -40,12 +40,14 @@ export default abstract class BaseCommand {
 
     /* 💤 Optional parts of this abstract class. */
     this.category = options.category || 'Misc.';
-    this.description = options.description;
+    this.description =
+      options.description ??
+      'Description was not provided. Contact the owner for a fix.\n(Or make a pull request.)';
     this.usage =
       options.usage ||
-      'Usage guide was not provided. Contact the author for a fix.';
+      'Usage guide was not provided. Contact the author for a fix.\n(Or make a pull request.)';
 
-    this.ownerOnly = options.ownerOnly || false;
+    this.ownerOnly = options.ownerOnly ?? false;
   }
 
   /* eslint-disable-next-line */

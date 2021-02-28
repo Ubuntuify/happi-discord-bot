@@ -10,10 +10,10 @@ interface EventOptions {
 
 export default abstract class BaseEvent {
   /* 📚 The properties of this class. */
-  name: string;
-  client: Client.Interface;
-  type: string;
-  emitter: any;
+  public name: string;
+  public client: Client.Interface;
+  public type: string;
+  public emitter: any;
 
   /* 🔨 The constructor for this class. */
   constructor(
