@@ -12,6 +12,7 @@ import { permissions } from '../../../../app/config/main_config.json';
 module.exports = class extends Event {
   public async run(message: Message): Promise<void> {
     const mentionRegex: RegExp = RegExp(`^<@!${this.client.user.id}>$`);
+    const mentionRegexPrefix: RegExp = RegExp(`^<@!${this.client.user.id}> `);
 
     if (!message.guild || message.author.bot) return;
 
@@ -19,7 +20,9 @@ module.exports = class extends Event {
     const guildSettings = JSON.parse(
       readFileSync(`${directory}/src/srv/guild.json`, { encoding: 'utf-8' })
     );
-    const { prefix } = guildSettings[message.guild.id] || this.client.commands;
+    const prefix = message.content.match(mentionRegexPrefix)
+      ? message.content.match(mentionRegexPrefix)[0]
+      : guildSettings[message.guild.id].prefix || this.client.commands.prefix;
 
     if (message.content.match(mentionRegex)) {
       message.channel.send(
@@ -42,7 +45,6 @@ module.exports = class extends Event {
     }
   }
 
-  /* eslint-disable-next-line class-methods-use-this */
   private async runCommand(
     command: any,
     { message, args }: { message: Message; args: string[] }
