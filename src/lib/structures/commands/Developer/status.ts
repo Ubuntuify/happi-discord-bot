@@ -21,7 +21,7 @@ module.exports = class extends BaseCommand {
     const aliasesSize = this.client.commands.Aliases.size;
     const eventSize = this.client.events.size;
 
-    const { formatBytes } = new Utility(this.client);
+    const { formatBytes } = Utility.prototype;
 
     const MemUsage = formatBytes(process.memoryUsage().heapUsed);
 
