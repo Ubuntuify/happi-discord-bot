@@ -8,7 +8,7 @@ import * as Client from '../../../../Client';
 module.exports = class extends BaseCommand {
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
-      timing: 10,
+      cooldown: 10,
       aliases: ['exec'],
       args: true,
       usage: '<query>',

@@ -10,7 +10,7 @@ export interface CommandOptions {
   usage?: string;
   description?: string;
   ownerOnly?: boolean;
-  timing?: number;
+  cooldown?: number;
   aliases: string[];
   args: boolean;
 }
@@ -35,7 +35,7 @@ export default abstract class BaseCommand {
 
     /* 💫 Not essential but required components of this abstract class. */
     this.aliases = options.aliases;
-    this.cooldown = options.timing ?? 5;
+    this.cooldown = options.cooldown ?? 5;
     this.args = options.args;
 
     /* 💤 Optional parts of this abstract class. */

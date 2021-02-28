@@ -9,7 +9,7 @@ module.exports = class EvaluateCommand extends BaseCommand {
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
       category: 'Developer',
-      timing: 10,
+      cooldown: 10,
       aliases: ['eval'],
       args: true,
       ownerOnly: true,

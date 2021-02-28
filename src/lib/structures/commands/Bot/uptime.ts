@@ -10,7 +10,7 @@ module.exports = class extends BaseCommand {
   /* 💔 Passes options to main class. */
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
-      timing: 10,
+      cooldown: 10,
       aliases: [],
       args: false,
     });

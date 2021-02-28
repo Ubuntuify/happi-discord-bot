@@ -9,7 +9,7 @@ module.exports = class PingCommand extends BaseCommand {
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
       category: 'Bot',
-      timing: 15,
+      cooldown: 15,
       aliases: ['pong'],
       description: 'Gets ping information from numerous sources.',
       args: false,
