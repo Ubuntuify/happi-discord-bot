@@ -75,7 +75,7 @@ module.exports = class MessageEvent extends Event {
       loadingSpinner.warn(
         `${yellow(
           message.author.username
-        )} did not wait for his cooldown of ${red(command.name)}`
+        )} did not wait for his cooldown of ${red(command.name)}.`
       );
       return;
     }
@@ -86,11 +86,9 @@ module.exports = class MessageEvent extends Event {
 
       /* 💫 Informs the console that the command suceeded. */
       loadingSpinner.succeed(
-        `Request ${red(command.name)} from ${yellow(
+        `Completed request ${red(command.name)} from ${yellow(
           message.author.username
-        )} took ${ms(Date.now() - message.createdTimestamp, {
-          long: true,
-        })}`
+        )} (${ms(Date.now() - message.createdTimestamp, { long: true })})`
       );
     } catch (error) {
       message.channel.send(
@@ -99,10 +97,9 @@ module.exports = class MessageEvent extends Event {
 
       /* ❌ Informs the console that the command failed. */
       loadingSpinner.fail(
-        `Request ${red(command.name)} that took ${ms(
-          Date.now() - message.createdTimestamp,
-          { long: true }
-        )} resulted in an exception.`
+        `Failed request ${red(command.name)} from ${yellow(
+          message.author.username
+        )}.`
       );
     }
   } /* eslint-disable camelcase */
@@ -147,9 +144,10 @@ module.exports = class MessageEvent extends Event {
     }
 
     time_stamps.set(message.author.id, current_time);
-    setTimeout(() => {
+    setTimeout(async () => {
       time_stamps.delete(message.author.id);
     }, cooldown_amount);
+
     return true;
   }
 };

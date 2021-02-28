@@ -42,7 +42,7 @@ module.exports = class PingCommand extends BaseCommand {
         },
         {
           name: 'Calculated Ping',
-          value: Date.now() - message.createdTimestamp,
+          value: message.createdTimestamp - Date.now(),
           inline: true,
         },
         {
