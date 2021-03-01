@@ -23,12 +23,12 @@ module.exports = class extends BaseCommand {
         );
 
       if (command) {
-        this.generateCommandEmbed(message, command);
+        this.sendCommandEmbed(message, command);
       }
     }
   }
 
-  private async generateCommandEmbed(
+  private async sendCommandEmbed(
     message: Message,
     command: BaseCommand
   ): Promise<void> {
