@@ -38,6 +38,7 @@ module.exports = class extends BaseCommand {
 
     messageSent.edit('** **', {
       embed: new MessageEmbed()
+        .setTitle(command.name)
         .setDescription(command.description)
         .addFields(
           { name: 'Category', value: command.category, inline: true },
