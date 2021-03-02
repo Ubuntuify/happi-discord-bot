@@ -32,6 +32,19 @@ module.exports = class extends BaseCommand {
     message: Message,
     command: BaseCommand
   ): Promise<void> {
-    const messageSent = message.channel.send('\\💫 Fetching command values..');
+    const messageSent = await message.channel.send(
+      '\\💫 Fetching command values..'
+    );
+
+    messageSent.edit('** **', {
+      embed: new MessageEmbed()
+        .setDescription(command.description)
+        .addFields(
+          { name: 'Category', value: command.category, inline: true },
+          { name: 'Aliases', value: command.aliases.join(', '), inline: false },
+          { name: 'Cooldown', value: command.cooldown, inline: true },
+          { name: 'Usage', value: command.usage, inline: false }
+        ),
+    });
   }
 };
