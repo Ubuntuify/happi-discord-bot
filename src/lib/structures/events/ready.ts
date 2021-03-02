@@ -22,7 +22,7 @@ module.exports = class extends Event {
     console.log(
       [
         ``,
-        `🔘 Git Repository Revision: ${colors.green(gitRevision)}`,
+        `💫 Git Repository Revision: ${colors.green(gitRevision)}`,
         ``,
         `🤖 🟢 Discord API is now online as${colors.yellow(
           this.client.user.username
