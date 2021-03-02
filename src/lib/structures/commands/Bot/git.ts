@@ -14,6 +14,7 @@ module.exports = class extends BaseCommand {
         'Checks the current state of the git repository, this bot is in.',
       aliases: ['gitstatus', 'gitstats', 'githubstatus', 'githubstats'],
       args: false,
+      category: 'Bot',
     });
   }
 

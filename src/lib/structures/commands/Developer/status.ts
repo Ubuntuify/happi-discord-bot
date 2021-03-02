@@ -11,6 +11,7 @@ module.exports = class extends BaseCommand {
       cooldown: 10,
       aliases: ['devstatus'],
       args: false,
+      category: 'Developer',
     });
   }
 

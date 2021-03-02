@@ -9,6 +9,7 @@ module.exports = class extends BaseCommand {
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
       cooldown: 30,
+      category: 'Hypixel',
       aliases: [],
       args: true,
     });

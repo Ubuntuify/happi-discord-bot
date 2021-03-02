@@ -39,7 +39,7 @@ export default abstract class BaseCommand {
     this.args = options.args;
 
     /* 💤 Optional parts of this abstract class. */
-    this.category = options.category || 'Misc.';
+    this.category = options.category || 'Misc';
     this.description =
       options.description ??
       'Description was not provided. Contact the owner for a fix.\n(Or make a pull request.)';

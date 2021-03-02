@@ -10,6 +10,7 @@ module.exports = class extends BaseCommand {
   constructor(client: Client.Interface, name: string) {
     super(client, name, {
       cooldown: 10,
+      category: 'Moderation',
       aliases: [],
       args: true,
     });
