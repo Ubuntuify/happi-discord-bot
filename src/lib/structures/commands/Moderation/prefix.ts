@@ -11,6 +11,7 @@ module.exports = class extends BaseCommand {
     super(client, name, {
       cooldown: 10,
       category: 'Moderation',
+      description: 'Change the prefix used in this guild.',
       aliases: [],
       args: true,
     });

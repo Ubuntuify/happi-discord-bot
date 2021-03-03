@@ -63,4 +63,4 @@ export default abstract class BaseCommand {
   }
 }
 
-type BitStringError = 'NO_PERMISSION' | 'INTERNAL_ERROR';
+type BitStringError = 'NO_PERMISSION' | 'INTERNAL_ERROR' | 'INVALID_ARGS';
