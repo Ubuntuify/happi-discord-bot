@@ -64,6 +64,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["glob", "npm:7.1.6"],
             ["hypixel-api-reborn", "npm:6.1.1"],
             ["listr", "npm:0.14.3"],
+            ["moment", "npm:2.29.1"],
             ["ms", "npm:2.1.3"],
             ["nodemon", "npm:2.0.7"],
             ["ora", "npm:5.3.0"],
@@ -3018,6 +3019,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["glob", "npm:7.1.6"],
             ["hypixel-api-reborn", "npm:6.1.1"],
             ["listr", "npm:0.14.3"],
+            ["moment", "npm:2.29.1"],
             ["ms", "npm:2.1.3"],
             ["nodemon", "npm:2.0.7"],
             ["ora", "npm:5.3.0"],
@@ -4182,6 +4184,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/mkdirp-npm-1.0.4-37f6ef56b9-1aa3a6a2d7.zip/node_modules/mkdirp/",
           "packageDependencies": [
             ["mkdirp", "npm:1.0.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["moment", [
+        ["npm:2.29.1", {
+          "packageLocation": "./.yarn/cache/moment-npm-2.29.1-787d9fdafd-86729013fe.zip/node_modules/moment/",
+          "packageDependencies": [
+            ["moment", "npm:2.29.1"]
           ],
           "linkType": "HARD",
         }]
