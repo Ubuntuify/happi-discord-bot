@@ -2,6 +2,7 @@
 /* eslint-disable no-use-before-define */
 import { Client } from 'hypixel-api-reborn';
 import { MessageEmbed } from 'discord.js';
+import moment from 'moment';
 
 const APIErrorMessage = new MessageEmbed().setDescription(
   [
@@ -78,12 +79,16 @@ export class HypixelAPI extends Client {
           },
           {
             name: 'First Login',
-            value: `\`${await this.formatDate(playerData.player.firstLogin)}\``,
+            value: `\`${moment(playerData.player.firstLogin).format(
+              'LL LTS'
+            )}\``,
             inline: true,
           },
           {
             name: 'Last Login',
-            value: `\`${await this.formatDate(playerData.player.lastLogin)}\``,
+            value: `\`${moment(playerData.player.lastLogin).format(
+              'LL LTS'
+            )}\``,
             inline: true,
           },
           {
@@ -124,7 +129,7 @@ export class HypixelAPI extends Client {
           },
           {
             name: 'Created At',
-            value: `${await this.formatDate(guildData.createdAt)}`,
+            value: `${moment(guildData.createdAt).format('LL LTS')}`,
             inline: true,
           }
         );
@@ -188,7 +193,7 @@ export class HypixelAPI extends Client {
       const AKDRatio = Math.round((bedwars.avg.kills / avgDeaths) * 100) / 100;
       const lastOnline = player.isOnline
         ? '`ONLINE`'
-        : await this.formatDate(player.lastLogin);
+        : await moment(player.lastLogin).format('LL LTS');
 
       return new MessageEmbed()
         .setAuthor(
