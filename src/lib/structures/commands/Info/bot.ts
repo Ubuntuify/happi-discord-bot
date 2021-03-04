@@ -3,7 +3,7 @@ import { utc } from 'moment';
 import os from 'os';
 import ms from 'ms';
 import childProcess from 'child_process';
-import { version } from '../../../../../package.json';
+import { version, repository } from '../../../../../package.json';
 import BaseCommand from '../../Command';
 import * as Client from '../../../../Client';
 import Utility from '../../../Utility';
@@ -62,6 +62,7 @@ module.exports = class extends BaseCommand {
           .toString()
           .trim()
           .slice(0, 7)}`,
+        `**❯ Repository:** [Link to GitHub repository](${repository})`,
         `**❯ Branch:** ${childProcess
           .execSync('git rev-parse --abbrev-ref HEAD')
           .toString()}`,
