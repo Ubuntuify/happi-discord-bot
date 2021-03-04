@@ -420,17 +420,4 @@ export class HypixelAPI extends Client {
       return APIErrorMessage;
     }
   }
-
-  /**
-   * This function formats the date. It is used in embed creation functions.
-   * @param {Date} Date - The date to be formatted into a string.
-   */
-  // eslint-disable-next-line class-methods-use-this
-  private async formatDate(Date: Date): Promise<string> {
-    // eslint-disable-next-line
-    return [Date.getMonth() + 1, Date.getDate(), Date.getFullYear()].join('/') +
-      ' ' +
-      // eslint-disable-next-line prettier/prettier
-    [Date.getHours(), Date.getMinutes(), Date.getSeconds()].join(':');
-  }
 }
