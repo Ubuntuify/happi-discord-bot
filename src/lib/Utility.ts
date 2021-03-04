@@ -34,6 +34,17 @@ export default class Utility {
     return `${parseFloat((bytes / Math.pow(1024, i)).toFixed(2))} ${sizes[i]}`;
   }
 
+  /* eslint-disable-next-line */
+  trimArray(arr: string[], maxLen = 10) {
+    if (arr.length > maxLen) {
+      const len = arr.length - maxLen;
+      /* eslint-disable-next-line no-param-reassign */
+      arr = arr.slice(0, maxLen);
+      arr.push(`${len} more...`);
+    }
+    return arr;
+  }
+
   // eslint-disable-next-line class-methods-use-this
   get directory(): string {
     return `${dirname(require.main.filename)}${sep}`;
