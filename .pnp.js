@@ -42,6 +42,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/glob", "npm:7.1.3"],
             ["@types/ms", "npm:0.7.31"],
             ["@types/node", "npm:14.14.31"],
+            ["@types/node-fetch", "npm:2.5.8"],
             ["@typescript-eslint/eslint-plugin", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:4.15.2"],
             ["@typescript-eslint/parser", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:4.15.2"],
             ["babel-eslint", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:10.1.0"],
@@ -66,6 +67,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["listr", "npm:0.14.3"],
             ["moment", "npm:2.29.1"],
             ["ms", "npm:2.1.3"],
+            ["node-fetch", "npm:2.6.1"],
             ["nodemon", "npm:2.0.7"],
             ["ora", "npm:5.3.0"],
             ["path", "npm:0.12.7"],
@@ -478,6 +480,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-node-npm-14.14.31-4f1a9dff64-635dc8a089.zip/node_modules/@types/node/",
           "packageDependencies": [
             ["@types/node", "npm:14.14.31"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/node-fetch", [
+        ["npm:2.5.8", {
+          "packageLocation": "./.yarn/cache/@types-node-fetch-npm-2.5.8-d946aa06c6-608cdd6aed.zip/node_modules/@types/node-fetch/",
+          "packageDependencies": [
+            ["@types/node-fetch", "npm:2.5.8"],
+            ["@types/node", "npm:14.14.31"],
+            ["form-data", "npm:3.0.1"]
           ],
           "linkType": "HARD",
         }]
@@ -2774,6 +2787,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["mime-types", "npm:2.1.29"]
           ],
           "linkType": "HARD",
+        }],
+        ["npm:3.0.1", {
+          "packageLocation": "./.yarn/cache/form-data-npm-3.0.1-d080d436e0-6574ff4d2d.zip/node_modules/form-data/",
+          "packageDependencies": [
+            ["form-data", "npm:3.0.1"],
+            ["asynckit", "npm:0.4.0"],
+            ["combined-stream", "npm:1.0.8"],
+            ["mime-types", "npm:2.1.29"]
+          ],
+          "linkType": "HARD",
         }]
       ]],
       ["fs-minipass", [
@@ -2997,6 +3020,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/glob", "npm:7.1.3"],
             ["@types/ms", "npm:0.7.31"],
             ["@types/node", "npm:14.14.31"],
+            ["@types/node-fetch", "npm:2.5.8"],
             ["@typescript-eslint/eslint-plugin", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:4.15.2"],
             ["@typescript-eslint/parser", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:4.15.2"],
             ["babel-eslint", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:10.1.0"],
@@ -3021,6 +3045,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["listr", "npm:0.14.3"],
             ["moment", "npm:2.29.1"],
             ["ms", "npm:2.1.3"],
+            ["node-fetch", "npm:2.6.1"],
             ["nodemon", "npm:2.0.7"],
             ["ora", "npm:5.3.0"],
             ["path", "npm:0.12.7"],
