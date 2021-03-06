@@ -10,7 +10,7 @@ module.exports = class extends BaseCommand {
     super(client, name, {
       category: 'Fun',
       cooldown: 5,
-      aliases: ['dice', 'randomnumbergenerator', 'rollthedice'],
+      aliases: ['dice', 'randomnumbergenerator', 'rollthedice', 'rng'],
       args: false,
     });
   }
