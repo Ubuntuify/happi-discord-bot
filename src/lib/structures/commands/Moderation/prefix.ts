@@ -4,10 +4,10 @@ import { Message } from 'discord.js';
 import { readFileSync, writeFileSync } from 'fs';
 import Utility from '../../../Utility';
 import BaseCommand from '../../Command';
-import * as Client from '../../../../Client';
+import Client from '../../../../Client';
 
 module.exports = class extends BaseCommand {
-  constructor(client: Client.Interface, name: string) {
+  constructor(client: Client, name: string) {
     super(client, name, {
       cooldown: 10,
       category: 'Moderation',
