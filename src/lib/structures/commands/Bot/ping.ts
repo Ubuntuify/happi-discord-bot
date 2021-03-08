@@ -2,11 +2,11 @@
 
 import { Message, MessageEmbed } from 'discord.js';
 import BaseCommand from '../../Command';
-import * as Client from '../../../../Client';
+import Client from '../../../../Client';
 
 module.exports = class extends BaseCommand {
   /* 💔 Passes options to main class. */
-  constructor(client: Client.Interface, name: string) {
+  constructor(client: Client, name: string) {
     super(client, name, {
       category: 'Bot',
       cooldown: 15,
