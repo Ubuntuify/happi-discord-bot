@@ -1,5 +1,5 @@
 import Discord from 'discord.js';
-import * as Client from '../../Client';
+import Client from '../../Client';
 
 /**
  * The options that defines what the commands are about.
@@ -17,7 +17,7 @@ export interface CommandOptions {
 
 export default abstract class BaseCommand {
   /* 📚 The properties of this class */
-  public client: Client.Interface;
+  public client: Client;
   public name: string;
   public aliases: string[];
   public category: string;
@@ -28,7 +28,7 @@ export default abstract class BaseCommand {
   public ownerOnly: boolean;
 
   /* 🔨 The constructor for this class. */
-  constructor(client: Client.Interface, name: string, options: CommandOptions) {
+  constructor(client: Client, name: string, options: CommandOptions) {
     /* ✨ Important parts of the command class. */
     this.client = client;
     this.name = options.name || name;

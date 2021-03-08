@@ -1,4 +1,4 @@
-import * as Client from '../../Client';
+import Client from '../../Client';
 
 /**
  * A simple implementation object the defines the Event Options.
@@ -11,16 +11,12 @@ interface EventOptions {
 export default abstract class BaseEvent {
   /* 📚 The properties of this class. */
   public name: string;
-  public client: Client.Interface;
+  public client: Client;
   public type: string;
   public emitter: any;
 
   /* 🔨 The constructor for this class. */
-  constructor(
-    client: Client.Interface,
-    name: string,
-    options: EventOptions = {}
-  ) {
+  constructor(client: Client, name: string, options: EventOptions = {}) {
     this.client = client;
     this.name = name;
     this.type = options.once ? 'once' : 'on';
