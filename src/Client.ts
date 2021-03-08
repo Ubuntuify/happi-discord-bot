@@ -1,97 +1,87 @@
-/* 🤖📚 Libraries */
-/* eslint-disable no-use-before-define */
 import { Client, Collection } from 'discord.js';
-import colors from 'chalk';
 
 import { HypixelAPI } from './bin/helpers/Hypixel';
-import config from './app/config/main_config.json';
-import api from './app/config/api.json';
+import Utility from './lib/Utility';
 
-export class Interface extends Client {
-  public events: Collection<any, any>;
-  public commands: CommandCollections;
-  public wrappers: WrapperObject;
+interface CommandStructure {
+  /** ⏳ cooldowns */
+  Cooldowns: Collection<string, Collection<string, number>>;
 
-  /**
-   * 📌 The primary class to be used for all the features of the bot.
-   * @param options - Options to be passed to the constructor (and discord.js).
-   */
-  constructor(options: ClientOptions) {
-    super({
-      disableMentions: 'everyone',
-    });
+  /** 💫 commands */
+  Commands: Collection<string, any>;
 
-    // These load the 📡 events and 💻 commands collections.
-    this.events = new Collection();
-    this.commands = {
-      Cooldowns: new Collection(),
-      Commands: new Collection(),
-      Aliases: new Collection(),
-      prefix: config.prefix,
-    };
-    this.wrappers = {
-      Hypixel: new HypixelAPI(api.hypixel),
-    };
+  /** 💤 aliases */
+  Aliases: Collection<string, string>;
 
-    // This starts the client itself.
-    this.init(options);
-  }
-
-  public init(options: ClientOptions): void {
-    /* ✨ The start up for the discord wrapper. */
-    this.validate(options);
-
-    super.login((options.token = this.token));
-    console.log('📡 Inserted token into discord wrapper.\n');
-
-    /* 👓 Start of starting other functions. */
-
-    const Utility = require('./lib/Utility').default;
-    const utility = new Utility(this);
-
-    utility.loadEvents();
-    utility.loadCommands();
-  }
-
-  private validate(options: any): void {
-    if (typeof options !== 'object')
-      throw new TypeError(`${colors.red('✖ ')} Options must be an object.`);
-
-    if (!options.token)
-      throw new Error(`${colors.red('✖ ')} You did not provide a token.`);
-    this.token = options.token;
-
-    console.log('🏁 Completed verification of provided options.');
-  }
-
-  /* eslint-disable-next-line class-methods-use-this */
-  public exit(): void {
-    // ✨ This method will exit the process.
-    console.log(`\n✨ Exiting client.. Goodbye!`);
-    process.exit(0);
-  }
+  /** ✨ prefix */
+  prefix: string;
 }
 
-/**
- * Options to be passed on to the Client instance.
- */
+export interface TokenStructure {
+  /** 💫 discord api token. */
+  DISCORD: string;
+
+  /** 🍔 google programmable api key */
+  GOOGLE_API?: {
+    CSX: string;
+    KEY: string;
+  };
+
+  /** 📌 hypixel api key. */
+  HYPIXEL_API?: string;
+}
+
 interface ClientOptions {
-  token: string;
+  token: TokenStructure;
 }
 
-/**
- * The object that represents the wrappers inside the client.
- */
-interface WrapperObject {
+interface WrapperStructure {
+  /** 📌 hypixel api wrapper. */
   Hypixel: HypixelAPI;
 }
 
-/**
- * The collections required for the command handler.
- */
-interface CommandCollections {
-  Cooldowns: Collection<any, any>;
-  Commands: Collection<any, any>;
-  Aliases: Collection<any, any>;
-  prefix: string;
+export default class Interface extends Client {
+  public events: Collection<string, any>;
+  public commands: CommandStructure;
+  public utils: Utility;
+  public readonly wrappers: WrapperStructure;
+
+  private validate(options: ClientOptions): void {
+    if (typeof options !== 'object')
+      throw new Error(`Options passed were of INVALID TYPE!`);
+    if (!options.token.DISCORD)
+      throw new Error(`Token was not specified inside options.`);
+    this.token = options.token.DISCORD;
+  }
+
+  constructor(options: ClientOptions) {
+    super({ disableMentions: 'everyone' });
+    this.events = new Collection();
+    this.commands = {
+      /** ⏳ cooldowns */
+      Cooldowns: new Collection(),
+
+      /** 💫 commands */
+      Commands: new Collection(),
+
+      /** 💤 aliases */
+      Aliases: new Collection(),
+
+      /** ✨ prefix */
+      prefix: 'string',
+    };
+    this.wrappers = {
+      Hypixel: new HypixelAPI(options.token.HYPIXEL_API),
+    };
+  }
+
+  public init(options: ClientOptions): void {
+    this.validate(options);
+    super.login(options.token.DISCORD);
+    this.utils = new Utility(this);
+
+    /** 🔨 loading events, commands. */
+    this.utils.loadEvents();
+    this.utils.loadCommands();
+  }
 }
