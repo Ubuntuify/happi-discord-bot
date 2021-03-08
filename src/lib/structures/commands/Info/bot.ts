@@ -5,13 +5,13 @@ import ms from 'ms';
 import childProcess from 'child_process';
 import { version, repository } from '../../../../../package.json';
 import BaseCommand from '../../Command';
-import * as Client from '../../../../Client';
+import Client from '../../../../Client';
 import Utility from '../../../Utility';
 
 const djsversion = Discord.version;
 
 module.exports = class extends BaseCommand {
-  constructor(client: Client.Interface, name: string) {
+  constructor(client: Client, name: string) {
     super(client, name, {
       cooldown: 10,
       aliases: ['botinfo'],

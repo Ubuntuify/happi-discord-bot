@@ -2,7 +2,7 @@
 import { Message, MessageEmbed } from 'discord.js';
 import moment from 'moment';
 import BaseCommand from '../../Command';
-import * as Client from '../../../../Client';
+import Client from '../../../../Client';
 
 import Utility from '../../../Utility';
 
@@ -37,7 +37,7 @@ const regions = {
 };
 
 module.exports = class extends BaseCommand {
-  constructor(client: Client.Interface, name: string) {
+  constructor(client: Client, name: string) {
     super(client, name, {
       cooldown: 10,
       aliases: ['server', 'serverinfo', 'guildinfo'],
