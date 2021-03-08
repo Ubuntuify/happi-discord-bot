@@ -5,7 +5,7 @@ import ora from 'ora';
 
 import Event from './structures/Event';
 import Command from './structures/Command';
-import { Interface } from '../Client';
+import Interface from '../Client';
 
 const glob = promisify(require('glob'));
 
