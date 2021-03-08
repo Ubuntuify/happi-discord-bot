@@ -68,6 +68,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["moment", "npm:2.29.1"],
             ["ms", "npm:2.1.3"],
             ["node-fetch", "npm:2.6.1"],
+            ["node-superfetch", "npm:0.1.11"],
             ["nodemon", "npm:2.0.7"],
             ["ora", "npm:5.3.0"],
             ["path", "npm:0.12.7"],
@@ -3046,6 +3047,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["moment", "npm:2.29.1"],
             ["ms", "npm:2.1.3"],
             ["node-fetch", "npm:2.6.1"],
+            ["node-superfetch", "npm:0.1.11"],
             ["nodemon", "npm:2.0.7"],
             ["ora", "npm:5.3.0"],
             ["path", "npm:0.12.7"],
@@ -4319,6 +4321,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/node-gyp-build-npm-4.2.3-051c80c95f-8512c25498.zip/node_modules/node-gyp-build/",
           "packageDependencies": [
             ["node-gyp-build", "npm:4.2.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["node-superfetch", [
+        ["npm:0.1.11", {
+          "packageLocation": "./.yarn/cache/node-superfetch-npm-0.1.11-cc5a25f40e-ac2e2af254.zip/node_modules/node-superfetch/",
+          "packageDependencies": [
+            ["node-superfetch", "npm:0.1.11"],
+            ["form-data", "npm:3.0.1"],
+            ["node-fetch", "npm:2.6.1"]
           ],
           "linkType": "HARD",
         }]

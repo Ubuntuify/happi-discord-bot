@@ -2415,6 +2415,7 @@ fsevents@~2.3.1:
     moment: ^2.29.1
     ms: ^2.1.3
     node-fetch: ^2.6.1
+    node-superfetch: ^0.1.11
     nodemon: ^2.0.7
     ora: ^5.3.0
     path: ^0.12.7
@@ -3498,7 +3499,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"node-fetch@npm:^2.6.1":
+"node-fetch@npm:^2.6.0, node-fetch@npm:^2.6.1":
   version: 2.6.1
   resolution: "node-fetch@npm:2.6.1"
   checksum: cbb171635e538162b977eac5dfe7a1e07a9a02e991924377a6435502291e2f823d306b95aabc455caebf4a118ccf836868462bc70ccc3095af02bb9da61fda37
@@ -3533,6 +3534,16 @@ fsevents@~2.3.1:
   bin:
     node-gyp: bin/node-gyp.js
   checksum: fca9ecb1be01f707b76c2aec01f0f2ef4ff45c4e24df378c01a4a2c93b4a8172b47ad59f07af91c54a797a8a77fc72e087e29a97a52c892df507245530c46bfa
+  languageName: node
+  linkType: hard
+
+"node-superfetch@npm:^0.1.11":
+  version: 0.1.11
+  resolution: "node-superfetch@npm:0.1.11"
+  dependencies:
+    form-data: ^3.0.0
+    node-fetch: ^2.6.0
+  checksum: ac2e2af254ba5217fa82c4a124cf9c8cfc9b40003d992546dd2b32ec2c8359734ede98227e67294cc714bd3cd27f04f9126a7e9b862f53cacda736001dbd7e41
   languageName: node
   linkType: hard
 
