@@ -3,10 +3,10 @@
 import { exec } from 'child_process';
 import { Message } from 'discord.js';
 import BaseCommand from '../../Command';
-import * as Client from '../../../../Client';
+import Client from '../../../../Client';
 
 module.exports = class extends BaseCommand {
-  constructor(client: Client.Interface, name: string) {
+  constructor(client: Client, name: string) {
     super(client, name, {
       cooldown: 10,
       category: 'Developer',

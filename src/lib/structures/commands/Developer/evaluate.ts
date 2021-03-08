@@ -3,10 +3,10 @@
 import { Message, MessageEmbed } from 'discord.js';
 import beautify from 'beautify';
 import BaseCommand from '../../Command';
-import * as Client from '../../../../Client';
+import Client from '../../../../Client';
 
 module.exports = class extends BaseCommand {
-  constructor(client: Client.Interface, name: string) {
+  constructor(client: Client, name: string) {
     super(client, name, {
       category: 'Developer',
       cooldown: 10,
