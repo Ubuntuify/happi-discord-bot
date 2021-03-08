@@ -2,10 +2,10 @@
 import colors from 'chalk';
 
 import Event from '../Event';
-import * as Client from '../../../Client';
+import Client from '../../../Client';
 
 module.exports = class extends Event {
-  constructor(client: Client.Interface, name: string) {
+  constructor(client: Client, name: string) {
     super(client, name, {
       once: true,
     });
