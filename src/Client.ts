@@ -45,7 +45,7 @@ export default class Interface extends Client {
   public commands: CommandStructure;
   public utils: Utility;
   public readonly wrappers: WrapperStructure;
-  private clientOptions: ClientOptions;
+  public readonly clientOptions: ClientOptions;
 
   private validate(options: ClientOptions): void {
     if (typeof options !== 'object')
