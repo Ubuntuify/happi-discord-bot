@@ -7,4 +7,6 @@ const APIKeys: TokenStructure = JSON.parse(
 );
 
 /* ✨ Initializes discord and other api wrappers. */
-const interactor = new Interface({ token: APIKeys });
+const Client = new Interface({ token: APIKeys });
+
+Client.init();

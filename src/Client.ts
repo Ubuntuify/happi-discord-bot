@@ -45,6 +45,7 @@ export default class Interface extends Client {
   public commands: CommandStructure;
   public utils: Utility;
   public readonly wrappers: WrapperStructure;
+  private clientOptions: ClientOptions;
 
   private validate(options: ClientOptions): void {
     if (typeof options !== 'object')
@@ -73,11 +74,12 @@ export default class Interface extends Client {
     this.wrappers = {
       Hypixel: new HypixelAPI(options.token.HYPIXEL_API),
     };
+    this.clientOptions = options;
   }
 
-  public init(options: ClientOptions): void {
-    this.validate(options);
-    super.login(options.token.DISCORD);
+  public init(): void {
+    this.validate(this.clientOptions);
+    super.login(this.clientOptions.token.DISCORD);
     this.utils = new Utility(this);
 
     /** 🔨 loading events, commands. */
