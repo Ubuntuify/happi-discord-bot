@@ -12,7 +12,8 @@
         "prettier/prettier": "warn",
         "global-require": "off",
         "lines-between-class-members": "off",
-        "no-eval": "warn"
+        "no-eval": "warn",
+        "no-use-before-define": "off"
     },
     "settings": {
         "import/resolver": {
