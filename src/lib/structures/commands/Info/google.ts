@@ -6,7 +6,7 @@ import Client from '../../../../Client';
 module.exports = class extends BaseCommand {
   constructor(client: Client, name: string) {
     super(client, name, {
-      cooldown: 10,
+      cooldown: 15,
       aliases: [],
       args: true,
     });
