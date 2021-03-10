@@ -1,6 +1,7 @@
 /* eslint-disable global-require */
 import colors from 'chalk';
 
+import config from '../../../app/config/main_config.json';
 import Event from '../Event';
 import Client from '../../../Client';
 
@@ -36,5 +37,15 @@ module.exports = class extends Event {
         ``,
       ].join(`\n`)
     );
+
+    await this.client.db.then((mongoose) => {
+      try {
+        console.log(
+          `💥 Connected to mongo at ${colors.gray.underline(config.mongoPath)}`
+        );
+      } finally {
+        mongoose.connection.close();
+      }
+    });
   }
 };

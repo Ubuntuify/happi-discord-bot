@@ -1,5 +1,7 @@
 import { Client, Collection } from 'discord.js';
+import { Mongoose } from 'mongoose';
 
+import Mongo from './lib/helpers/mongo';
 import { HypixelAPI } from './bin/helpers/Hypixel';
 import Utility from './lib/Utility';
 
@@ -44,6 +46,7 @@ export default class Interface extends Client {
   public events: Collection<string, any>;
   public commands: CommandStructure;
   public utils: Utility;
+  public db: any;
   public readonly wrappers: WrapperStructure;
   public readonly clientOptions: ClientOptions;
 
@@ -77,6 +80,7 @@ export default class Interface extends Client {
       Hypixel: new HypixelAPI(options.token.HYPIXEL_API),
     };
     this.clientOptions = options;
+    this.db = Mongo();
   }
 
   public init(): void {
