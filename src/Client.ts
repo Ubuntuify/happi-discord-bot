@@ -47,6 +47,7 @@ export default class Interface extends Client {
   public commands: CommandStructure;
   public utils: Utility;
   public db: any;
+
   public readonly wrappers: WrapperStructure;
   public readonly clientOptions: ClientOptions;
 
