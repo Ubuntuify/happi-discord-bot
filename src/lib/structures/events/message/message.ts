@@ -25,9 +25,7 @@ module.exports = class extends Event {
       : guildSettings[message.guild.id].prefix || this.client.commands.prefix;
 
     if (message.content.match(mentionRegex)) {
-      message.reply(
-        `My prefix for ${message.guild.name} is \`${prefix}\`.`
-      );
+      message.reply(`My prefix for ${message.guild.name} is \`${prefix}\`.`);
     }
 
     /* eslint-disable-next-line prettier/prettier */
@@ -87,7 +85,9 @@ module.exports = class extends Event {
 
     /* 🎉 Starts to run the command. */
     try {
+      message.channel.startTyping();
       await command.run(message, args);
+      message.channel.stopTyping(false);
 
       /* 💫 Informs the console that the command suceeded. */
       loadingSpinner.succeed(
@@ -96,9 +96,7 @@ module.exports = class extends Event {
         )} (${ms(Date.now() - message.createdTimestamp, { long: true })})`
       );
     } catch (error) {
-      message.reply(
-        '\\❌ Wow! An error occured. Please notify the owner.'
-      );
+      message.reply('\\❌ Wow! An error occured. Please notify the owner.');
 
       /* ❌ Informs the console that the command failed. */
       loadingSpinner.fail(
