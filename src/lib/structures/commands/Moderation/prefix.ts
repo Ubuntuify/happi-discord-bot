@@ -20,7 +20,7 @@ module.exports = class extends BaseCommand {
   public async run(message: Message, args: string[]): Promise<void> {
     const { directory } = Utility.prototype;
 
-    if (!message.member.hasPermission('MANAGE_GUILD')) {
+    if (!message.member.permissions.has('MANAGE_GUILD')) {
       super.returnError(message, 'NO_PERMISSION');
       return;
     }
@@ -37,6 +37,6 @@ module.exports = class extends BaseCommand {
 
     writeFileSync(`${directory}/src/srv/guild.json`, JSON.stringify(prefixes));
 
-    message.channel.send(`Setting \`prefix\` has been set to \`${args[0]}\`.`);
+    message.reply(`Setting \`prefix\` has been set to \`${args[0]}\`.`);
   }
 };

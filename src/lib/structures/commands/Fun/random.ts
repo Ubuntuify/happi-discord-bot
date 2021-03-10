@@ -22,7 +22,7 @@ module.exports = class extends BaseCommand {
 
     /* ✨ tests for non-number arguments. */
     if (!regExp.test(args[0]) || !regExp.test(args[1])) {
-      message.channel.send(
+      message.reply(
         'This request contains illegal characters. Please request with proper characters.'
       );
       return;
@@ -34,7 +34,7 @@ module.exports = class extends BaseCommand {
     const actualRange = endRange - startRange;
 
     if (startRange > endRange) {
-      message.channel.send('This request contains an illegal range.');
+      message.reply('This request contains an illegal range.');
       return;
     }
 
@@ -44,7 +44,7 @@ module.exports = class extends BaseCommand {
       actualRange,
     ]);
 
-    message.channel.send(
+    message.reply(
       `Randomly generated number was \`${await randomResult}\`. Range was \`${startRange}-${endRange}\`.`
     );
   }

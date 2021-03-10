@@ -18,7 +18,7 @@ module.exports = class extends BaseCommand {
   /* 📡 This runs when the command is run. */
   public async run(message: Message, args: string[]): Promise<void> {
     /* 💫 sample code here. */
-    message.channel.send(
+    message.reply(
       await this.client.wrappers.Hypixel.createEmbedPlayerUHC(args.join(' '))
     );
   }

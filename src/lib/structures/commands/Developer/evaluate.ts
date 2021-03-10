@@ -45,7 +45,7 @@ module.exports = class extends BaseCommand {
         '```',
       ].join('\n');
 
-      message.channel.send(
+      message.reply(
         new MessageEmbed()
           .setTitle('\\💫 Evaluation Report')
           .addFields(
@@ -57,7 +57,7 @@ module.exports = class extends BaseCommand {
     } catch (stacktrace) {
       const ErrorMessageEmbed = `\`\`\`javascript\n${stacktrace}\n\`\`\``;
 
-      message.channel.send(
+      message.reply(
         new MessageEmbed()
           .setTitle('\\💫 Stacktrace Report')
           .setDescription(

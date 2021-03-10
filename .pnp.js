@@ -49,7 +49,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["beautify", "npm:0.0.8"],
             ["bufferutil", "npm:4.0.3"],
             ["chalk", "npm:4.1.0"],
-            ["discord.js", "npm:12.5.1"],
+            ["discord.js", "https://github.com/discordjs/discord.js.git#commit=d744e51c1bdb4c7a26c0faeea1f2f45baaf5fd3c"],
             ["eslint", "npm:7.20.0"],
             ["eslint-config-airbnb", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:18.2.1"],
             ["eslint-config-prettier", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:6.11.0"],
@@ -1825,18 +1825,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["discord.js", [
-        ["npm:12.5.1", {
-          "packageLocation": "./.yarn/cache/discord.js-npm-12.5.1-e8b380c863-18850040f3.zip/node_modules/discord.js/",
+        ["https://github.com/discordjs/discord.js.git#commit=d744e51c1bdb4c7a26c0faeea1f2f45baaf5fd3c", {
+          "packageLocation": "./.yarn/cache/discord.js-https-7ae926d374-fc3c6210f8.zip/node_modules/discord.js/",
           "packageDependencies": [
-            ["discord.js", "npm:12.5.1"],
+            ["discord.js", "https://github.com/discordjs/discord.js.git#commit=d744e51c1bdb4c7a26c0faeea1f2f45baaf5fd3c"],
             ["@discordjs/collection", "npm:0.1.6"],
             ["@discordjs/form-data", "npm:3.0.1"],
             ["abort-controller", "npm:3.0.0"],
             ["node-fetch", "npm:2.6.1"],
-            ["prism-media", "virtual:e8b380c863850045a09fce6a1a72065e59ee06032967e3a05d31d31a6b12f36728a27d7aa0dd96dbe022359b27ded736a360a4131e9d020175782aee48634e4d#npm:1.2.7"],
-            ["setimmediate", "npm:1.0.5"],
+            ["prism-media", "virtual:7ae926d374d0a764617a808d68ce95b5689d2f4a329f618e498f8f75169a08eafa20cf4ba94a9a89198b92afbe8503c3c488daaa7875407476064925a96095ed#npm:1.2.7"],
             ["tweetnacl", "npm:1.0.3"],
-            ["ws", "virtual:e8b380c863850045a09fce6a1a72065e59ee06032967e3a05d31d31a6b12f36728a27d7aa0dd96dbe022359b27ded736a360a4131e9d020175782aee48634e4d#npm:7.4.3"]
+            ["ws", "virtual:7ae926d374d0a764617a808d68ce95b5689d2f4a329f618e498f8f75169a08eafa20cf4ba94a9a89198b92afbe8503c3c488daaa7875407476064925a96095ed#npm:7.4.3"]
           ],
           "linkType": "HARD",
         }]
@@ -3028,7 +3027,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["beautify", "npm:0.0.8"],
             ["bufferutil", "npm:4.0.3"],
             ["chalk", "npm:4.1.0"],
-            ["discord.js", "npm:12.5.1"],
+            ["discord.js", "https://github.com/discordjs/discord.js.git#commit=d744e51c1bdb4c7a26c0faeea1f2f45baaf5fd3c"],
             ["eslint", "npm:7.20.0"],
             ["eslint-config-airbnb", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:18.2.1"],
             ["eslint-config-prettier", "virtual:5deb97fcb640afc627fda8486d10620cb645e000c63325d4ed3cbc8d4a257c8029eab61e736f6e687f61f504ee7187e4106b7e6b6fe779ca9b847beef95dc214#npm:6.11.0"],
@@ -4818,10 +4817,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:e8b380c863850045a09fce6a1a72065e59ee06032967e3a05d31d31a6b12f36728a27d7aa0dd96dbe022359b27ded736a360a4131e9d020175782aee48634e4d#npm:1.2.7", {
-          "packageLocation": "./.yarn/$$virtual/prism-media-virtual-7b492135c9/0/cache/prism-media-npm-1.2.7-70e8939209-19252732bb.zip/node_modules/prism-media/",
+        ["virtual:7ae926d374d0a764617a808d68ce95b5689d2f4a329f618e498f8f75169a08eafa20cf4ba94a9a89198b92afbe8503c3c488daaa7875407476064925a96095ed#npm:1.2.7", {
+          "packageLocation": "./.yarn/$$virtual/prism-media-virtual-5f6c67bad8/0/cache/prism-media-npm-1.2.7-70e8939209-19252732bb.zip/node_modules/prism-media/",
           "packageDependencies": [
-            ["prism-media", "virtual:e8b380c863850045a09fce6a1a72065e59ee06032967e3a05d31d31a6b12f36728a27d7aa0dd96dbe022359b27ded736a360a4131e9d020175782aee48634e4d#npm:1.2.7"],
+            ["prism-media", "virtual:7ae926d374d0a764617a808d68ce95b5689d2f4a329f618e498f8f75169a08eafa20cf4ba94a9a89198b92afbe8503c3c488daaa7875407476064925a96095ed#npm:1.2.7"],
             ["@discordjs/opus", null],
             ["@types/discordjs__opus", null],
             ["@types/ffmpeg-static", null],
@@ -5352,15 +5351,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/set-blocking-npm-2.0.0-49e2cffa24-0ac2403b0c.zip/node_modules/set-blocking/",
           "packageDependencies": [
             ["set-blocking", "npm:2.0.0"]
-          ],
-          "linkType": "HARD",
-        }]
-      ]],
-      ["setimmediate", [
-        ["npm:1.0.5", {
-          "packageLocation": "./.yarn/cache/setimmediate-npm-1.0.5-54587459b6-87884d8add.zip/node_modules/setimmediate/",
-          "packageDependencies": [
-            ["setimmediate", "npm:1.0.5"]
           ],
           "linkType": "HARD",
         }]
@@ -6233,10 +6223,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           ],
           "linkType": "SOFT",
         }],
-        ["virtual:e8b380c863850045a09fce6a1a72065e59ee06032967e3a05d31d31a6b12f36728a27d7aa0dd96dbe022359b27ded736a360a4131e9d020175782aee48634e4d#npm:7.4.3", {
-          "packageLocation": "./.yarn/$$virtual/ws-virtual-e6a6585372/0/cache/ws-npm-7.4.3-0b722707c3-493655b7c4.zip/node_modules/ws/",
+        ["virtual:7ae926d374d0a764617a808d68ce95b5689d2f4a329f618e498f8f75169a08eafa20cf4ba94a9a89198b92afbe8503c3c488daaa7875407476064925a96095ed#npm:7.4.3", {
+          "packageLocation": "./.yarn/$$virtual/ws-virtual-5dafa978d1/0/cache/ws-npm-7.4.3-0b722707c3-493655b7c4.zip/node_modules/ws/",
           "packageDependencies": [
-            ["ws", "virtual:e8b380c863850045a09fce6a1a72065e59ee06032967e3a05d31d31a6b12f36728a27d7aa0dd96dbe022359b27ded736a360a4131e9d020175782aee48634e4d#npm:7.4.3"],
+            ["ws", "virtual:7ae926d374d0a764617a808d68ce95b5689d2f4a329f618e498f8f75169a08eafa20cf4ba94a9a89198b92afbe8503c3c488daaa7875407476064925a96095ed#npm:7.4.3"],
             ["@types/bufferutil", null],
             ["@types/utf-8-validate", null],
             ["bufferutil", null],

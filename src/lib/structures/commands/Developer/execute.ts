@@ -22,7 +22,7 @@ module.exports = class extends BaseCommand {
     /* 💫 sample code here. */
     exec(args.join(' '), (error, stdout) => {
       const response = stdout || error;
-      message.channel.send(response, { split: true, code: true });
+      message.reply(response, { split: true, code: true });
     });
   }
 };

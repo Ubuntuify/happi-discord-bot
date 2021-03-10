@@ -126,6 +126,6 @@ module.exports = class extends BaseCommand {
           : 'None'
       )
       .setTimestamp();
-    message.channel.send(embed);
+    message.reply;
   }
 };

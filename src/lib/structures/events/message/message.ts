@@ -25,7 +25,7 @@ module.exports = class extends Event {
       : guildSettings[message.guild.id].prefix || this.client.commands.prefix;
 
     if (message.content.match(mentionRegex)) {
-      message.channel.send(
+      message.reply(
         `My prefix for ${message.guild.name} is \`${prefix}\`.`
       );
     }
@@ -53,7 +53,7 @@ module.exports = class extends Event {
     if (command.args && !args.length) {
       const MessageError =
         '\\💫 You did not specify arguments for a command that requires arguments.';
-      message.channel.send(MessageError);
+      message.reply(MessageError);
       return;
     }
 
@@ -96,7 +96,7 @@ module.exports = class extends Event {
         )} (${ms(Date.now() - message.createdTimestamp, { long: true })})`
       );
     } catch (error) {
-      message.channel.send(
+      message.reply(
         '\\❌ Wow! An error occured. Please notify the owner.'
       );
 
@@ -125,7 +125,7 @@ module.exports = class extends Event {
         (await time_stamps.get(message.author.id)) + cooldown_amount;
 
       if (current_time <= expiration_time) {
-        const messageSent = await message.channel.send(
+        const messageSent = await message.reply(
           '💫 Waiting for error response...'
         );
 

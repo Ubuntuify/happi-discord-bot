@@ -1425,19 +1425,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"discord.js@npm:^12.5.1":
-  version: 12.5.1
-  resolution: "discord.js@npm:12.5.1"
+"discord.js@discordjs/discord.js#master":
+  version: 12.5.0
+  resolution: "discord.js@https://github.com/discordjs/discord.js.git#commit=d744e51c1bdb4c7a26c0faeea1f2f45baaf5fd3c"
   dependencies:
     "@discordjs/collection": ^0.1.6
     "@discordjs/form-data": ^3.0.1
     abort-controller: ^3.0.0
     node-fetch: ^2.6.1
     prism-media: ^1.2.2
-    setimmediate: ^1.0.5
     tweetnacl: ^1.0.3
     ws: ^7.3.1
-  checksum: 18850040f3b945b0d60a89ea38df31d1abcca2879abc171b3a44d0b9ce163e0ad0a0119e0e417630cf56609483af6c4b5235f77cc84ae1bee0a2869aff25fae3
+  checksum: fc3c6210f897149a751c21ac740137cab2c99202478d8d1804c59632183d7ae1d3a21c80f989be63dca8ebad7ebdb3932e2e3810cbbe716cc4292b43ca283320
   languageName: node
   linkType: hard
 
@@ -2396,7 +2395,7 @@ fsevents@~2.3.1:
     beautify: ^0.0.8
     bufferutil: ^4.0.3
     chalk: ^4.1.0
-    discord.js: ^12.5.1
+    discord.js: "discordjs/discord.js#master"
     eslint: ^7.20.0
     eslint-config-airbnb: 18.2.1
     eslint-config-prettier: 6.11.0
@@ -4455,13 +4454,6 @@ fsevents@~2.3.1:
   version: 2.0.0
   resolution: "set-blocking@npm:2.0.0"
   checksum: 0ac2403b0c2d39bf452f6d5d17dfd3cb952b9113098e1231cc0614c436e2f465637e39d27cf3b93556f5c59795e9790fd7e98da784c5f9919edeba4295ffeb29
-  languageName: node
-  linkType: hard
-
-"setimmediate@npm:^1.0.5":
-  version: 1.0.5
-  resolution: "setimmediate@npm:1.0.5"
-  checksum: 87884d8add4779fe47ccf763396a5bf875640ae34d80a10802da4de5c25d87647c12f6e7748fd5b8c143b57201caf2a5a781631456c228825f166ca305c12f20
   languageName: node
   linkType: hard
 

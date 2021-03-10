@@ -29,7 +29,7 @@ module.exports = class extends BaseCommand {
       .setColor(0x7289da)
       .setFooter('Powered by Google');
 
-    message.channel.send(embed);
+    message.reply(embed);
 
     async function search(q: string) {
       const { body }: any = await server

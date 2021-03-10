@@ -57,7 +57,7 @@ export default abstract class BaseCommand {
 
   /* eslint-disable-next-line */
   async returnError(message: Discord.Message, errorCode: BitStringError): Promise<void> {
-    message.channel.send(
+    message.reply(
       `We had an error while processing your request. \`${errorCode}\``
     );
   }

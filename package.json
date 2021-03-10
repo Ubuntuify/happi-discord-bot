@@ -19,7 +19,7 @@
     "beautify": "^0.0.8",
     "bufferutil": "^4.0.3",
     "chalk": "^4.1.0",
-    "discord.js": "^12.5.1",
+    "discord.js": "discordjs/discord.js#master",
     "ffmpeg-static": "^4.2.7",
     "glob": "^7.1.6",
     "hypixel-api-reborn": "^6.1.1",

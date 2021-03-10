@@ -85,6 +85,6 @@ module.exports = class extends BaseCommand {
         }`,
         `\u200b`,
       ]);
-    message.channel.send(embed);
+    message.reply;
   }
 };

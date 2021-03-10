@@ -19,7 +19,7 @@ module.exports = class extends BaseCommand {
   /* 📡 This runs when the command is run. */
   public async run(message: Message): Promise<void> {
     /* 💫 gets all the ping. */
-    const msg = await message.channel.send('\\✨ Pinging...');
+    const msg = await message.reply('\\✨ Pinging...');
 
     const choices = [
       "I don't want to know my results!",

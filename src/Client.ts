@@ -56,7 +56,7 @@ export default class Interface extends Client {
   }
 
   constructor(options: ClientOptions) {
-    super({ disableMentions: 'everyone' });
+    super({ intents: ['GUILD_MESSAGES', 'GUILDS', 'GUILD_MESSAGE_TYPING'] });
     this.events = new Collection();
     this.commands = {
       /** ⏳ cooldowns */
