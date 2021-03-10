@@ -5,7 +5,10 @@ const prefixSchema = new Schema({
     type: String,
     required: true,
   },
-  prefix: String,
+  prefix: {
+    type: String,
+    required: true,
+  },
 });
 
-export default model('prefix', prefixSchema);
+export default model('guild.prefix', prefixSchema);
