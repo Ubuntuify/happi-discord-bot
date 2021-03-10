@@ -1,9 +1,6 @@
-import { bgRed, red, yellow } from 'chalk';
 import { Collection, Message, MessageEmbed } from 'discord.js';
-import ora from 'ora';
-import ms from 'ms';
-
 import { readFileSync } from 'fs';
+
 import Utility from '../../../Utility';
 import BaseCommand from '../../Command';
 import Event from '../../Event';
@@ -55,55 +52,23 @@ module.exports = class extends Event {
       return;
     }
 
-    /* 📚 Uses the ora library to make a loading screen. */
-    const loadingSpinner = ora().start(
-      `Request ${red(command.name)} from ${yellow(
-        message.author.username
-      )} is being accomplished`
-    );
-
     /* 💫 Checks for permissions from the main config. */
     const allpermissions = permissions.all.id;
-    if (allpermissions.indexOf(message.author.id) <= -1 && command.ownerOnly) {
-      loadingSpinner.fail(
-        `Attempted access into ${red(command.name)} by ${yellow(
-          message.author.username
-        )}`
-      );
+    if (allpermissions.indexOf(message.author.id) <= -1 && command.ownerOnly)
       return;
-    }
 
     /* 🎉 Handles cooldowns. */
-    if (!(await this.handleCooldowns(command, message))) {
-      loadingSpinner.warn(
-        `${yellow(
-          message.author.username
-        )} did not wait for his cooldown of ${red(command.name)}.`
-      );
-      return;
-    }
+    if (!(await this.handleCooldowns(command, message))) return;
 
     /* 🎉 Starts to run the command. */
     try {
-      message.channel.startTyping();
+      message.channel.startTyping(1);
       await command.run(message, args);
-      message.channel.stopTyping(false);
-
-      /* 💫 Informs the console that the command suceeded. */
-      loadingSpinner.succeed(
-        `Completed request ${red(command.name)} from ${yellow(
-          message.author.username
-        )} (${ms(Date.now() - message.createdTimestamp, { long: true })})`
-      );
-    } catch (error) {
-      message.reply('\\❌ Wow! An error occured. Please notify the owner.');
-
-      /* ❌ Informs the console that the command failed. */
-      loadingSpinner.fail(
-        `Failed request ${red(command.name)} from ${yellow(
-          message.author.username
-        )}. ${bgRed(error)}`
-      );
+    } catch (err) {
+      message.reply('Error occured at command runtime.');
+      console.error(err);
+    } finally {
+      message.channel.stopTyping();
     }
   } /* eslint-disable camelcase */
 
