@@ -1,11 +1,11 @@
 {
   "name": "happi-discord-bot",
   "version": "1.4.0",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon --config nodemon.json",
     "build": "tsc",
-    "start": "ts-node .",
+    "start": "ts-node ./index.ts",
     "archive": "yarn pack --out ./archives/%s-%v.tgz",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
