@@ -23,6 +23,14 @@ const flags = {
   VERIFIED_DEVELOPER: 'Verified Bot Developer',
 };
 
+const status = {
+  dnd: 'Do Not Disturb',
+  online: 'Online',
+  idle: 'Idle',
+  offline: 'Offline',
+  invisible: 'Invisible',
+};
+
 module.exports = class extends BaseCommand {
   constructor(client: Client, name: string) {
     super(client, name, {
@@ -62,20 +70,17 @@ module.exports = class extends BaseCommand {
         )} ${moment(member.user.createdTimestamp).format('LL')} ${moment(
           member.user.createdTimestamp
         ).fromNow()}`,
-        `**❯ Status:** ${member.user.presence.status}`,
-        `**❯ Game:** Could not get guild information.`,
+        `**❯ Status:** ${status[member.user.presence.status]}`,
         `\u200b`,
       ])
       .addField('Member', [
         `**❯ Highest Role:** ${
           member.roles.highest.id === message.guild.id
             ? 'None'
-            : member.roles.highest.name
+            : member.roles.highest
         }`,
         `**❯ Server Join Date:** ${moment(member.joinedAt).format('LL LTS')}`,
-        `**❯ Hoist Role:** ${
-          member.roles.hoist ? member.roles.hoist.name : 'None'
-        }`,
+        `**❯ Hoist Role:** ${member.roles.hoist ? member.roles.hoist : 'None'}`,
         `**❯ Roles [${roles.length}]:** ${
           roles.length < 10
             ? roles.join(', ')
@@ -85,6 +90,6 @@ module.exports = class extends BaseCommand {
         }`,
         `\u200b`,
       ]);
-    message.reply;
+    message.reply(embed);
   }
 };

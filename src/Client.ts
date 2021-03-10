@@ -56,7 +56,9 @@ export default class Interface extends Client {
   }
 
   constructor(options: ClientOptions) {
-    super({ intents: ['GUILD_MESSAGES', 'GUILDS', 'GUILD_MEMBERS'] });
+    super({
+      intents: ['GUILD_MESSAGES', 'GUILDS', 'GUILD_PRESENCES', 'GUILD_MEMBERS'],
+    });
     this.events = new Collection();
     this.commands = {
       /** ⏳ cooldowns */
