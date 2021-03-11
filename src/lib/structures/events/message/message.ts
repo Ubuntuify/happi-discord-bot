@@ -35,7 +35,7 @@ module.exports = class extends Event {
 
     if (message.content.match(mentionRegex))
       message.reply(
-        `My prefix for ${message.guild.name} is currently \`${Prefix}\``
+        `My prefix for \`${message.guild.name}\` is currently \`${Prefix}\``
       );
     const [cmd, ...args] = message.content
       .slice(Prefix.length)
@@ -83,7 +83,7 @@ module.exports = class extends Event {
         const timeLeft = (expirationTime - currentTime) / 1000;
         const embed = new MessageEmbed().setTitle('\\💫 Error').setDescription(
           /* eslint-disable-next-line prettier/prettier */
-              `Please wait for \`${timeLeft.toFixed(1)}\` more seconds before using ${name} again!`
+          `Please wait for \`${timeLeft.toFixed(1)}\` more seconds before using ${name} again!`
         );
         message.reply(embed);
         return;
