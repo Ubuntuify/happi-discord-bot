@@ -88,7 +88,9 @@ export default class Interface extends Client {
 
     this.utils = new Utility(this);
 
-    this.utils.loadEvents();
-    this.utils.loadCommands();
+    console.log('💦 Starting to load application.\n');
+    const util = this.utils;
+    util.loadEvents();
+    util.loadCommands();
   }
 }
