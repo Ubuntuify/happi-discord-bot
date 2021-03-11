@@ -1,10 +1,9 @@
-/* eslint-disable class-methods-use-this */
-
 import { Message } from 'discord.js';
-import { readFileSync, writeFileSync } from 'fs';
-import Utility from '../../../Utility';
+import { Mongoose } from 'mongoose';
+
 import BaseCommand from '../../Command';
 import Client from '../../../../Client';
+import PrefixSchema from '../../../../schema/command-prefix-schema';
 
 module.exports = class extends BaseCommand {
   constructor(client: Client, name: string) {
@@ -18,25 +17,30 @@ module.exports = class extends BaseCommand {
   }
 
   public async run(message: Message, args: string[]): Promise<void> {
-    const { directory } = Utility.prototype;
+    const { member, guild } = message;
+    const prefix = args.join(' ');
 
-    if (!message.member.permissions.has('MANAGE_GUILD')) {
+    if (!member.permissions.has('MANAGE_GUILD')) {
       super.returnError(message, 'NO_PERMISSION');
       return;
     }
 
-    const prefixes = JSON.parse(
-      readFileSync(`${directory}/src/srv/guild.json`, {
-        encoding: 'utf-8',
-      })
-    );
-
-    prefixes[message.guild.id] = {
-      prefix: args[0],
-    };
-
-    writeFileSync(`${directory}/src/srv/guild.json`, JSON.stringify(prefixes));
-
-    message.reply(`Setting \`prefix\` has been set to \`${args[0]}\`.`);
+    await this.client.db.then(async (mongoose: Mongoose) => {
+      await PrefixSchema.findOneAndUpdate(
+        {
+          _id: guild.id,
+        },
+        {
+          _id: guild.id,
+          prefix,
+        },
+        {
+          upsert: true,
+        }
+      );
+      message.reply(
+        `\\💥 The prefix has been updated to \`${prefix}\` successfully.`
+      );
+    });
   }
 };
