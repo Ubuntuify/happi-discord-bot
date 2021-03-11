@@ -11,4 +11,5 @@ const Schema = new Scheme({
   },
 });
 
+/** 💦 Command prefix scheme model. */
 export default model('guild-prefixes', Schema);
