@@ -32,6 +32,7 @@ export interface TokenStructure {
 
 interface ClientOptions {
   token: TokenStructure;
+  prefix: string;
   mongo: any;
 }
 
@@ -73,7 +74,7 @@ export default class Interface extends Client {
       Aliases: new Collection(),
 
       /** ✨ prefix */
-      prefix: 'string',
+      prefix: options.prefix,
     };
     this.wrappers = {
       Hypixel: new HypixelAPI(options.token.HYPIXEL_API),
