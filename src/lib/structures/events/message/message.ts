@@ -14,12 +14,10 @@ interface CommandStartup {
 }
 
 async function getPrefix(_id: string, client: Client): Promise<any> {
-  const PrefixMongoose = await PrefixSchema.findOne({ _id });
+  const PrefixMongoose: any = await PrefixSchema.findOne({ _id });
 
-  const prefix = PrefixMongoose
-    ? // @ts-ignore-next-line
-      PrefixMongoose.prefix
-    : client.commands.prefix;
+  const prefix =
+    PrefixMongoose == null ? client.commands.prefix : PrefixMongoose.prefix;
   return prefix;
 }
 
@@ -59,10 +57,7 @@ module.exports = class extends Event {
         message,
       });
     }
-
-    /* eslint-disable-next-line prettier/prettier */
-
-    }
+  }
 
   async executeCommand({ _command, message }: CommandStartup) {
     const { Cooldowns } = this.client.commands;
