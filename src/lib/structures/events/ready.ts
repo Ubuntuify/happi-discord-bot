@@ -1,7 +1,8 @@
 /* eslint-disable global-require */
 import colors from 'chalk';
-import { ReadyState as MongoReadyState } from '../../helpers/mongo';
+import { Mongoose } from 'mongoose';
 
+import { ReadyState as MongoReadyState } from '../../helpers/mongo';
 import config from '../../../app/config/main_config.json';
 import Event from '../Event';
 import Client from '../../../Client';
@@ -23,6 +24,7 @@ module.exports = class extends Event {
 
     console.log(
       [
+        /** Prints out git, discord, and API addon statuses. */
         ``,
         `💫 Git Repository Revision: ${colors.green(gitRevision)}`,
         ``,
@@ -39,16 +41,13 @@ module.exports = class extends Event {
       ].join(`\n`)
     );
 
-    await this.client.db.then((mongoose) => {
-      try {
-        console.log(
-          `💥 ${
-            MongoReadyState[mongoose.connection.readyState]
-          } to mongo at ${colors.gray.underline(config.mongoPath)}`
-        );
-      } finally {
-        mongoose.connection.close();
-      }
+    await this.client.db.then((mongoose: Mongoose) => {
+      console.log(
+        /** Prints out the status of the mongoose connection. */
+        `💥 ${
+          MongoReadyState[mongoose.connection.readyState]
+        } to mongo at ${colors.gray.underline(config.mongoPath)}`
+      );
     });
   }
 };
