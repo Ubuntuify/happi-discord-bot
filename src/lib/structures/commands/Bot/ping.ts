@@ -19,8 +19,6 @@ module.exports = class extends BaseCommand {
   /* 📡 This runs when the command is run. */
   public async run(message: Message): Promise<void> {
     /* 💫 gets all the ping. */
-    const msg = await message.reply('\\✨ Pinging...');
-
     const choices = [
       "I don't want to know my results!",
       'My ping better be good!',
@@ -30,6 +28,8 @@ module.exports = class extends BaseCommand {
     ];
     const pickedChoice = choices[Math.floor(Math.random() * choices.length)];
 
+    const msg = await message.reply('\\✨ Pinging...');
+
     const internalLatency = msg.createdTimestamp - message.createdTimestamp;
     const generatedEmbed = new MessageEmbed()
       .setTitle('\\💫 Ping')
@@ -38,11 +38,6 @@ module.exports = class extends BaseCommand {
         {
           name: 'Websocket Ping',
           value: this.client.ws.ping,
-          inline: true,
-        },
-        {
-          name: 'Calculated Ping',
-          value: message.createdTimestamp - Date.now(),
           inline: true,
         },
         {
