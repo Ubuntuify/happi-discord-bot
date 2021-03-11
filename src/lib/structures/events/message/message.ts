@@ -1,121 +1,112 @@
 import { Collection, Message, MessageEmbed } from 'discord.js';
-import { readFileSync } from 'fs';
-
-import Utility from '../../../Utility';
-import BaseCommand from '../../Command';
+import PrefixSchema from '../../../../schema/command-prefix-schema';
 import Event from '../../Event';
-import { permissions } from '../../../../app/config/main_config.json';
+import Command from '../../Command';
+import Client from '../../../../Client';
 
+interface CommandStartup {
+  _command: {
+    command: any;
+    cmd: string;
+    args: string[];
+  };
+  message: Message;
+}
+
+async function getPrefix(_id: string, client: Client): Promise<any> {
+  const PrefixMongoose = await PrefixSchema.findOne({ _id });
+
+  const prefix = PrefixMongoose
+    ? // @ts-ignore-next-line
+      PrefixMongoose.prefix
+    : client.commands.prefix;
+  return prefix;
+}
+
+/* eslint-disable no-shadow */
+/* eslint-disable camelcase */
 module.exports = class extends Event {
   public async run(message: Message): Promise<void> {
-    const mentionRegex: RegExp = RegExp(`^<@!${this.client.user.id}>$`);
-    const mentionRegexPrefix: RegExp = RegExp(`^<@!${this.client.user.id}> `);
+    const mentionRegex = RegExp(`^<@!${this.client.user.id}>$`);
+    const mentionRegexPrefix = RegExp(`^<@!${this.client.user.id}> `);
 
     if (!message.guild || message.author.bot) return;
-
-    const { directory } = Utility.prototype;
-    const guildSettings = JSON.parse(
-      readFileSync(`${directory}/src/srv/guild.json`, { encoding: 'utf-8' })
-    );
-    const prefix = message.content.match(mentionRegexPrefix)
+    const Prefix = message.content.match(mentionRegexPrefix)
       ? message.content.match(mentionRegexPrefix)[0]
-      : guildSettings[message.guild.id].prefix || this.client.commands.prefix;
+      : await getPrefix(message.guild.id, this.client);
 
-    if (message.content.match(mentionRegex)) {
-      message.reply(`My prefix for ${message.guild.name} is \`${prefix}\`.`);
+    if (message.content.match(mentionRegex))
+      message.reply(
+        `My prefix for ${message.guild.name} is currently \`${Prefix}\``
+      );
+    const [cmd, ...args] = message.content
+      .slice(Prefix.length)
+      .trim()
+      .split(/ +/g);
+
+    const { Commands, Aliases } = this.client.commands;
+    const commandName = Commands.has(cmd.toLowerCase())
+      ? cmd.toLowerCase()
+      : Aliases.get(cmd.toLowerCase());
+
+    if (Commands.has(commandName) && message.content.startsWith(Prefix)) {
+      this.executeCommand({
+        _command: {
+          command: Commands.get(commandName),
+          cmd,
+          args,
+        },
+        message,
+      });
     }
 
     /* eslint-disable-next-line prettier/prettier */
-    const [cmd, ...args] =
-      message.content.slice(prefix.length).trim().split(/ +/g);
 
-    const command =
-      this.client.commands.Commands.get(cmd.toLowerCase()) ||
-      this.client.commands.Commands.get(
-        this.client.commands.Aliases.get(cmd.toLowerCase())
-      );
-
-    if (command && message.content.startsWith(prefix)) {
-      this.runCommand(command, { message, args });
-    }
-  }
-
-  private async runCommand(
-    command: any,
-    { message, args }: { message: Message; args: string[] }
-  ): Promise<void> {
-    /* ✅ Executes whether args is required and args aren't provided. */
-    if (command.args && !args.length) {
-      const MessageError =
-        '\\💫 You did not specify arguments for a command that requires arguments.';
-      message.reply(MessageError);
-      return;
     }
 
-    /* 💫 Checks for permissions from the main config. */
-    const allpermissions = permissions.all.id;
-    if (allpermissions.indexOf(message.author.id) <= -1 && command.ownerOnly)
-      return;
+  async executeCommand({ _command, message }: CommandStartup) {
+    const { Cooldowns } = this.client.commands;
 
-    /* 🎉 Handles cooldowns. */
-    if (!(await this.handleCooldowns(command, message))) return;
+    const command = await _command.command;
+    const { args } = _command;
 
-    /* 🎉 Starts to run the command. */
-    try {
-      message.channel.startTyping(1);
-      await command.run(message, args);
-    } catch (err) {
-      message.reply('Error occured at command runtime.');
-      console.error(err);
-    } finally {
-      message.channel.stopTyping();
-    }
-  } /* eslint-disable camelcase */
+    if (command.args && !args.length)
+      return message.reply(`\\💫 Missing arguments.`);
 
-  /* eslint-disable-next-line prettier/prettier */
-  private async handleCooldowns({ name, cooldown }: BaseCommand, message: Message): Promise<boolean> {
-    const cooldowns = this.client.commands.Cooldowns;
-    if (!cooldowns.has(name)) {
-      cooldowns.set(name, new Collection());
-    }
+    const { name, cooldown, ownerOnly }: Command = await command;
 
-    const current_time = Date.now();
-    const time_stamps: Collection<any, any> = cooldowns.get(name);
-    const cooldown_amount: number = (await cooldown) * 1000;
+    if (ownerOnly && message.author.id !== '323047832317591552') return;
 
-    if (time_stamps.has(message.author.id)) {
-      const expiration_time: number =
-        (await time_stamps.get(message.author.id)) + cooldown_amount;
+    if (!Cooldowns.has(name)) Cooldowns.set(name, new Collection());
+    const currentTime = Date.now();
+    const timeStamps = Cooldowns.get(name);
+    const cooldownAmount = cooldown * 1000;
 
-      if (current_time <= expiration_time) {
-        const messageSent = await message.reply(
-          '💫 Waiting for error response...'
+    if (timeStamps.has(message.author.id)) {
+      const expirationTime = timeStamps.get(message.author.id) + cooldownAmount;
+      if (currentTime >= expirationTime) {
+        const timeLeft = (expirationTime - currentTime) / 1000;
+        const embed = new MessageEmbed().setTitle('\\💫 Error').setDescription(
+          /* eslint-disable-next-line prettier/prettier */
+              `Please wait for \`${timeLeft.toFixed(1)}\` more seconds before using ${name} again!`
         );
-
-        const {
-          choices,
-        } = require('../../../../app/config/message.json').error.cooldown;
-        const chosen = choices[Math.floor(Math.random() * choices.length)];
-
-        const time_left = (expiration_time - current_time) / 1000;
-        const embed = new MessageEmbed()
-          .setTitle('\\💫 Error')
-          .setDescription(
-            `${chosen} Please wait for \`${time_left.toFixed(
-              1
-            )}\` more seconds before using ${name} again!`
-          );
-
-        messageSent.edit('** **', embed);
-        return false;
+        message.reply(embed);
+        return;
       }
     }
 
-    time_stamps.set(message.author.id, current_time);
-    setTimeout(async () => {
-      time_stamps.delete(message.author.id);
-    }, cooldown_amount);
-
-    return true;
+    try {
+      timeStamps.set(message.author.id, currentTime);
+      setTimeout(async () => {
+        timeStamps.delete(message.author.id);
+      }, cooldownAmount);
+      message.channel.startTyping();
+      await command.run(message, args);
+    } catch (err) {
+      console.error(err);
+      message.reply('\\💥 Unhandled exception detected. Whoops!');
+    } finally {
+      message.channel.stopTyping();
+    }
   }
 };
