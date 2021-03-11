@@ -19,9 +19,7 @@ module.exports = class extends BaseCommand {
   public async run(message: Message, args: string[]): Promise<void> {
     /* 💫 sample code here. */
     message.reply(
-      await this.client.wrappers.Hypixel.createEmbedPlayerSkywars(
-        args.join(' ')
-      )
+      await this.client.wrappers.Hypixel.createEmbedPlayerSkywars(args[0])
     );
   }
 };
