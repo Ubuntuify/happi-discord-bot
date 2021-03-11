@@ -8,5 +8,10 @@ const APIKeys: TokenStructure = JSON.parse(
 );
 
 /* ✨ Initializes discord and other api wrappers. */
-const Client = new Interface({ token: APIKeys, mongo: Mongoose() });
+const Client = new Interface({
+  token: APIKeys,
+  mongo: Mongoose(),
+  prefix: '!',
+});
+
 Client.init();
