@@ -15,7 +15,6 @@ export default async (): Promise<Mongoose> => {
     useUnifiedTopology: true,
     useFindAndModify: false,
   });
-  console.log(ReadyState[mongoose.connection.readyState]);
 
   return mongoose;
 };
