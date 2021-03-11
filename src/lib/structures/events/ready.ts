@@ -1,5 +1,6 @@
 /* eslint-disable global-require */
 import colors from 'chalk';
+import { ReadyState as MongoReadyState } from '../../helpers/mongo';
 
 import config from '../../../app/config/main_config.json';
 import Event from '../Event';
@@ -41,7 +42,9 @@ module.exports = class extends Event {
     await this.client.db.then((mongoose) => {
       try {
         console.log(
-          `💥 Connected to mongo at ${colors.gray.underline(config.mongoPath)}`
+          `💥 ${
+            MongoReadyState[mongoose.connection.readyState]
+          } to mongo at ${colors.gray.underline(config.mongoPath)}`
         );
       } finally {
         mongoose.connection.close();
