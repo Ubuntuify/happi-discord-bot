@@ -21,8 +21,6 @@ async function getPrefix(_id: string, client: Client): Promise<any> {
   return prefix;
 }
 
-/* eslint-disable no-shadow */
-/* eslint-disable camelcase */
 module.exports = class extends Event {
   public async run(message: Message): Promise<void> {
     const mentionRegex = RegExp(`^<@!${this.client.user.id}>$`);
