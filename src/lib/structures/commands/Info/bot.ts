@@ -1,4 +1,4 @@
-import Discord, { Message, MessageEmbed } from 'discord.js';
+import { Message, MessageEmbed, version as djsversion } from 'discord.js';
 import { utc } from 'moment';
 import os from 'os';
 import ms from 'ms';
@@ -7,8 +7,6 @@ import { version, repository } from '../../../../../package.json';
 import BaseCommand from '../../Command';
 import Client from '../../../../Client';
 import Utility from '../../../Utility';
-
-const djsversion = Discord.version;
 
 module.exports = class extends BaseCommand {
   constructor(client: Client, name: string) {
