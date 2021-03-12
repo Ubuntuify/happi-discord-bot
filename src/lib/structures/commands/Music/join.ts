@@ -17,6 +17,13 @@ module.exports = class extends BaseCommand {
       return;
     }
 
+    const voicePerms = message.member.voice.channel.permissionsFor(
+      this.client.user
+    );
+    if (!(voicePerms.has('CONNECT') || voicePerms.has('SPEAK'))) {
+      return super.returnError(message, 'INTERNAL_ERROR');
+    }
+
     await message.member.voice.channel
       .join()
       .then(({ channel }) =>
