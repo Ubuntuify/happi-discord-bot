@@ -1,7 +1,5 @@
 import { dirname, sep, parse } from 'path';
 import { promisify } from 'util';
-import { cyan, yellow, green, bgRed, red } from 'chalk';
-import ora from 'ora';
 
 import Event from './structures/Event';
 import Command from './structures/Command';
@@ -45,7 +43,7 @@ export default class Utility {
     return arr;
   }
 
-  // eslint-disable-next-line class-methods-use-this
+  /* eslint-disable-next-line class-methods-use-this */
   get directory(): string {
     return `${dirname(require.main.filename)}${sep}`;
   }
@@ -56,8 +54,6 @@ export default class Utility {
         for (const eventFile of events) {
           delete require.cache[eventFile];
           const { name } = parse(eventFile);
-
-          const loadSpinner = ora(`Loading event ${name}...`);
 
           try {
             // eslint-disable-next-line
@@ -77,14 +73,8 @@ export default class Utility {
             event.emitter[event.type](name, (...args: any) =>
               event.run(...args)
             );
-
-            // eslint-disable-next-line
-            loadSpinner.succeed(`Completed loading ${cyan('event')} ${yellow(name)}.`);
           } catch (stacktrace) {
-            loadSpinner.fail(
-              // eslint-disable-next-line prettier/prettier
-              `Could not load ${cyan('event')} ${yellow(name)}\n${bgRed(`❌ ${stacktrace}`)}`
-            );
+            console.error(`\n${stacktrace}`);
           }
         }
       }
@@ -97,7 +87,6 @@ export default class Utility {
         for (const commandFile of commands) {
           delete require.cache[commandFile];
           const { name } = parse(commandFile);
-          const loadSpinner = ora(`Loading command ${name}...`);
 
           // eslint-disable-next-line
           const File = require(commandFile);
@@ -120,12 +109,8 @@ export default class Utility {
               for (const alias of command.aliases) {
                 this.client.commands.Aliases.set(alias, command.name);
               }
-
-            // eslint-disable-next-line prettier/prettier
-            loadSpinner.succeed(`Completed loading ${green('command')} ${yellow(name)}.`);
-          } catch (e) {
-            // eslint-disable-next-line prettier/prettier
-            loadSpinner.fail(`Failed loading ${red('command')} ${yellow(name)}.`);
+          } catch (stacktrace) {
+            console.error(`\n${stacktrace}`);
           }
         }
       }

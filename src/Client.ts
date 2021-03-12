@@ -1,4 +1,7 @@
+import { bold, green, yellow } from 'chalk';
 import { Client, Collection } from 'discord.js';
+import Listr from 'listr';
+
 import { HypixelAPI } from './bin/helpers/Hypixel';
 import Utility from './lib/Utility';
 
@@ -84,14 +87,33 @@ export default class Interface extends Client {
   }
 
   public init(): void {
-    this.validate(this.clientOptions);
-    super.login(this.clientOptions.token.DISCORD);
-
     this.utils = new Utility(this);
+    const tasks = new Listr([
+      {
+        title: 'Initializing Discord Bot..',
+        task: () => {
+          return new Listr([
+            {
+              title: 'Validating provided options.',
+              task: () => this.validate(this.clientOptions),
+            },
+            {
+              title: yellow('Loading event classes.'),
+              task: () => this.utils.loadEvents(),
+            },
+            {
+              title: green('Loading command classes.'),
+              task: () => this.utils.loadCommands(),
+            },
+            {
+              title: bold('Connecting to Discord API.'),
+              task: () => super.login(this.clientOptions.token.DISCORD),
+            },
+          ]);
+        },
+      },
+    ]);
 
-    console.log('💦 Starting to load application.\n');
-    const util = this.utils;
-    util.loadEvents();
-    util.loadCommands();
+    tasks.run().catch((err) => console.error(err));
   }
 }
