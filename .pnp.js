@@ -81,7 +81,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["typescript", "patch:typescript@npm%3A4.1.5#builtin<compat/typescript>::version=4.1.5&hash=cc6730"],
             ["utf-8-validate", "npm:5.0.4"],
             ["util", "npm:0.12.3"],
-            ["ytdl-core", "npm:4.5.0"],
+            ["ytdl-core-discord", "npm:1.2.5"],
             ["zlib-sync", "npm:0.1.7"]
           ],
           "linkType": "SOFT",
@@ -527,6 +527,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-node-npm-14.14.31-4f1a9dff64-635dc8a089.zip/node_modules/@types/node/",
           "packageDependencies": [
             ["@types/node", "npm:14.14.31"]
+          ],
+          "linkType": "HARD",
+        }],
+        ["npm:14.14.34", {
+          "packageLocation": "./.yarn/cache/@types-node-npm-14.14.34-6d5f0fa2f8-74db0d80ad.zip/node_modules/@types/node/",
+          "packageDependencies": [
+            ["@types/node", "npm:14.14.34"]
           ],
           "linkType": "HARD",
         }]
@@ -3160,7 +3167,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["typescript", "patch:typescript@npm%3A4.1.5#builtin<compat/typescript>::version=4.1.5&hash=cc6730"],
             ["utf-8-validate", "npm:5.0.4"],
             ["util", "npm:0.12.3"],
-            ["ytdl-core", "npm:4.5.0"],
+            ["ytdl-core-discord", "npm:1.2.5"],
             ["zlib-sync", "npm:0.1.7"]
           ],
           "linkType": "SOFT",
@@ -6592,6 +6599,18 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["m3u8stream", "npm:0.8.3"],
             ["miniget", "npm:4.2.0"],
             ["sax", "npm:1.2.4"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["ytdl-core-discord", [
+        ["npm:1.2.5", {
+          "packageLocation": "./.yarn/cache/ytdl-core-discord-npm-1.2.5-bc749e42cf-73bf035d49.zip/node_modules/ytdl-core-discord/",
+          "packageDependencies": [
+            ["ytdl-core-discord", "npm:1.2.5"],
+            ["@types/node", "npm:14.14.34"],
+            ["prism-media", "virtual:7ae926d374d0a764617a808d68ce95b5689d2f4a329f618e498f8f75169a08eafa20cf4ba94a9a89198b92afbe8503c3c488daaa7875407476064925a96095ed#npm:1.2.7"],
+            ["ytdl-core", "npm:4.5.0"]
           ],
           "linkType": "HARD",
         }]

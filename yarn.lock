@@ -408,6 +408,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:^14.14.14":
+  version: 14.14.34
+  resolution: "@types/node@npm:14.14.34"
+  checksum: 74db0d80ad997c3ca2597abe1c63c85e87c32e06b4e8c8392a24a11ad00a4567b293a72bbdf49ace201150b420a943609181771cab034cef10fe65272d452718
+  languageName: node
+  linkType: hard
+
 "@types/responselike@npm:^1.0.0":
   version: 1.0.0
   resolution: "@types/responselike@npm:1.0.0"
@@ -2506,7 +2513,7 @@ fsevents@~2.3.1:
     typescript: 4.1.5
     utf-8-validate: ^5.0.4
     util: ^0.12.3
-    ytdl-core: ^4.5.0
+    ytdl-core-discord: ^1.2.5
     zlib-sync: ^0.1.7
   languageName: unknown
   linkType: soft
@@ -4140,7 +4147,7 @@ fsevents@~2.3.1:
   languageName: node
   linkType: hard
 
-"prism-media@npm:^1.2.2":
+"prism-media@npm:^1.2.2, prism-media@npm:^1.2.3":
   version: 1.2.7
   resolution: "prism-media@npm:1.2.7"
   peerDependencies:
@@ -5518,7 +5525,18 @@ typescript@4.1.5:
   languageName: node
   linkType: hard
 
-"ytdl-core@npm:^4.5.0":
+"ytdl-core-discord@npm:^1.2.5":
+  version: 1.2.5
+  resolution: "ytdl-core-discord@npm:1.2.5"
+  dependencies:
+    "@types/node": ^14.14.14
+    prism-media: ^1.2.3
+    ytdl-core: ^4.2.1
+  checksum: 73bf035d491fcb42acf002132187ead9275cf3991ba22a6f9517fe550a52e276917750ab877c7ab0d68916f1ea89009f375045efba86e559e7ae95615095f024
+  languageName: node
+  linkType: hard
+
+"ytdl-core@npm:^4.2.1":
   version: 4.5.0
   resolution: "ytdl-core@npm:4.5.0"
   dependencies:
