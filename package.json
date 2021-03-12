@@ -1,6 +1,6 @@
 {
   "name": "happi-discord-bot",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "main": "dist/index.js",
   "scripts": {
     "dev": "nodemon --config nodemon.json",
