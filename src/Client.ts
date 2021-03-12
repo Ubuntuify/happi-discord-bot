@@ -69,6 +69,7 @@ export default class Interface extends Client {
         'GUILD_PRESENCES',
         'GUILD_MEMBERS',
         'GUILD_MESSAGE_REACTIONS',
+        'GUILD_VOICE_STATES',
       ],
     });
     this.events = new Collection();
