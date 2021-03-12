@@ -5,7 +5,7 @@ import Client from '../../Client';
  * The options that defines what the commands are about.
  */
 export interface CommandOptions {
-  category?: string;
+  category?: CATEGORY;
   name?: string;
   usage?: string;
   description?: string;
@@ -15,12 +15,22 @@ export interface CommandOptions {
   args: boolean;
 }
 
+export type CATEGORY =
+  | 'BOT'
+  | 'DEBUG'
+  | 'FUN'
+  | 'HYPIXEL'
+  | 'INFO'
+  | 'MOD'
+  | 'MISC';
+
 export default abstract class BaseCommand {
   /* 📚 The properties of this class */
-  public client: Client;
+  public readonly client: Client;
+
   public name: string;
   public aliases: string[];
-  public category: string;
+  public category: CATEGORY;
   public args: boolean;
   public usage: string;
   public description: string;
@@ -39,7 +49,7 @@ export default abstract class BaseCommand {
     this.args = options.args;
 
     /* 💤 Optional parts of this abstract class. */
-    this.category = options.category || 'Misc';
+    this.category = options.category || 'MISC';
     this.description =
       options.description ??
       'Description was not provided. Contact the owner for a fix.\n(Or make a pull request.)';
