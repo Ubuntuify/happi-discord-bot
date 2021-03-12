@@ -13,7 +13,8 @@
         "global-require": "off",
         "lines-between-class-members": "off",
         "no-eval": "warn",
-        "no-use-before-define": "off"
+        "no-use-before-define": "off",
+        "class-methods-use-this": "off"
     },
     "settings": {
         "import/resolver": {
