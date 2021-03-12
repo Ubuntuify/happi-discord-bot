@@ -1,6 +1,5 @@
-We've got a new version!
+\🔫 **NEW!**
++ Changed backend to use MongoDB instead of JSON.
++ Added changelog command.
 
-We've changed the backend of our database!
-We've added the changelog command!
-
-Always check our git repository!
+[GitHub](https://github.com/RyanGamingXbox/happi-discord-bot)
