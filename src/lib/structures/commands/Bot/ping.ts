@@ -8,7 +8,7 @@ module.exports = class extends BaseCommand {
   /* 💔 Passes options to main class. */
   constructor(client: Client, name: string) {
     super(client, name, {
-      category: 'Bot',
+      category: 'BOT',
       cooldown: 15,
       aliases: ['pong'],
       description: 'Gets ping information from numerous sources.',

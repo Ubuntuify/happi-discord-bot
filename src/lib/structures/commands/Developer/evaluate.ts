@@ -8,7 +8,7 @@ import Client from '../../../../Client';
 module.exports = class extends BaseCommand {
   constructor(client: Client, name: string) {
     super(client, name, {
-      category: 'Developer',
+      category: 'DEBUG',
       cooldown: 10,
       aliases: ['eval'],
       args: true,

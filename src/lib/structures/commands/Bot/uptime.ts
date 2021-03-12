@@ -13,7 +13,7 @@ module.exports = class extends BaseCommand {
       cooldown: 10,
       aliases: [],
       args: false,
-      category: 'bot',
+      category: 'BOT',
     });
   }
 

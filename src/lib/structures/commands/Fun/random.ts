@@ -8,7 +8,7 @@ module.exports = class extends BaseCommand {
   /* 💔 Passes options to main class. */
   constructor(client: Client, name: string) {
     super(client, name, {
-      category: 'Fun',
+      category: 'FUN',
       cooldown: 5,
       aliases: ['dice', 'randomnumbergenerator', 'rollthedice', 'rng'],
       args: false,

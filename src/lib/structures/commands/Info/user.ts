@@ -34,6 +34,7 @@ const status = {
 module.exports = class extends BaseCommand {
   constructor(client: Client, name: string) {
     super(client, name, {
+      category: 'INFO',
       cooldown: 10,
       aliases: [],
       args: false,

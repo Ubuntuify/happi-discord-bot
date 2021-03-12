@@ -9,7 +9,7 @@ module.exports = class extends BaseCommand {
   constructor(client: Client, name: string) {
     super(client, name, {
       cooldown: 30,
-      category: 'Hypixel',
+      category: 'HYPIXEL',
       aliases: ['sg', 'survivalgames'],
       args: true,
     });

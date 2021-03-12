@@ -9,7 +9,7 @@ module.exports = class extends BaseCommand {
   constructor(client: Client, name: string) {
     super(client, name, {
       cooldown: 10,
-      category: 'Developer',
+      category: 'DEBUG',
       aliases: ['exec'],
       args: true,
       usage: '<query>',
