@@ -2,7 +2,7 @@ import { bold, green, yellow } from 'chalk';
 import { Client, Collection } from 'discord.js';
 import Listr from 'listr';
 
-import { HypixelAPI } from './bin/helpers/Hypixel';
+import { HypixelAPI } from './bin/helpers/Hypixel/Hypixel';
 import Utility from './lib/Utility';
 
 interface CommandStructure {
