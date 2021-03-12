@@ -63,7 +63,13 @@ export default class Interface extends Client {
 
   constructor(options: ClientOptions) {
     super({
-      intents: ['GUILD_MESSAGES', 'GUILDS', 'GUILD_PRESENCES', 'GUILD_MEMBERS'],
+      intents: [
+        'GUILD_MESSAGES',
+        'GUILDS',
+        'GUILD_PRESENCES',
+        'GUILD_MEMBERS',
+        'GUILD_MESSAGE_REACTIONS',
+      ],
     });
     this.events = new Collection();
     this.commands = {
