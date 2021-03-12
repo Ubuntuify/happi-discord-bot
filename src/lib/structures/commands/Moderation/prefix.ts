@@ -1,5 +1,4 @@
 import { Message } from 'discord.js';
-import { Mongoose } from 'mongoose';
 
 import BaseCommand from '../../Command';
 import Client from '../../../../Client';
@@ -25,7 +24,7 @@ module.exports = class extends BaseCommand {
       return;
     }
 
-    await this.client.db.then(async (mongoose: Mongoose) => {
+    await this.client.db.then(async () => {
       await PrefixSchema.findOneAndUpdate(
         {
           _id: guild.id,
