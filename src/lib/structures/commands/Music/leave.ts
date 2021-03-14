@@ -18,12 +18,18 @@ module.exports = class extends BaseCommand {
       return;
     }
 
-    const { channel } = await fetchConnection(
+    const connection = await fetchConnection(
       this.client,
       message.member.voice.channel.id
     );
 
-    channel.leave();
-    message.reply(`\\🔊 Left voice channel with id \`${channel.id}\`.`);
+    if (!connection) {
+      message.reply("\\❌ I'm not connected to your voice channel.");
+    }
+
+    connection.channel.leave();
+    message.reply(
+      `\\🔊 Left voice channel with id \`${connection.channel.id}\`.`
+    );
   }
 };
