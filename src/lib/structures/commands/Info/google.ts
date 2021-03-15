@@ -14,7 +14,7 @@ module.exports = class extends BaseCommand {
   }
 
   public async run(message: Message, args: string[]): Promise<void> {
-    const { KEY, CSX } = this.client.clientOptions.token.GOOGLE_API;
+    const { KEY, CSX } = this.client.ClientOptions.token.GOOGLE_API;
     const query = args.join(' ');
 
     const href: any = await search(query);
