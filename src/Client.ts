@@ -51,7 +51,7 @@ export default class Interface extends Client {
   public db: any;
 
   public readonly wrappers: WrapperStructure;
-  public readonly clientOptions: ClientOptions;
+  public readonly ClientOptions: ClientOptions;
 
   private validate(options: ClientOptions): void {
     if (typeof options !== 'object')
@@ -89,7 +89,7 @@ export default class Interface extends Client {
     this.wrappers = {
       Hypixel: new HypixelAPI(options.token.HYPIXEL_API),
     };
-    this.clientOptions = options;
+    this.ClientOptions = options;
     this.db = options.mongo;
   }
 
@@ -102,7 +102,7 @@ export default class Interface extends Client {
           return new Listr([
             {
               title: 'Validating provided options.',
-              task: () => this.validate(this.clientOptions),
+              task: () => this.validate(this.ClientOptions),
             },
             {
               title: yellow('Loading event classes.'),
@@ -114,7 +114,7 @@ export default class Interface extends Client {
             },
             {
               title: bold('Connecting to Discord API.'),
-              task: () => super.login(this.clientOptions.token.DISCORD),
+              task: () => super.login(this.ClientOptions.token.DISCORD),
             },
           ]);
         },
