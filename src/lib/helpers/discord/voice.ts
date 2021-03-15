@@ -1,7 +1,7 @@
 import { VoiceConnection } from 'discord.js';
 import Client from '../../../Client';
 
-export async function fetchConnection(client: Client, id: string) {
+export async function fetch(client: Client, id: string) {
   const connectionFilter = (connection: VoiceConnection) =>
     connection.channel.id === id;
 

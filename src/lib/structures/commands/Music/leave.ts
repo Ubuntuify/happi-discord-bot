@@ -1,6 +1,6 @@
 import { Message } from 'discord.js';
 import BaseCommand from '../../Command';
-import { fetchConnection } from '../../../helpers/discord/voice';
+import { fetch } from '../../../helpers/discord/voice';
 import Client from '../../../../Client';
 
 module.exports = class extends BaseCommand {
@@ -18,7 +18,7 @@ module.exports = class extends BaseCommand {
       return;
     }
 
-    const connection = await fetchConnection(
+    const connection = await fetch(
       this.client,
       message.member.voice.channel.id
     );
