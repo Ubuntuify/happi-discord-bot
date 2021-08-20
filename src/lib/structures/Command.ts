@@ -52,10 +52,10 @@ export default abstract class BaseCommand {
     this.category = options.category || 'MISC';
     this.description =
       options.description ??
-      'Description was not provided. Contact the owner for a fix.\n(Or make a pull request.)';
+      'Description was not provided. Contact the owner for a fix.\n(Or alternatively make a pull request.)';
     this.usage =
       options.usage ||
-      'Usage guide was not provided. Contact the author for a fix.\n(Or make a pull request.)';
+      'Usage guide was not provided. Contact the author for a fix.\n(Or alternatively make a pull request.)';
 
     this.ownerOnly = options.ownerOnly ?? false;
   }
